@@ -1,4 +1,4 @@
-package com.studioannwn;
+package com.studioannwn.patterns;
 
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;

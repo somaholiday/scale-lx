@@ -1,4 +1,4 @@
-package com.studioannwn;
+package com.studioannwn.patterns;
 
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;
@@ -6,6 +6,7 @@ import heronarts.lx.LXPattern;
 import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.parameter.CompoundParameter;
+import com.studioannwn.util.ColorTemp;
 
 import java.awt.*;
 

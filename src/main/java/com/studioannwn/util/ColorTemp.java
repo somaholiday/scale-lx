@@ -1,4 +1,4 @@
-package com.studioannwn;
+package com.studioannwn.util;
 
 public class ColorTemp {
   static public void convertKToRGB(float k, int[] rgb)
