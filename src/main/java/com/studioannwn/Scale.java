@@ -1,6 +1,8 @@
 package com.studioannwn;
 
 import com.google.common.reflect.ClassPath;
+import com.studioannwn.model.GridModel3D;
+
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
 import heronarts.lx.blend.LightestBlend;
@@ -127,7 +129,7 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-		ScaleLayout layout = new ScaleLayout();
+		// ScaleLayout layout = new ScaleLayout();
 
     LXStudio.Flags flags = new LXStudio.Flags();
     flags.showFramerate = false;
@@ -139,7 +141,8 @@ public class Scale extends PApplet {
     logger.info("Current graphics is GL:" + getGraphics().isGL());
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
-    lx = new LXStudio(this, flags, layout.getModel());
+    // lx = new LXStudio(this, flags, layout.getModel());
+    lx = new LXStudio(this, flags, new GridModel3D());
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
