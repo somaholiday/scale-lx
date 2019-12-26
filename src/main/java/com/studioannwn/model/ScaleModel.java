@@ -37,11 +37,11 @@ public class ScaleModel extends LXModel {
 		List<LXModel> submodels = new ArrayList<>();
 
 		t.push();
-			submodels.add(new FixtureModel(10, t));
+			submodels.add(new FixtureModel(10, t, ImmutableList.of("universe1")));
 
 			t.push();
 				t.translate(5 * FixtureModel.PITCH, - 8 * Scale.CM, 0);
-				submodels.add(new FixtureModel(10, t));
+				submodels.add(new FixtureModel(10, t, ImmutableList.of("universe3")));
 			t.pop();
 		t.pop();
 

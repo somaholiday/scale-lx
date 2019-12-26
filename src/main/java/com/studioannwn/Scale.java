@@ -129,8 +129,6 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-		ScaleLayout layout = new ScaleLayout();
-
     LXStudio.Flags flags = new LXStudio.Flags();
     flags.showFramerate = false;
     flags.isP3LX = true;
@@ -141,6 +139,8 @@ public class Scale extends PApplet {
     logger.info("Current graphics is GL:" + getGraphics().isGL());
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
+
+    ScaleLayout layout = new ScaleLayout();
     lx = new LXStudio(this, flags, layout.getModel());
     // lx = new LXStudio(this, flags, new GridModel3D());
 
