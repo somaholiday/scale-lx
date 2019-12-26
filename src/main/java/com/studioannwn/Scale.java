@@ -127,7 +127,7 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-		PyramidLayout layout = new PyramidLayout();
+		ScaleLayout layout = new ScaleLayout();
 
     LXStudio.Flags flags = new LXStudio.Flags();
     flags.showFramerate = false;
@@ -141,14 +141,8 @@ public class Scale extends PApplet {
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
     lx = new LXStudio(this, flags, layout.getModel());
 
-    lx.ui.setResizable(true);
-
-    if (enableOutput) {
-      // Output.configureE131Output(lx, Output.LightType.PRODPAR);
-      //Output.configureArtnetOutput(lx);
-    }
-    if (disableOutputOnStart)
-      lx.engine.output.enabled.setValue(false);
+    lx.ui.setResizable(RESIZABLE);
+    lx.engine.output.enabled.setValue(ENABLE_ON_START);
 
     frameRate(GLOBAL_FRAME_RATE);
   }
@@ -175,10 +169,11 @@ public class Scale extends PApplet {
   }
 
   // Configuration flags
+  private final static boolean RESIZABLE = true;
+  private final static boolean ENABLE_ON_START = false;
   private final static boolean MULTITHREADED = false;  // Disabled for anything GL
                                                        // Enable at your own risk!
                                                        // Could cause VM crashes.
-  private final static boolean RESIZABLE = true;
 
   // Helpful global constants
   final static float INCHES = 1.0f / 12.0f;
@@ -189,9 +184,6 @@ public class Scale extends PApplet {
   final static float MM = CM * .1f;
   final static float M = CM * 100;
   final static float METER = M;
-
-  public static final boolean enableOutput = true;
-  public static final boolean disableOutputOnStart = false;
 
   public static final int LEDS_PER_UNIVERSE = 170;
 }
