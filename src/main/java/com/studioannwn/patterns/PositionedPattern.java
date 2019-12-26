@@ -38,7 +38,6 @@ public abstract class PositionedPattern extends LXPattern {
       case X: return p.xn;
       case Y: return p.yn;
       case Z: return p.zn;
-      // case Z: return p.zn;
       default: return 0;
     }
   }
