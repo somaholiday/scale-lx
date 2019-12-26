@@ -18,8 +18,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import processing.core.PApplet;
 
-import com.studioannwn.output.BufferSaveOutput;
-
 public class Scale extends PApplet {
 
 	static {
@@ -72,11 +70,7 @@ public class Scale extends PApplet {
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
 
-  public static UIDimmer dimmer;
-  public static UIWhiteControl parWhiteControl;
-  public static UIWhiteControl wallWasherWhiteControl;
-
-    @Override
+  @Override
   public void settings() {
     size(1024, 600, P3D);
   }
@@ -147,16 +141,7 @@ public class Scale extends PApplet {
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
     lx = new LXStudio(this, flags, layout.getModel());
 
-    lx.addOutput(new BufferSaveOutput(lx));
-
     lx.ui.setResizable(true);
-
-    dimmer = (UIDimmer) new UIDimmer(lx.ui, "DIMMER", "dimmer")
-        .setExpanded(false).addToContainer(lx.ui.leftPane.global);
-    parWhiteControl = (UIWhiteControl) new UIWhiteControl(lx.ui, "WHITE : PAR", "white_par")
-        .setExpanded(false).addToContainer(lx.ui.leftPane.global);
-    wallWasherWhiteControl = (UIWhiteControl) new UIWhiteControl(lx.ui, "WHITE : WALL WASHER", "white_wallwasher")
-        .setExpanded(false).addToContainer(lx.ui.leftPane.global);
 
     if (enableOutput) {
       // Output.configureE131Output(lx, Output.LightType.PRODPAR);

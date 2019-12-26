@@ -44,7 +44,7 @@ public class SpotlightDmxFragment extends DmxFragment {
 	public void applyToBuffer(int[] colors, byte[] buffer, int offset) {
 		int fragmentOffset = offset + startChannel;
 
-		buffer[fragmentOffset + CHANNEL_DIMMER] = (byte)Scale.dimmer.parDimmer;
+		// buffer[fragmentOffset + CHANNEL_DIMMER] = (byte)Scale.dimmer.parDimmer;
 
 		int index = indexBuffer[0];
 		int c = colors[index];
@@ -52,7 +52,7 @@ public class SpotlightDmxFragment extends DmxFragment {
 		buffer[fragmentOffset + CHANNEL_R] = LXColor.red(c);
 		buffer[fragmentOffset + CHANNEL_G] = LXColor.green(c);
 		buffer[fragmentOffset + CHANNEL_B] = LXColor.blue(c);
-		buffer[fragmentOffset + CHANNEL_W] = (byte)Scale.parWhiteControl.whiteOverride;
-		buffer[fragmentOffset + CHANNEL_A] = (byte)Scale.parWhiteControl.amberOverride;
+		// buffer[fragmentOffset + CHANNEL_W] = (byte)Scale.parWhiteControl.whiteOverride;
+		// buffer[fragmentOffset + CHANNEL_A] = (byte)Scale.parWhiteControl.amberOverride;
 	}
 }

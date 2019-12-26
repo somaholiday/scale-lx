@@ -47,7 +47,7 @@ public class WallWasherDmxFragment extends DmxFragment {
 	public void applyToBuffer(int[] colors, byte[] buffer, int offset) {
 		int fragmentOffset = offset + startChannel;
 
-		buffer[fragmentOffset + CHANNEL_DIMMER] = (byte)Scale.dimmer.wallWasherDimmer;
+		// buffer[fragmentOffset + CHANNEL_DIMMER] = (byte)Scale.dimmer.wallWasherDimmer;
 
 		int pixelOffset = 0;
 
@@ -60,8 +60,8 @@ public class WallWasherDmxFragment extends DmxFragment {
 			buffer[pixelOffset + CHANNEL_R] = LXColor.red(c);
 			buffer[pixelOffset + CHANNEL_G] = LXColor.green(c);
 			buffer[pixelOffset + CHANNEL_B] = LXColor.blue(c);
-			buffer[pixelOffset + CHANNEL_W] = (byte)Scale.wallWasherWhiteControl.whiteOverride;
-			buffer[pixelOffset + CHANNEL_A] = (byte)Scale.wallWasherWhiteControl.amberOverride;
+			// buffer[pixelOffset + CHANNEL_W] = (byte)Scale.wallWasherWhiteControl.whiteOverride;
+			// buffer[pixelOffset + CHANNEL_A] = (byte)Scale.wallWasherWhiteControl.amberOverride;
 		}
 	}
 }
