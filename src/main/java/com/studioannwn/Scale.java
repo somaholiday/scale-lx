@@ -22,6 +22,25 @@ import processing.core.PApplet;
 
 public class Scale extends PApplet {
 
+  // Configuration flags
+  private final static boolean RESIZABLE = true;
+  private final static boolean ENABLE_ON_START = true;
+  private final static boolean MULTITHREADED = false;  // Disabled for anything GL
+                                                       // Enable at your own risk!
+                                                       // Could cause VM crashes.
+
+  // Helpful global constants
+  public final static float INCHES = 1.0f / 12.0f;
+  public final static float IN = INCHES;
+  public final static float FEET = 1.0f;
+  public final static float FT = FEET;
+  public final static float CM = IN / 2.54f;
+  public final static float MM = CM * .1f;
+  public final static float M = CM * 100;
+  public final static float METER = M;
+
+  public static final int LEDS_PER_UNIVERSE = 170;
+
 	static {
     System.setProperty(
         "java.util.logging.SimpleFormatter.format",
@@ -170,23 +189,4 @@ public class Scale extends PApplet {
   public void draw() {
     // All is handled by LX Studio
   }
-
-  // Configuration flags
-  private final static boolean RESIZABLE = true;
-  private final static boolean ENABLE_ON_START = false;
-  private final static boolean MULTITHREADED = false;  // Disabled for anything GL
-                                                       // Enable at your own risk!
-                                                       // Could cause VM crashes.
-
-  // Helpful global constants
-  public final static float INCHES = 1.0f / 12.0f;
-  public final static float IN = INCHES;
-  public final static float FEET = 1.0f;
-  public final static float FT = FEET;
-  public final static float CM = IN / 2.54f;
-  public final static float MM = CM * .1f;
-  public final static float M = CM * 100;
-  public final static float METER = M;
-
-  public static final int LEDS_PER_UNIVERSE = 170;
 }
