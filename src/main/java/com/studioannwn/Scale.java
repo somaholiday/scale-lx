@@ -129,7 +129,7 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-		// ScaleLayout layout = new ScaleLayout();
+		ScaleLayout layout = new ScaleLayout();
 
     LXStudio.Flags flags = new LXStudio.Flags();
     flags.showFramerate = false;
@@ -141,8 +141,8 @@ public class Scale extends PApplet {
     logger.info("Current graphics is GL:" + getGraphics().isGL());
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
-    // lx = new LXStudio(this, flags, layout.getModel());
-    lx = new LXStudio(this, flags, new GridModel3D());
+    lx = new LXStudio(this, flags, layout.getModel());
+    // lx = new LXStudio(this, flags, new GridModel3D());
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
@@ -179,14 +179,14 @@ public class Scale extends PApplet {
                                                        // Could cause VM crashes.
 
   // Helpful global constants
-  final static float INCHES = 1.0f / 12.0f;
-  final static float IN = INCHES;
-  final static float FEET = 1.0f;
-  final static float FT = FEET;
-  final static float CM = IN / 2.54f;
-  final static float MM = CM * .1f;
-  final static float M = CM * 100;
-  final static float METER = M;
+  public final static float INCHES = 1.0f / 12.0f;
+  public final static float IN = INCHES;
+  public final static float FEET = 1.0f;
+  public final static float FT = FEET;
+  public final static float CM = IN / 2.54f;
+  public final static float MM = CM * .1f;
+  public final static float M = CM * 100;
+  public final static float METER = M;
 
   public static final int LEDS_PER_UNIVERSE = 170;
 }
