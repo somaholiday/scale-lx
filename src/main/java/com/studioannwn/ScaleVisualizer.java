@@ -6,12 +6,10 @@ import heronarts.p3lx.P3LX;
 import heronarts.p3lx.ui.UI;
 import heronarts.p3lx.ui.UI3dComponent;
 
-public class TempleVisualizer extends UI3dComponent {
-  private static final int BASE_COLOR = 0xFF555555;
-
+public class ScaleVisualizer extends UI3dComponent {
   private final P3LX lx;
 
-  public TempleVisualizer(P3LX lx) {
+  public ScaleVisualizer(P3LX lx) {
     this.lx = lx;
   }
 
@@ -51,15 +49,6 @@ public class TempleVisualizer extends UI3dComponent {
   protected void onDraw(UI ui, PGraphics pg) {
     pg.lights();
 
-    // drawAxes(pg);
-
-    pg.noStroke();
-    pg.fill(BASE_COLOR);
-
-    pg.beginShape();
-    pg.vertex(0.f, 0.f, 0.f);
-    pg.vertex(10.f, 0.f, -(float)(10.f*Math.sqrt(3)));
-    pg.vertex(-10.f, 0.f, -(float)(10.f*Math.sqrt(3)));
-    pg.endShape();
+    drawAxes(pg);
   }
 }
