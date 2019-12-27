@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.google.common.primitives.Ints;
 import com.studioannwn.model.ModelCollection;
 import com.studioannwn.model.ScaleModel;
@@ -31,6 +32,8 @@ public class ScaleLayout {
 		model = new ScaleModel();
 
 		for (int output = 1; output <= 4; output++) {
+			int startUniverse = (output-1) * 4 + 1; // non-zero-indexed
+
 			List<LXModel> models = ModelCollection.filterChildren(model, "output-" + output);
 
 			List<Integer> indexBuffer = new ArrayList<Integer>();
@@ -40,23 +43,36 @@ public class ScaleLayout {
 				}
 			}
 
-			System.out.println(String.format("Output %d", output));
-			for (Integer index : indexBuffer) {
-				System.out.print(index + "\t");
-			}
-			System.out.println("\n");
-
-			// TODO: use model keys to refer to output number and map from output to universe in software instead of on PixLite
-			LXDatagram d = new ArtNetDatagram(Ints.toArray(indexBuffer), output-1);
-
-			try {
-				d.setAddress(PIXLITE_IP);
-			}	catch (Exception e) {
-				System.err.println("Error when setting datagram IP address: " + e.getMessage());
-				e.printStackTrace();
+			int outputPoints = indexBuffer.size();
+			int maxLEDsPerOutput = Scale.LEDS_PER_UNIVERSE * 4;
+			if (outputPoints > maxLEDsPerOutput) {
+				throw new RuntimeException(String.format("Max LEDs per output is %d. Output %d has too many points (%d).", maxLEDsPerOutput, output, outputPoints));
 			}
 
-			mutableDatagrams.add(d);
+			List<List<Integer>> universeIndexBuffers = Lists.partition(indexBuffer, Scale.LEDS_PER_UNIVERSE);
+
+			System.out.println(String.format("Output %d (Universes %d-%d)", output, startUniverse, startUniverse+3));
+			int universeOffset = 0;
+			for (List<Integer> universeIndexBuffer : universeIndexBuffers) {
+				System.out.println(String.format("\tUniverse %d", startUniverse + universeOffset));
+				System.out.print("\t");
+				for (Integer index : universeIndexBuffer) {
+					System.out.print(index + "\t");
+				}
+				System.out.println("\n");
+
+				LXDatagram d = new ArtNetDatagram(Ints.toArray(universeIndexBuffer), (startUniverse - 1) + universeOffset); // zero-indexed
+
+				try {
+					d.setAddress(PIXLITE_IP);
+				}	catch (Exception e) {
+					System.err.println("Error when setting datagram IP address: " + e.getMessage());
+					e.printStackTrace();
+				}
+
+				mutableDatagrams.add(d);
+				universeOffset++;
+			}
 		}
 
 		System.out.println(String.format("Model stats: \n\tcx=%f \tcy=%f \tcz=%f\n\txAvg=%f \tyAvg=%f \tzAvg=%f\n\txRange=%f \tyRange=%f \tzRange=%f\n",
