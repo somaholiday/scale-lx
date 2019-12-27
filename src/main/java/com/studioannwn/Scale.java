@@ -1,13 +1,5 @@
 package com.studioannwn;
 
-import com.google.common.reflect.ClassPath;
-import com.studioannwn.model.GridModel3D;
-
-import heronarts.lx.LXEffect;
-import heronarts.lx.LXPattern;
-import heronarts.lx.blend.LightestBlend;
-import heronarts.lx.studio.LXStudio;
-
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
@@ -18,6 +10,13 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+
+import com.google.common.reflect.ClassPath;
+
+import heronarts.lx.LXEffect;
+import heronarts.lx.LXPattern;
+import heronarts.lx.blend.LightestBlend;
+import heronarts.lx.studio.LXStudio;
 import processing.core.PApplet;
 
 public class Scale extends PApplet {
@@ -162,6 +161,8 @@ public class Scale extends PApplet {
     ScaleLayout layout = new ScaleLayout();
     lx = new LXStudio(this, flags, layout.getModel());
     // lx = new LXStudio(this, flags, new GridModel3D());
+
+    layout.setupOutput(lx);
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
