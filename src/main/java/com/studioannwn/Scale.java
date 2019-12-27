@@ -87,6 +87,8 @@ public class Scale extends PApplet {
   // Reference to top-level LX instance
   private heronarts.lx.studio.LXStudio lx;
 
+  public ScaleLayout layout;
+
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
 
@@ -158,7 +160,7 @@ public class Scale extends PApplet {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    ScaleLayout layout = new ScaleLayout();
+    layout = new ScaleLayout();
     lx = new LXStudio(this, flags, layout.getModel());
     // lx = new LXStudio(this, flags, new GridModel3D());
 
@@ -185,6 +187,8 @@ public class Scale extends PApplet {
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
     ui.preview.addComponent(new ScaleVisualizer(lx));
+
+    UIOutputControls uiOutputControls = (UIOutputControls) new UIOutputControls(ui, layout).setExpanded(false).addToContainer(ui.leftPane.global);
   }
 
   public void draw() {
