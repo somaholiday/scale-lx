@@ -7,12 +7,14 @@ import com.studioannwn.util.MathUtils;
 import com.studioannwn.util.NoiseUtils;
 
 import heronarts.lx.LX;
+import heronarts.lx.LXCategory;
 import heronarts.lx.parameter.BooleanParameter;
 import heronarts.lx.parameter.CompoundParameter;
 import heronarts.lx.parameter.DiscreteParameter;
 import processing.core.PImage;
 import processing.core.PVector;
 
+@LXCategory("Texture")
 public class Noise extends DPat {
     private int currModeIndex, iSymm;
     public final CompoundParameter speed = new CompoundParameter("Speed", 0.55, -2, 2);
