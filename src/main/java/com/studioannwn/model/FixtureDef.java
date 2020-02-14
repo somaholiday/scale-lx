@@ -1,5 +1,7 @@
 package com.studioannwn.model;
 
+import com.studioannwn.Scale;
+
 import heronarts.lx.transform.LXVector;
 
 public class FixtureDef {
@@ -11,7 +13,7 @@ public class FixtureDef {
   private int ledCount;
 
   public FixtureDef(float x, float y, float z, int ledCount) {
-    this.position = new LXVector(x, y, z);
+    this.position = new LXVector(x * Scale.IN, y * Scale.IN, z * Scale.IN);
     this.ledCount = ledCount;
   }
 

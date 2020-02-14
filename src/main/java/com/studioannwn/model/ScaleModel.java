@@ -4,33 +4,34 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.google.common.collect.ImmutableList;
-import com.studioannwn.Scale;
 
 import heronarts.lx.model.LXModel;
 import heronarts.lx.transform.LXTransform;
 import heronarts.lx.transform.LXVector;
 
+import static com.studioannwn.model.FixtureDef.*;
+
 public class ScaleModel extends LXModel {
 	private static final FixtureDef[][] fixtureDefs = {
 		{ // OUTPUT 1
-			new FixtureDef(0 * Scale.CM, 0 * Scale.CM, 20 * Scale.CM, FixtureDef.SIZE_S),
-			new FixtureDef(0 * Scale.CM, 4 * Scale.CM, 20 * Scale.CM, FixtureDef.SIZE_M),
-			new FixtureDef(0 * Scale.CM, 8 * Scale.CM, 20 * Scale.CM, FixtureDef.SIZE_L),
+			new FixtureDef(0, 0, 20, SIZE_S),
+			new FixtureDef(0, 4, 20, SIZE_M),
+			new FixtureDef(0, 8, 20, SIZE_L),
 		},
 		{ // OUTPUT 2
-			new FixtureDef(0 * Scale.CM, 0 * Scale.CM, 40 * Scale.CM, FixtureDef.SIZE_S),
-			new FixtureDef(0 * Scale.CM, 8 * Scale.CM, 40 * Scale.CM, FixtureDef.SIZE_S),
-			new FixtureDef(0 * Scale.CM, 16 * Scale.CM, 40 * Scale.CM, FixtureDef.SIZE_S),
+			new FixtureDef(0, 0, 40, SIZE_S),
+			new FixtureDef(0, 8, 40, SIZE_S),
+			new FixtureDef(0, 16, 40, SIZE_S),
 		},
 		{ // OUTPUT 3
-			new FixtureDef(0 * Scale.CM, 0 * Scale.CM, 80 * Scale.CM, FixtureDef.SIZE_M),
-			new FixtureDef(0 * Scale.CM, 8 * Scale.CM, 80 * Scale.CM, FixtureDef.SIZE_M),
-			new FixtureDef(0 * Scale.CM, 16 * Scale.CM, 80 * Scale.CM, FixtureDef.SIZE_M),
+			new FixtureDef(0, 0, 80, SIZE_M),
+			new FixtureDef(0, 8, 80, SIZE_M),
+			new FixtureDef(0, 16, 80, SIZE_M),
 		},
 		{ // OUTPUT 4
-			new FixtureDef(0 * Scale.CM, 0 * Scale.CM, 120 * Scale.CM, FixtureDef.SIZE_L),
-			new FixtureDef(0 * Scale.CM, 4 * Scale.CM, 120 * Scale.CM, FixtureDef.SIZE_L),
-			new FixtureDef(0 * Scale.CM, 8 * Scale.CM, 120 * Scale.CM, FixtureDef.SIZE_L),
+			new FixtureDef(0, 0, 120, SIZE_L),
+			new FixtureDef(0, 4, 120, SIZE_L),
+			new FixtureDef(0, 8, 120, SIZE_L),
 		},
 	};
 
