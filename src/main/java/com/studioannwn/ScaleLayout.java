@@ -20,8 +20,8 @@ import heronarts.lx.output.LXDatagramOutput;
 import heronarts.lx.studio.LXStudio;
 
 public class ScaleLayout {
-  private final static String PIXLITE_IP = "192.168.1.18";
-	private final static String NETWORK_INTERFACE_IP = "192.168.1.102";
+  private final static String PIXLITE_IP = "192.168.2.18";
+	private final static String NETWORK_INTERFACE_IP = "192.168.2.102";
 
 	private final ScaleModel model;
 
