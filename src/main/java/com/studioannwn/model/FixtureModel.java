@@ -13,7 +13,7 @@ import heronarts.lx.transform.LXTransform;
 public class FixtureModel extends LXModel {
 	public static final String MODEL_KEY = "fixture";
 
-	public static final float PITCH = 1.0f / 36.0f * Scale.METER ;
+	public static final float PITCH = Scale.METER / 80.0f;
 
 	public FixtureModel(int ledCount) {
 		this(ledCount, new LXTransform());

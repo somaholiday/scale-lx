@@ -39,7 +39,7 @@ public class ScaleVisualizer extends UI3dComponent {
       // Z == blue
       pg.rotateY((float) Math.PI / 2);
       pg.stroke(0, 0, 255);
-      pg.line(0, 0, 100, 0);
+      pg.line(0, 0, -100, 0); // PGraphics Z and LXModel Z directions are switched, apparently
     }
     pg.popMatrix();
     pg.popStyle();
