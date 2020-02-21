@@ -1,7 +1,6 @@
 package com.studioannwn.effect;
 
 import java.lang.reflect.TypeVariable;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 
 import com.google.common.reflect.TypeToken;
