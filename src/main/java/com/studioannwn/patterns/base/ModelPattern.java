@@ -1,4 +1,4 @@
-package com.studioannwn.effect;
+package com.studioannwn.patterns.base;
 
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.InvocationTargetException;
@@ -6,15 +6,15 @@ import java.lang.reflect.InvocationTargetException;
 import com.google.common.reflect.TypeToken;
 
 import heronarts.lx.LX;
-import heronarts.lx.LXEffect;
 import heronarts.lx.LXModelComponent;
+import heronarts.lx.LXPattern;
 import heronarts.lx.model.LXModel;
 
 
-public abstract class ModelEffect<M extends LXModel> extends LXEffect {
+public abstract class ModelPattern<M extends LXModel> extends LXPattern {
 	protected M model;
 
-	public ModelEffect(LX lx) {
+	public ModelPattern(LX lx) {
 		super(lx);
 
 		setModel(lx.getModel());

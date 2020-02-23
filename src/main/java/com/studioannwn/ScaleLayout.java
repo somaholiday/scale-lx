@@ -23,6 +23,8 @@ public class ScaleLayout {
   private final static String PIXLITE_IP = "192.168.2.18";
 	private final static String NETWORK_INTERFACE_IP = "192.168.2.102";
 
+	private final static int OUTPUT_COUNT = 4;
+
 	private final ScaleModel model;
 
 	private List<LXDatagram> mutableDatagrams = new ArrayList<LXDatagram>();
@@ -31,7 +33,7 @@ public class ScaleLayout {
 	public ScaleLayout() {
 		model = new ScaleModel();
 
-		for (int output = 1; output <= 4; output++) {
+		for (int output = 1; output <= OUTPUT_COUNT; output++) {
 			int startUniverse = (output-1) * 4 + 1; // non-zero-indexed
 
 			List<LXModel> models = ModelCollection.filterChildren(model, "output-" + output);
@@ -46,7 +48,7 @@ public class ScaleLayout {
 			int outputPoints = indexBuffer.size();
 			int maxLEDsPerOutput = Scale.LEDS_PER_UNIVERSE * 4;
 			if (outputPoints > maxLEDsPerOutput) {
-				throw new RuntimeException(String.format("Max LEDs per output is %d. Output %d has too many points (%d).", maxLEDsPerOutput, output, outputPoints));
+				// throw new RuntimeException(String.format("Max LEDs per output is %d. Output %d has too many points (%d).", maxLEDsPerOutput, output, outputPoints));
 			}
 
 			List<List<Integer>> universeIndexBuffers = Lists.partition(indexBuffer, Scale.LEDS_PER_UNIVERSE);
@@ -54,12 +56,7 @@ public class ScaleLayout {
 			System.out.println(String.format("Output %d (Universes %d-%d)", output, startUniverse, startUniverse+3));
 			int universeOffset = 0;
 			for (List<Integer> universeIndexBuffer : universeIndexBuffers) {
-				System.out.println(String.format("\tUniverse %d", startUniverse + universeOffset));
-				System.out.print("\t");
-				for (Integer index : universeIndexBuffer) {
-					System.out.print(index + "\t");
-				}
-				System.out.println("\n");
+				printUniverseIndexBuffer(startUniverse + universeOffset, universeIndexBuffer);
 
 				LXDatagram d = new ArtNetDatagram(Ints.toArray(universeIndexBuffer), (startUniverse - 1) + universeOffset); // zero-indexed
 
@@ -78,6 +75,15 @@ public class ScaleLayout {
 		System.out.println(String.format("Model stats: \n\tcx=%f \tcy=%f \tcz=%f\n\txAvg=%f \tyAvg=%f \tzAvg=%f\n\txRange=%f \tyRange=%f \tzRange=%f\n",
 				model.cx, model.cy, model.cz, model.ax, model.ay, model.az,
 				model.xRange, model.yRange, model.zRange));
+	}
+
+	private void printUniverseIndexBuffer(int universeIndex, List<Integer> universeIndexBuffer) {
+		System.out.println(String.format("\tUniverse %d", universeIndex));
+		System.out.print("\t");
+		for (Integer index : universeIndexBuffer) {
+			System.out.print(index + "\t");
+		}
+		System.out.println("\n");
 	}
 
 	public ScaleModel getModel() {
