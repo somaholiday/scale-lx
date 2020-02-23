@@ -1,4 +1,4 @@
-package com.studioannwn;
+package com.studioannwn.output;
 
 import java.util.ArrayList;
 import java.util.List;
