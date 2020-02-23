@@ -88,13 +88,15 @@ public class ScaleModel extends LXModel {
 		List<LXModel> submodels = new ArrayList<>();
 
 		LXVector pos;
+		int fixtureCount = 0;
 		for (int i = 0; i < fixtureDefs.length; i++) {
 			for (FixtureDef def : fixtureDefs[i]) {
 				t.push();
 				pos = def.getPosition();
 				t.translate(pos.x, pos.y, pos.z);
-				submodels.add(new FixtureModel(def.getLEDCount(), t, ImmutableList.of("output-" + (i+1))));
+				submodels.add(new FixtureModel(def.getLEDCount(), t, ImmutableList.of("fixture-" + fixtureCount, "output-" + (i+1))));
 				t.pop();
+				fixtureCount++;
 			}
 		}
 
