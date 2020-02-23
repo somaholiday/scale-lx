@@ -1,7 +1,6 @@
 package com.studioannwn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.studioannwn.model.ModelCollection;
@@ -11,7 +10,6 @@ import com.studioannwn.output.pixlite.PixLite4;
 
 import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
-import heronarts.lx.output.LXDatagram;
 import heronarts.lx.studio.LXStudio;
 
 public class ScaleLayout {
@@ -20,9 +18,6 @@ public class ScaleLayout {
 	};
 
 	private final ScaleModel model;
-
-	private List<LXDatagram> mutableDatagrams = new ArrayList<LXDatagram>();
-	public final List<LXDatagram> datagrams =  Collections.unmodifiableList(this.mutableDatagrams);
 
 	public ScaleLayout(LXStudio lx) {
 		model = new ScaleModel();
