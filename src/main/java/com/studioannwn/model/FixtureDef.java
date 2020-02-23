@@ -16,7 +16,6 @@ public class FixtureDef {
   public FixtureDef(float x, float y, float z, int ledCount) {
     float factor = Math.abs(PApplet.map(z, 6, 64, -1, 1));
     float yAdj = (float) (3 + 9 * factor);
-    System.out.println("yAdj" + yAdj);
     this.position = new LXVector(x * Scale.IN, yAdj * Scale.IN, z * Scale.IN);
     // this.position = new LXVector(x * Scale.IN, y * Scale.IN, z * Scale.IN);
     this.ledCount = ledCount;
