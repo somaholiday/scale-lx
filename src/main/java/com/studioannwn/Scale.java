@@ -13,6 +13,7 @@ import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
 // import com.studioannwn.model.GridModel3D;
+import com.studioannwn.output.ScaleLayout;
 
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
