@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
-// import com.studioannwn.model.GridModel3D;
 import com.studioannwn.output.ScaleLayout;
 
 import heronarts.lx.LXEffect;
@@ -154,7 +153,7 @@ public class Scale extends PApplet {
     lx = new LXStudio(this, flags);
     layout = new ScaleLayout(lx);
     lx.setModel(layout.getModel());
-    // lx = new LXStudio(this, flags, new GridModel3D());
+    // lx.setModel(new GridModel3D());
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
