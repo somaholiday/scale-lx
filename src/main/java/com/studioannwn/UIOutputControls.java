@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.studioannwn.output.ScaleLayout;
 import com.studioannwn.util.NetworkInterfaces;
 
 import heronarts.lx.output.ArtNetDatagram;
