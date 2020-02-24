@@ -30,18 +30,6 @@ public class Scale extends PApplet {
                                                        // Enable at your own risk!
                                                        // Could cause VM crashes.
 
-  // Helpful global constants
-  public final static float INCHES = 1.0f / 12.0f;
-  public final static float IN = INCHES;
-  public final static float FEET = 1.0f;
-  public final static float FT = FEET;
-  public final static float CM = IN / 2.54f;
-  public final static float MM = CM * .1f;
-  public final static float M = CM * 100;
-  public final static float METER = M;
-
-  public static final int LEDS_PER_UNIVERSE = 170;
-
 	static {
     System.setProperty(
         "java.util.logging.SimpleFormatter.format",
