@@ -29,7 +29,6 @@ public abstract class DPat extends LXPattern {
     public PVector xyzJog = new PVector(), modmin;
 
     public float NoiseMove = random(10000);
-    public CompoundParameter pHue;
     public CompoundParameter pSpark;
     public CompoundParameter pWave;
     public CompoundParameter pRotX;
@@ -41,7 +40,7 @@ public abstract class DPat extends LXPattern {
     public BooleanParameter pXsym, pYsym, pRsym, pXdup, pXtrip, pJog, pGrey;
 
     public float lxh() {
-        return pHue.getValuef();
+        return palette.getHuef();
     }
 
     public int c1c(float a) {
@@ -179,7 +178,6 @@ public abstract class DPat extends LXPattern {
 
     public DPat(LX lx) {
         super(lx);
-        pHue = addParam("Hue", 0, 0, 360);
         pSpark = addParam("Spark", 0);
         pWave = addParam("Wave", 0);
         pSpin = addParam("Spin", .5);
