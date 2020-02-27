@@ -1,19 +1,12 @@
 package com.studioannwn.output;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.studioannwn.model.ModelCollection;
 import com.studioannwn.model.ScaleFinalModel;
 import com.studioannwn.model.ScaleModel;
 import com.studioannwn.output.pixlite.PixLite;
 import com.studioannwn.output.pixlite.PixLite16;
-import com.studioannwn.output.pixlite.PixLite4;
 
 import heronarts.lx.LX;
 import heronarts.lx.model.LXModel;
-import heronarts.lx.model.LXPoint;
-import heronarts.lx.studio.LXStudio;
 
 public class ScaleLayout {
 	private final static String[] PIXLITE_IPS = new String[] { "192.168.2.18", "192.168.2.19", };
@@ -28,21 +21,24 @@ public class ScaleLayout {
 				model.cx, model.cy, model.cz, model.ax, model.ay, model.az, model.xRange, model.yRange, model.zRange));
 	}
 
-	/*
-	 * TODO: I left this in a bit of an unfinished mess.
-	 */
 	public void addOutputs(LX lx) {
-		PixLite pixlite = new PixLite4(lx, PIXLITE_IPS[0]);
+		PixLite[] pixlites = new PixLite[PIXLITE_IPS.length];
+		for (int i=0; i < pixlites.length; i++) {
+			pixlites[i] = new PixLite16(lx, PIXLITE_IPS[i]);
+		}
 
 		int maxFixtures = model.children.length;
 		System.out.println(String.format("Model has %d fixtures.", maxFixtures));
-		int fixtureCount = 0;
-		for (int outputIndex = 1; outputIndex <= pixlite.numOutputs && fixtureCount < maxFixtures; outputIndex++) {
-			LXModel fixture = model.children[fixtureCount++];
-			pixlite.addOutput(outputIndex, fixture.getPoints());
-		}
 
-		lx.addOutput(pixlite);
+		int fixtureCount = 0;
+		for (PixLite pixlite : pixlites) {
+			for (int outputIndex = 1; outputIndex <= pixlite.numOutputs && fixtureCount < maxFixtures; outputIndex++) {
+				LXModel fixture = model.children[fixtureCount++];
+				pixlite.addOutput(outputIndex, fixture.getPoints());
+			}
+
+			lx.addOutput(pixlite);
+		}
 	}
 
 	public ScaleModel getModel() {
