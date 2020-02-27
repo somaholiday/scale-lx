@@ -10,6 +10,8 @@ import heronarts.lx.parameter.CompoundParameter;
 import heronarts.lx.parameter.DiscreteParameter;
 import processing.core.PVector;
 
+import static com.studioannwn.util.TimeConstants.*;
+
 @LXCategory("Texture")
 public class Pong extends DPat {
     SinLFO x, y, z, dx, dy, dz;
@@ -21,9 +23,9 @@ public class Pong extends DPat {
     public Pong(LX lx) {
         super(lx);
         cRad = mMax.x / 10;
-        addModulator(dx = new SinLFO(6000, 500, 30000)).trigger();
-        addModulator(dy = new SinLFO(3000, 500, 22472)).trigger();
-        addModulator(dz = new SinLFO(1000, 500, 18420)).trigger();
+        addModulator(dx = new SinLFO(2*SEC, 10*SEC, 30000)).trigger();
+        addModulator(dy = new SinLFO(3*SEC, .5*SEC, 22472)).trigger();
+        addModulator(dz = new SinLFO(1*SEC, .5*SEC, 18420)).trigger();
         addModulator(x = new SinLFO(cRad, mMax.x - cRad, 0)).trigger();
         x.setPeriod(dx);
         addModulator(y = new SinLFO(cRad, mMax.y - cRad, 0)).trigger();

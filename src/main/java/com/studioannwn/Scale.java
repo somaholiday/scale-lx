@@ -29,6 +29,8 @@ public class Scale extends PApplet {
                                                        // Enable at your own risk!
                                                        // Could cause VM crashes.
 
+  public final static boolean DEBUG = false;
+
 	static {
     System.setProperty(
         "java.util.logging.SimpleFormatter.format",
