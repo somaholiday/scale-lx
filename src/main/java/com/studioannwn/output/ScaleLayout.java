@@ -6,7 +6,6 @@ import com.studioannwn.output.pixlite.PixLite;
 import com.studioannwn.output.pixlite.PixLite16;
 
 import heronarts.lx.LX;
-import heronarts.lx.model.LXModel;
 
 public class ScaleLayout {
 	private final static String[] PIXLITE_IPS = new String[] {
