@@ -150,9 +150,10 @@ public class Scale extends PApplet {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    lx = new LXStudio(this, flags);
-    layout = new ScaleLayout(lx);
-    lx.setModel(layout.getModel());
+    layout = new ScaleLayout();
+    lx = new LXStudio(this, flags, layout.getModel());
+    layout.addOutputs(lx);
+    // lx.setModel(layout.getModel());
     // lx.setModel(new GridModel3D());
 
     lx.ui.setResizable(RESIZABLE);
@@ -177,7 +178,7 @@ public class Scale extends PApplet {
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
     ui.preview.addComponent(new ScaleVisualizer(lx));
 
-    // UIOutputControls uiOutputControls = (UIOutputControls) new UIOutputControls(ui, layout).setExpanded(false).addToContainer(ui.leftPane.global);
+    new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
 
   public void draw() {

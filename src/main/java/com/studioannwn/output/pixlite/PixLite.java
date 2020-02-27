@@ -4,16 +4,17 @@ import java.net.SocketException;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.studioannwn.output.ScaleOutput;
 
 import heronarts.lx.LX;
+import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.output.ArtNetDatagram;
 import heronarts.lx.output.LXDatagram;
-import heronarts.lx.output.LXDatagramOutput;
-import heronarts.lx.output.LXOutput;
+import heronarts.lx.output.LXOutputGroup;
 
 // NOTE: All output and universe numbers are indexed from 1.
-public abstract class PixLite extends LXOutput {
+public abstract class PixLite extends LXOutputGroup {
   public static final int LEDS_PER_UNIVERSE = 170;
 
   private LX lx;
@@ -41,7 +42,7 @@ public abstract class PixLite extends LXOutput {
     }
 
     try {
-      addChild(new PixLiteDatagramOutput(lx, outputIndex, points));
+      addChild(new PixLiteOutput(lx, outputIndex, points));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -49,29 +50,38 @@ public abstract class PixLite extends LXOutput {
     return this;
   }
 
-  @Override
-  protected void onSend(int[] colors, byte[] arg1) {
-    // Do nothing
+  public String toString() {
+    return String.format("PixLite - %s", ipAddress);
   }
 
   abstract int getNumUniversesPerOutput();
 
   /*
-   * PixLiteDatagramOutput
+   * PixLiteOutput
    */
-  protected class PixLiteDatagramOutput extends LXDatagramOutput {
+  protected class PixLiteOutput extends ScaleOutput {
     private final int outputIndex;
     private final int startUniverse;
+    private final List<LXPoint> points;
 
-    public PixLiteDatagramOutput(LX lx, int outputIndex, List<LXPoint> points) throws SocketException {
+    public PixLiteOutput(LX lx, int outputIndex, List<LXPoint> points) throws SocketException {
       super(lx);
 
       this.outputIndex = outputIndex;
       this.startUniverse = (outputIndex-1) * getNumUniversesPerOutput() + 1;
-      setupDatagrams(points);
+      this.points = points;
+      setupDatagrams();
     }
 
-    private void setupDatagrams(List<LXPoint> points) {
+    protected void beforeSend(int[] colors) {
+      if (this.selected.isOn()) {
+        for (LXPoint p : points) {
+          colors[p.index] = LXColor.WHITE;
+        }
+      }
+    }
+
+    private void setupDatagrams() {
       List<List<LXPoint>> pointsByUniverse = Lists.partition(points, LEDS_PER_UNIVERSE);
       int universeOffset = 0;
 
@@ -107,6 +117,10 @@ public abstract class PixLite extends LXOutput {
         if (++i % 10 == 0) { System.out.print("\n\t"); }
       }
       System.out.println("\n");
+    }
+
+    public String toString() {
+      return String.format("PixLite - %s OP%d", ipAddress, outputIndex);
     }
   }
 }
