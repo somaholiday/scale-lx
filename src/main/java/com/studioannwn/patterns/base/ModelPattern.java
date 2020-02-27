@@ -10,7 +10,6 @@ import heronarts.lx.LXModelComponent;
 import heronarts.lx.LXPattern;
 import heronarts.lx.model.LXModel;
 
-
 public abstract class ModelPattern<M extends LXModel> extends LXPattern {
 	protected M model;
 
@@ -22,27 +21,35 @@ public abstract class ModelPattern<M extends LXModel> extends LXPattern {
 
 	/** Gets the model class, M. */
 	public Class getModelClass() {
-		return getEmptyModel().getClass();
-	}
-
-	/** Gets an empty instance of the model class, M. */
-	private M getEmptyModel() {
 		TypeToken tt = new TypeToken<M>(getClass()) {};
-		/* if it's a type variable, then ModelEffect was instantiated without
-		 * a type parameter, so we just assume the effect works on all LXModels. */
+		/*
+		 * if it's a type variable, then ModelEffect was instantiated without a type
+		 * parameter, so we just assume the effect works on all LXModels.
+		 */
 		if (tt.getType() instanceof TypeVariable) {
-			return (M) new LXModel();
+			return LXModel.class;
 		}
 
 		String modelClassName = tt.getType().getTypeName();
 		String rawModelClassName = modelClassName.replaceAll("<.*", "");
+		try {
+			return Class.forName(rawModelClassName);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/** Gets an empty instance of the model class, M. */
+	private M getEmptyModel() {
+		Class c = getModelClass();
 		M emptyModel;
 		try {
-			emptyModel = (M) Class.forName(rawModelClassName).getConstructor().newInstance();
-		} catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
-						 InstantiationException | InvocationTargetException | ClassCastException e) {
-			throw new RuntimeException(
-				"Could not find a public default constructor for " + modelClassName + ": " + e);
+			emptyModel = (M) c.getConstructor().newInstance();
+		} catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException
+				| ClassCastException e) {
+			throw new RuntimeException("Could not find a public default constructor for " + c.getName() + ": " + e);
 		}
 		return emptyModel;
 	}
@@ -53,17 +60,14 @@ public abstract class ModelPattern<M extends LXModel> extends LXPattern {
 
 	@Override
 	public LXModelComponent setModel(LXModel model) {
-		M emptyModel = getEmptyModel();
+		// M emptyModel = getEmptyModel();
 
 		try {
-			if (emptyModel.getClass().isAssignableFrom(model.getClass())) {
+			if (getModelClass().isAssignableFrom(model.getClass())) {
 				this.model = (M) model;
 			}
-			else {
-				this.model = emptyModel;
-			}
 		} catch (ClassCastException e) {
-			this.model = emptyModel;
+			this.model = null;
 		}
 
 		return super.setModel(model);

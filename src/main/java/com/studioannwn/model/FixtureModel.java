@@ -1,10 +1,10 @@
 package com.studioannwn.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.studioannwn.Scale;
+import com.studioannwn.util.DistanceConstants;
 
 import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
@@ -13,7 +13,7 @@ import heronarts.lx.transform.LXTransform;
 public class FixtureModel extends LXModel {
 	public static final String MODEL_KEY = "fixture";
 
-	public static final float PITCH = Scale.METER / 80.0f;
+	public static final float PITCH = DistanceConstants.METER / 80.0f;
 
 	public FixtureModel(int ledCount) {
 		this(ledCount, new LXTransform());

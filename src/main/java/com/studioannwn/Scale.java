@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
+import com.studioannwn.output.ScaleLayout;
 
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
@@ -27,18 +28,6 @@ public class Scale extends PApplet {
   private final static boolean MULTITHREADED = false;  // Disabled for anything GL
                                                        // Enable at your own risk!
                                                        // Could cause VM crashes.
-
-  // Helpful global constants
-  public final static float INCHES = 1.0f / 12.0f;
-  public final static float IN = INCHES;
-  public final static float FEET = 1.0f;
-  public final static float FT = FEET;
-  public final static float CM = IN / 2.54f;
-  public final static float MM = CM * .1f;
-  public final static float M = CM * 100;
-  public final static float METER = M;
-
-  public static final int LEDS_PER_UNIVERSE = 170;
 
 	static {
     System.setProperty(
@@ -163,9 +152,9 @@ public class Scale extends PApplet {
 
     layout = new ScaleLayout();
     lx = new LXStudio(this, flags, layout.getModel());
-    // lx = new LXStudio(this, flags, new GridModel3D());
-
-    layout.setupOutput(lx);
+    layout.addOutputs(lx);
+    // lx.setModel(layout.getModel());
+    // lx.setModel(new GridModel3D());
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
@@ -189,7 +178,7 @@ public class Scale extends PApplet {
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
     ui.preview.addComponent(new ScaleVisualizer(lx));
 
-    UIOutputControls uiOutputControls = (UIOutputControls) new UIOutputControls(ui, layout).setExpanded(false).addToContainer(ui.leftPane.global);
+    new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
 
   public void draw() {

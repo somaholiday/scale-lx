@@ -1,17 +1,17 @@
 package com.studioannwn.patterns;
 
+import java.util.Arrays;
+import java.util.List;
+
+import com.studioannwn.model.ScaleModel;
+import com.studioannwn.patterns.base.ModelPattern;
+
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;
 import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.parameter.DiscreteParameter;
-
-import com.studioannwn.model.ScaleModel;
-import com.studioannwn.patterns.base.ModelPattern;
-
-import java.util.Arrays;
-import java.util.List;
 
 @LXCategory(LXCategory.TEST)
 public class FixtureTest extends ModelPattern<ScaleModel> {
