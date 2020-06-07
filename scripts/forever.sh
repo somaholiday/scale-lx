@@ -6,7 +6,8 @@
 
 NAME="scale"
 SCRIPTNAME="$NAME.sh"
-COMMAND="sudo /home/pi/$SCRIPTNAME"
+USERNAME=$(whoami)
+COMMAND="sudo /home/$USERNAME/$SCRIPTNAME"
 
 echo "Starting $NAME forever loop..."
 echo ""
@@ -24,7 +25,7 @@ else
   echo $COMMAND
   echo ""
 
-  LOG_FILE="/home/pi/logs/$(date +"%Y%m%d-%H%M%S")-$NAME"
+  LOG_FILE="/home/$USERNAME/logs/$(date +"%Y%m%d-%H%M%S")-$NAME"
 
   $COMMAND >& $LOG_FILE
 fi
