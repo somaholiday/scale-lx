@@ -7,7 +7,11 @@
 NAME="scale"
 SCRIPTNAME="$NAME.sh"
 USERNAME=$(whoami)
-COMMAND="sudo /home/$USERNAME/$SCRIPTNAME"
+BASE="/home/$USERNAME"
+COMMAND="$BASE/$SCRIPTNAME"
+LOGDIR="$BASE/logs"
+
+mkdir -p $LOGDIR
 
 echo "Starting $NAME forever loop..."
 echo ""
@@ -25,7 +29,7 @@ else
   echo $COMMAND
   echo ""
 
-  LOG_FILE="/home/$USERNAME/logs/$(date +"%Y%m%d-%H%M%S")-$NAME"
+  LOG_FILE="$LOGDIR/$(date +"%Y%m%d-%H%M%S")-$NAME"
 
   $COMMAND >& $LOG_FILE
 fi
