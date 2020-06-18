@@ -27,7 +27,7 @@ public abstract class ScaleModel extends LXModel {
 			keys[i + 1] = extraKeys.get(i);
 		}
 
-		setKeys(keys);
+		// setKeys(keys);
 	}
 
 	private static LXModel[] buildSubmodels(LXTransform t, FixtureDef[] fixtureDefs) {
@@ -39,8 +39,7 @@ public abstract class ScaleModel extends LXModel {
 			t.push();
 			pos = def.getPosition();
 			t.translate(pos.x, pos.y, pos.z);
-			submodels.add(
-					new FixtureModel(def.getLEDCount(), t, ImmutableList.of("fixture-" + fixtureCount)));
+			submodels.add(new FixtureModel(def.getLEDCount(), t, ImmutableList.of("fixture-" + fixtureCount)));
 			t.pop();
 			fixtureCount++;
 		}

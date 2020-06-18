@@ -1,5 +1,6 @@
 package com.studioannwn.output.pixlite;
 
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.List;
 
@@ -31,14 +32,16 @@ public abstract class PixLite extends LXOutputGroup {
 
   public PixLite addOutput(int outputIndex, List<LXPoint> points) {
     if (this.children.size() == numOutputs) {
-      String message = String.format("PixLite @ %s already has maximum of %d outputs assigned.  Cannot add another.", ipAddress, numOutputs);
+      String message = String.format("PixLite @ %s already has maximum of %d outputs assigned.  Cannot add another.",
+          ipAddress, numOutputs);
       throw new RuntimeException(message);
     }
 
     int numPoints = points.size();
     int maxLEDsPerOutput = LEDS_PER_UNIVERSE * this.getNumUniversesPerOutput();
     if (numPoints > maxLEDsPerOutput) {
-      String message = String.format("Max LEDs per output is %d. Output %d has too many points (%d).", maxLEDsPerOutput, outputIndex, numPoints);
+      String message = String.format("Max LEDs per output is %d. Output %d has too many points (%d).", maxLEDsPerOutput,
+          outputIndex, numPoints);
       throw new RuntimeException(message);
     }
 
@@ -69,7 +72,7 @@ public abstract class PixLite extends LXOutputGroup {
       super(lx);
 
       this.outputIndex = outputIndex;
-      this.startUniverse = (outputIndex-1) * getNumUniversesPerOutput() + 1;
+      this.startUniverse = (outputIndex - 1) * getNumUniversesPerOutput() + 1;
       this.points = points;
       setupDatagrams();
     }
@@ -87,7 +90,8 @@ public abstract class PixLite extends LXOutputGroup {
       int universeOffset = 0;
 
       if (Scale.DEBUG) {
-        System.out.println(String.format("Output %d (Universes %d-%d)", outputIndex, startUniverse, startUniverse + getNumUniversesPerOutput()));
+        System.out.println(String.format("Output %d (Universes %d-%d)", outputIndex, startUniverse,
+            startUniverse + getNumUniversesPerOutput()));
       }
 
       for (List<LXPoint> universePoints : pointsByUniverse) {
@@ -101,12 +105,12 @@ public abstract class PixLite extends LXOutputGroup {
           printUniverseIndexBuffer(startUniverse + universeOffset, universeIndexBuffer);
         }
 
-				LXDatagram datagram = new ArtNetDatagram(universeIndexBuffer, (startUniverse-1) + universeOffset++); // zero-indexed
-				try {
-					datagram.setAddress(ipAddress);
-				}	catch (Exception e) {
-					System.err.println("Exception when setting PixLite datagram IP address: " + e.getMessage());
-					e.printStackTrace();
+        LXDatagram datagram = new ArtNetDatagram(universeIndexBuffer, (startUniverse - 1) + universeOffset++); // zero-indexed
+        try {
+          datagram.setAddress(InetAddress.getByName(ipAddress));
+        } catch (Exception e) {
+          System.err.println("Exception when setting PixLite datagram IP address: " + e.getMessage());
+          e.printStackTrace();
         }
 
         addDatagram(datagram);
@@ -119,7 +123,9 @@ public abstract class PixLite extends LXOutputGroup {
       int i = 0;
       for (int index : universeIndexBuffer) {
         System.out.print(index + "\t");
-        if (++i % 10 == 0) { System.out.print("\n\t"); }
+        if (++i % 10 == 0) {
+          System.out.print("\n\t");
+        }
       }
       System.out.println("\n");
     }

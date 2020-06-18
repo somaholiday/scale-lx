@@ -41,7 +41,7 @@ public class FixtureModel extends LXModel {
 			keys[i + 1] = extraKeys.get(i);
 		}
 
-		setKeys(keys);
+		// setKeys(keys);
 	}
 
 	private static List<LXPoint> buildPoints(int ledCount, LXTransform t, LXTransform r) {
@@ -52,9 +52,7 @@ public class FixtureModel extends LXModel {
 		for (int i = 0; i < ledCount; i++) {
 			t.translate(PITCH, 0, 0);
 
-			points.add(new LXPoint(
-					t.x(), t.y(), t.z()
-			));
+			points.add(new LXPoint(t.x(), t.y(), t.z()));
 		}
 
 		t.pop();
