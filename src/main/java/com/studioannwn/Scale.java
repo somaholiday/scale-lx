@@ -25,19 +25,17 @@ public class Scale extends PApplet {
   // Configuration flags
   private final static boolean RESIZABLE = true;
   private final static boolean ENABLE_ON_START = true;
-  private final static boolean MULTITHREADED = false;  // Disabled for anything GL
-                                                       // Enable at your own risk!
-                                                       // Could cause VM crashes.
+  private final static boolean MULTITHREADED = false; // Disabled for anything GL
+                                                      // Enable at your own risk!
+                                                      // Could cause VM crashes.
 
   public final static boolean DEBUG = false;
 
-	static {
-    System.setProperty(
-        "java.util.logging.SimpleFormatter.format",
-        "%3$s: %1$tc [%4$s] %5$s%6$s%n");
+  static {
+    System.setProperty("java.util.logging.SimpleFormatter.format", "%3$s: %1$tc [%4$s] %5$s%6$s%n");
   }
 
-    /**
+  /**
    * Set the main logging level here.
    *
    * @param level the new logging level
@@ -51,10 +49,9 @@ public class Scale extends PApplet {
     }
   }
 
-
   /**
-   * Adds logging to a file. The file name will be appended with a dash, date stamp, and
-   * the extension ".log".
+   * Adds logging to a file. The file name will be appended with a dash, date
+   * stamp, and the extension ".log".
    *
    * @param prefix prefix of the log file name
    * @throws IOException if there was an error opening the file.
@@ -140,7 +137,7 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-    LXStudio.Flags flags = new LXStudio.Flags();
+    LXStudio.Flags flags = new LXStudio.Flags(this);
     flags.showFramerate = false;
     flags.isP3LX = true;
     flags.immutableModel = true;
