@@ -137,11 +137,13 @@
             <version>2.3.2</version>
         </dependency>
 
+        <!--
         <dependency>
             <groupId>heronarts</groupId>
             <artifactId>P3LX</artifactId>
             <version>0.2.1-SNAPSHOT</version>
         </dependency>
+        -->
 
         <dependency>
             <groupId>heronarts</groupId>
