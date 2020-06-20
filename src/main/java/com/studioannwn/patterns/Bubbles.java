@@ -9,8 +9,8 @@ import com.studioannwn.util.ColorOps8;
 
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;
-import heronarts.lx.LXPattern;
-import heronarts.lx.LXUtils;
+import heronarts.lx.pattern.LXPattern;
+import heronarts.lx.utils.LXUtils;
 import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.modulator.QuadraticEnvelope;

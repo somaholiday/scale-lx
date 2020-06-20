@@ -7,7 +7,7 @@ import com.google.common.reflect.TypeToken;
 
 import heronarts.lx.LX;
 import heronarts.lx.LXModelComponent;
-import heronarts.lx.LXPattern;
+import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.model.LXModel;
 
 public abstract class ModelPattern<M extends LXModel> extends LXPattern {
