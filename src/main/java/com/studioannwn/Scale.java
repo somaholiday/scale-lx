@@ -14,13 +14,15 @@ import java.util.logging.SimpleFormatter;
 import com.google.common.reflect.ClassPath;
 import com.studioannwn.output.ScaleLayout;
 
-import heronarts.lx.LXEffect;
-import heronarts.lx.LXPattern;
+import heronarts.lx.LX;
+import heronarts.lx.LXPlugin;
+import heronarts.lx.effect.LXEffect;
+import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.blend.LightestBlend;
 import heronarts.lx.studio.LXStudio;
 import processing.core.PApplet;
 
-public class Scale extends PApplet {
+public class Scale extends PApplet implements LXPlugin {
 
   // Configuration flags
   private final static boolean RESIZABLE = true;
@@ -91,9 +93,9 @@ public class Scale extends PApplet {
    *
    * @param lx the LX environment
    */
-  private void registerAll(LXStudio lx) {
-    List<Class<? extends LXPattern>> patterns = lx.getRegisteredPatterns();
-    List<Class<? extends LXEffect>> effects = lx.getRegisteredEffects();
+  private void registerAll(LX lx) {
+    //List<Class<? extends LXPattern>> patterns = lx.registry.mutablePatterns; //getRegisteredPatterns();
+    //List<Class<? extends LXEffect>> effects = lx.getRegisteredEffects();
     final String parentPackage = getClass().getPackage().getName();
 
     try {
@@ -109,16 +111,16 @@ public class Scale extends PApplet {
         }
         if (LXPattern.class.isAssignableFrom(c)) {
           Class<? extends LXPattern> p = c.asSubclass(LXPattern.class);
-          if (!patterns.contains(p)) {
-            lx.registerPattern(p);
+          //if (!patterns.contains(p)) {
+            lx.registry.addPattern(p);
             logger.info("Added pattern: " + p);
-          }
+          //}
         } else if (LXEffect.class.isAssignableFrom(c)) {
           Class<? extends LXEffect> e = c.asSubclass(LXEffect.class);
-          if (!effects.contains(e)) {
-            lx.registerEffect(e);
+          //if (!effects.contains(e)) {
+            lx.registry.addEffect(e);
             logger.info("Added effect: " + e);
-          }
+          //}
         }
       }
     } catch (IOException ex) {
@@ -161,17 +163,10 @@ public class Scale extends PApplet {
     frameRate(GLOBAL_FRAME_RATE);
   }
 
-  public void initialize(final LXStudio lx, LXStudio.UI ui) {
-    // Add custom components or output drivers here
-    // Register settings
-    // lx.engine.registerComponent("scaleSettings", new Settings(lx, ui));
-
-    // Common components
-    // registry = new Registry(this, lx);
-
-    // Register any patterns and effects LX doesn't recognize
+  @Override
+  public void initialize(LX lx) {
     registerAll(lx);
-    lx.registerBlend(LightestBlend.class);
+    lx.registry.addBlend(LightestBlend.class);
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
@@ -183,4 +178,6 @@ public class Scale extends PApplet {
   public void draw() {
     // All is handled by LX Studio
   }
+
+
 }

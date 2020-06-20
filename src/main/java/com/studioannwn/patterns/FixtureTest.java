@@ -1,6 +1,5 @@
 package com.studioannwn.patterns;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.studioannwn.model.ScaleModel;
@@ -29,7 +28,8 @@ public class FixtureTest extends ModelPattern<ScaleModel> {
     List<LXPoint> points;
     int color;
     for (LXModel fixture : model.children) {
-      color = Arrays.stream(fixture.getKeys()).anyMatch(fixtureKey::equals) ? LXColor.WHITE : LXColor.BLACK;
+      // TODO: this isn't working anymore after updating to 0.2.1
+      color = fixture.keys.stream().anyMatch(fixtureKey::equals) ? LXColor.WHITE : LXColor.BLACK;
       points = fixture.getPoints();
 
       for (LXPoint p : points) {

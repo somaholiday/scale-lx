@@ -1,7 +1,7 @@
 package com.studioannwn.patterns;
 
 import heronarts.lx.LX;
-import heronarts.lx.LXPattern;
+import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.parameter.CompoundParameter;
 import heronarts.lx.parameter.EnumParameter;

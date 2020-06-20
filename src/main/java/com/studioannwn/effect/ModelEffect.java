@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import com.google.common.reflect.TypeToken;
 
 import heronarts.lx.LX;
-import heronarts.lx.LXEffect;
+import heronarts.lx.effect.LXEffect;
 import heronarts.lx.LXModelComponent;
 import heronarts.lx.model.LXModel;
 
