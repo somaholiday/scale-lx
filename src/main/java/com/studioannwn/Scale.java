@@ -144,7 +144,7 @@ public class Scale extends PApplet {
     flags.showFramerate = false;
     flags.isP3LX = true;
     flags.immutableModel = true;
-    // flags.useGLPointCloud = false; // Uncomment to run on Raspberry Pi
+    flags.useGLPointCloud = false; // Uncomment to run on Raspberry Pi
 
     logger.info("Current renderer:" + sketchRenderer());
     logger.info("Current graphics:" + getGraphics());
