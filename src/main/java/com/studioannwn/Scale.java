@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
+import com.studioannwn.model.discopussy.DiscoPussyConfig;
+import com.studioannwn.model.discopussy.DiscoPussyModel;
 import com.studioannwn.output.ScaleLayout;
 
 import heronarts.lx.LXEffect;
@@ -152,9 +154,12 @@ public class Scale extends PApplet {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    layout = new ScaleLayout();
-    lx = new LXStudio(this, flags, layout.getModel());
-    layout.addOutputs(lx);
+    DiscoPussyModel model = new DiscoPussyModel(new DiscoPussyConfig());
+    lx = new LXStudio(this, flags, model);
+
+//    layout = new ScaleLayout();
+//    lx = new LXStudio(this, flags, layout.getModel());
+//    layout.addOutputs(lx);
     // lx.setModel(layout.getModel());
     // lx.setModel(new GridModel3D());
 
