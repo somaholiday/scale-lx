@@ -10,9 +10,11 @@ import java.util.List;
 
 public class DiscoPussyModel extends LXModel {
   private static List<Dataline> dataline = new ArrayList<>();
+  private DiscoPussyConfig config;
 
   public DiscoPussyModel(DiscoPussyConfig config) {
     super(setup(config));
+    this.config = config;
   }
 
   private static Strip[] setup(DiscoPussyConfig config) {
@@ -26,6 +28,10 @@ public class DiscoPussyModel extends LXModel {
     }
 
     return stripsListToArray(strips);
+  }
+
+  public DiscoPussyConfig getConfig() {
+    return this.config;
   }
 
   public static class Tentacle extends LXModel {

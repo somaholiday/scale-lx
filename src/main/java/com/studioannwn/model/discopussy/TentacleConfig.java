@@ -30,14 +30,14 @@ public class TentacleConfig {
   private final int LEFT = 1;
   private final int RIGHT = 2;
 
-  public String id;
-  public Size size;
-  public int[] channels = new int[3];
-
+  private final String id;
+  private final Size size;
+  private final int[] channels = new int[3];
   private final float angle; // radians
   private LXVector startPositionOffset = new LXVector(0, 0, 0);
 
-  public TentacleConfig(float angleDegrees, Size size) {
+  public TentacleConfig(String id, float angleDegrees, Size size) {
+    this.id = id;
     // negative angle combined with Y translation in builder gives a clockwise compass with 0º at the top
     this.angle = MathUtils.radians(-angleDegrees);
     this.size = size;
@@ -61,6 +61,18 @@ public class TentacleConfig {
   public TentacleConfig setStartPositionOffset(float x, float y) {
     this.startPositionOffset = new LXVector(x, y, 0);
     return this;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public Size getSize() {
+    return size;
+  }
+
+  public int[] getChannels() {
+    return channels;
   }
 
   public LXVector getStartPositionOffset() {

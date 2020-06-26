@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.studioannwn.model.discopussy.DiscoPussyConfig.DATALINE_DISTANCE;
+import static com.studioannwn.model.discopussy.DiscoPussyConfig.DISCO_BALL_TENTACLE_OFFSET;
 import static com.studioannwn.util.MathConstants.HALF_PI;
 import static com.studioannwn.util.MathConstants.TWO_PI;
 import static java.lang.Math.cos;
@@ -44,18 +45,20 @@ public class TentacleBuilder {
     float distance = DiscoPussyConfig.DISCO_BALL_RADIUS;
     float angle = tentacleConfig.getAngle();
     LXVector offset = tentacleConfig.getStartPositionOffset();
+    int[] channels = tentacleConfig.getChannels();
 
     t.push();
     t.rotateZ(angle);
     t.translate(0, distance);
+    t.translate(0, DISCO_BALL_TENTACLE_OFFSET);
 
     t.rotateZ(-angle);
     t.translate(offset.x, offset.y);
     t.rotateZ(angle);
 
-    for (int datalineIndex = 0; datalineIndex < tentacleConfig.channels.length; datalineIndex++) {
+    for (int datalineIndex = 0; datalineIndex < channels.length; datalineIndex++) {
       t.push();
-      float datalineIndexN = 1.f * datalineIndex / tentacleConfig.channels.length;
+      float datalineIndexN = 1.f * datalineIndex / channels.length;
       float datalineAngle = datalineIndexN * TWO_PI + HALF_PI;
       t.translate((float) (DATALINE_DISTANCE * cos(datalineAngle)), 0, (float) (DATALINE_DISTANCE * sin(datalineAngle)));
 
@@ -72,7 +75,7 @@ public class TentacleBuilder {
   private static DiscoPussyModel.Dataline buildDataline(TentacleConfig tentacleConfig, int index, LXTransform t) {
     List<DiscoPussyModel.Strip> strips = new ArrayList<>();
 
-    for (int strip = 0; strip < tentacleConfig.size.MODULE_COUNT; strip++) {
+    for (int strip = 0; strip < tentacleConfig.getSize().MODULE_COUNT; strip++) {
       List<LXPoint> points = new ArrayList<>();
 
       if (strip != 0) {
@@ -91,9 +94,9 @@ public class TentacleBuilder {
     }
 
     return new DiscoPussyModel.Dataline(
-      tentacleConfig.id + index,
+      tentacleConfig.getId() + index,
       DiscoPussyConfig.PIXLITE_IP,
-      tentacleConfig.channels[index],
+      tentacleConfig.getChannels()[index],
       strips
     );
   }

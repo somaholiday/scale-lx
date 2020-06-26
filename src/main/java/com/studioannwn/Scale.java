@@ -16,6 +16,7 @@ import com.studioannwn.model.discopussy.DiscoPussyConfig;
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import com.studioannwn.output.ScaleLayout;
 
+import com.studioannwn.ui.DiscoPussyVisualizer;
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
 import heronarts.lx.blend.LightestBlend;
@@ -183,7 +184,8 @@ public class Scale extends PApplet {
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
-    ui.preview.addComponent(new ScaleVisualizer(lx));
+//    ui.preview.addComponent(new ScaleVisualizer(lx));
+    ui.preview.addComponent(new DiscoPussyVisualizer(lx));
 
     new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
