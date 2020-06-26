@@ -4,70 +4,97 @@ import com.studioannwn.model.discopussy.DiscoPussyConfig;
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import com.studioannwn.model.discopussy.TentacleConfig;
 import heronarts.lx.model.LXPoint;
+import heronarts.lx.transform.LXTransform;
 import heronarts.lx.transform.LXVector;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.studioannwn.model.discopussy.DiscoPussyConfig.DATALINE_DISTANCE;
+import static com.studioannwn.util.MathConstants.HALF_PI;
+import static com.studioannwn.util.MathConstants.TWO_PI;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
 public class TentacleBuilder {
 
   public static List<DiscoPussyModel.Tentacle> buildTentacles(DiscoPussyConfig config) {
+    return buildTentacles(config, new LXTransform());
+  }
+
+  public static List<DiscoPussyModel.Tentacle> buildTentacles(DiscoPussyConfig config, LXTransform t) {
     List<DiscoPussyModel.Tentacle> tentacles = new ArrayList<>();
 
     for (TentacleConfig tentacleConfig : config.getTentacleConfigs()) {
-      tentacles.add(buildTentacle(tentacleConfig));
+      tentacles.add(buildTentacle(tentacleConfig, t));
     }
 
     return tentacles;
   }
 
-  private static DiscoPussyModel.Tentacle buildTentacle(TentacleConfig tentacleConfig) {
-    List<DiscoPussyModel.Dataline> datalines = buildDatalines(tentacleConfig);
+  private static DiscoPussyModel.Tentacle buildTentacle(TentacleConfig tentacleConfig, LXTransform t) {
+    List<DiscoPussyModel.Dataline> datalines = buildDatalines(tentacleConfig, t);
 
     return new DiscoPussyModel.Tentacle(datalines);
   }
 
-  private static List<DiscoPussyModel.Dataline> buildDatalines(TentacleConfig tentacleConfig) {
+  private static List<DiscoPussyModel.Dataline> buildDatalines(TentacleConfig tentacleConfig, LXTransform t) {
     List<DiscoPussyModel.Dataline> datalines = new ArrayList<>();
 
-    LXVector center = DiscoPussyConfig.DISCO_BALL_CENTER;
-    LXVector direction = tentacleConfig.getDirection();
     float distance = DiscoPussyConfig.DISCO_BALL_RADIUS;
+    float angle = tentacleConfig.getAngle();
+    LXVector offset = tentacleConfig.getStartPositionOffset();
 
-    LXVector start = center.copy().add(direction.mult(distance));
-    start.add(tentacleConfig.getStartPositionOffset());
+    t.push();
+    t.rotateZ(angle);
+    t.translate(0, distance);
 
-    //TODO: make a triangle of channels
-    int datalineIndex = 0;
-    LXVector cursor = start.copy();
+    t.rotateZ(-angle);
+    t.translate(offset.x, offset.y);
+    t.rotateZ(angle);
 
+    for (int datalineIndex = 0; datalineIndex < tentacleConfig.channels.length; datalineIndex++) {
+      t.push();
+      float datalineIndexN = 1.f * datalineIndex / tentacleConfig.channels.length;
+      float datalineAngle = datalineIndexN * TWO_PI + HALF_PI;
+      t.translate((float) (DATALINE_DISTANCE * cos(datalineAngle)), 0, (float) (DATALINE_DISTANCE * sin(datalineAngle)));
+
+      datalines.add(buildDataline(tentacleConfig, datalineIndex, t));
+
+      t.pop();
+    }
+
+    t.pop();
+
+    return datalines;
+  }
+
+  private static DiscoPussyModel.Dataline buildDataline(TentacleConfig tentacleConfig, int index, LXTransform t) {
     List<DiscoPussyModel.Strip> strips = new ArrayList<>();
 
-    for (int strip = 0; strip < tentacleConfig.size.STRIP_COUNT; strip++) {
+    for (int strip = 0; strip < tentacleConfig.size.MODULE_COUNT; strip++) {
       List<LXPoint> points = new ArrayList<>();
 
       if (strip != 0) {
-        cursor.add(direction.mult(DiscoPussyConfig.LEDModule.PITCH));
+        t.translate(0, DiscoPussyConfig.LEDModule.MODULE_PITCH);
       }
 
       for (int i = 0; i < DiscoPussyConfig.LEDModule.POINT_COUNT; i++) {
         if (i != 0) {
-          cursor.add(direction.mult(DiscoPussyConfig.LEDModule.LED_PITCH));
+          t.translate(0, DiscoPussyConfig.LEDModule.LED_PITCH);
         }
 
-        points.add(new LXPoint(cursor));
+        points.add(new LXPoint(t));
       }
 
       strips.add(new DiscoPussyModel.Strip(points));
     }
 
-    datalines.add(new DiscoPussyModel.Dataline(
-      tentacleConfig.id + datalineIndex,
+    return new DiscoPussyModel.Dataline(
+      tentacleConfig.id + index,
       DiscoPussyConfig.PIXLITE_IP,
-      tentacleConfig.channels[datalineIndex],
+      tentacleConfig.channels[index],
       strips
-    ));
-
-    return datalines;
+    );
   }
 }

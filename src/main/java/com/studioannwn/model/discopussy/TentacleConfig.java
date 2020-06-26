@@ -1,5 +1,6 @@
 package com.studioannwn.model.discopussy;
 
+import com.studioannwn.util.MathUtils;
 import heronarts.lx.transform.LXVector;
 
 public class TentacleConfig {
@@ -8,10 +9,10 @@ public class TentacleConfig {
     SHORT(40),
     LONG(70);
 
-    public final int STRIP_COUNT;
+    public final int MODULE_COUNT;
 
     Size(int moduleCount) {
-      this.STRIP_COUNT = moduleCount;
+      this.MODULE_COUNT = moduleCount;
     }
   }
 
@@ -33,12 +34,12 @@ public class TentacleConfig {
   public Size size;
   public int[] channels = new int[3];
 
-  private LXVector direction;
+  private final float angle; // radians
   private LXVector startPositionOffset = new LXVector(0, 0, 0);
 
   public TentacleConfig(float angleDegrees, Size size) {
-    float angleRadians = (float)(angleDegrees * Math.PI / 180);
-    direction = new LXVector((float)Math.cos(angleRadians), (float)Math.sin(angleRadians), 0);
+    // negative angle combined with Y translation in builder gives a clockwise compass with 0º at the top
+    this.angle = MathUtils.radians(-angleDegrees);
     this.size = size;
   }
 
@@ -62,11 +63,11 @@ public class TentacleConfig {
     return this;
   }
 
-  public LXVector getDirection() {
-    return direction;
+  public LXVector getStartPositionOffset() {
+    return startPositionOffset.copy();
   }
 
-  public LXVector getStartPositionOffset() {
-    return startPositionOffset;
+  public float getAngle() {
+    return angle;
   }
 }

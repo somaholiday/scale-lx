@@ -13,11 +13,13 @@ public class DiscoPussyConfig {
   public final static float DISCO_BALL_RADIUS = 24 * INCHES;
   public final static LXVector DISCO_BALL_CENTER = new LXVector(0, 0, 0);
 
+  public final static float DATALINE_DISTANCE = 1 * INCHES;
+
   public final static class LEDModule {
     public final static int POINT_COUNT = 4;
     public final static float LED_PITCH = 1 * METER / 60;
     // space between modules
-    public final static float PITCH = 4 * INCHES;
+    public final static float MODULE_PITCH = 4 * INCHES;
   }
 
   private final TentacleConfig[] tentacles = new TentacleConfig[]{
