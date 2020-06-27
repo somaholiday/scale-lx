@@ -44,7 +44,7 @@ public class DiscoPussyVisualizer extends UI3dComponent {
 
     pg.rotateX(HALF_PI);
 
-    pg.stroke(0);
+    pg.stroke(255);
     pg.fill(255);
     pg.sphereDetail(10);
     pg.sphere(DISCO_BALL_RADIUS);
@@ -67,7 +67,6 @@ public class DiscoPussyVisualizer extends UI3dComponent {
       pg.rotateZ(-angle);
 
       pg.rotateX(PI);
-      pg.stroke(255, 0, 0);
       pg.fill(255);
       pg.text(tentacleConfig.getId(), -4, 5, -2);
 
