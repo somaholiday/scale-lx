@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
@@ -16,10 +17,13 @@ import com.studioannwn.model.discopussy.DiscoPussyConfig;
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import com.studioannwn.output.ScaleLayout;
 
+import com.studioannwn.output.pixlite.PixLite;
+import com.studioannwn.output.pixlite.PixLite16;
 import com.studioannwn.ui.DiscoPussyVisualizer;
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
 import heronarts.lx.blend.LightestBlend;
+import heronarts.lx.output.LXOutput;
 import heronarts.lx.studio.LXStudio;
 import processing.core.PApplet;
 
@@ -85,6 +89,8 @@ public class Scale extends PApplet {
 
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
+
+  public final HashMap<String, PixLite> pixlites = new HashMap<String, PixLite>();
 
   @Override
   public void settings() {
@@ -180,7 +186,31 @@ public class Scale extends PApplet {
 
     // Register any patterns and effects LX doesn't recognize
     registerAll(lx);
-    lx.registerBlend(LightestBlend.class);
+
+    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getDatalines()) {
+      String ipAddress = dataline.getIpAddress();
+
+      if (!pixlites.containsKey(ipAddress)) {
+        PixLite pixlite = new PixLite16(lx, ipAddress);
+        pixlites.put(ipAddress, pixlite);
+        lx.addOutput(pixlite);
+        pixlite.enabled.setValue(true);
+      }
+
+      PixLite pixlite = pixlites.get(ipAddress);
+      pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
+    }
+
+    // print used pixlite channels
+    System.out.println();
+    pixlites.forEach((ipAddress, pixlite) -> {
+      System.out.println("-- Setup pixlites ----------------------------");
+      System.out.println(ipAddress + " - " + pixlite.children.size() + " datalines");
+      for (LXOutput output : pixlite.children) {
+        System.out.println(" -> Channel " + ((PixLite.PixLiteOutput) output).getOutputIndex());
+      }
+    });
+    System.out.println();
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {

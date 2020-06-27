@@ -32,6 +32,7 @@ public class TentacleConfig {
 
   private final String id;
   private final Size size;
+  private String ipAddress;
   private final int[] channels = new int[3];
   private final float angle; // radians
   private LXVector startPositionOffset = new LXVector(0, 0, 0);
@@ -41,6 +42,11 @@ public class TentacleConfig {
     // negative angle combined with Y translation in builder gives a clockwise compass with 0º at the top
     this.angle = MathUtils.radians(-angleDegrees);
     this.size = size;
+  }
+
+  public TentacleConfig setIpAddress(String ipAddress) {
+    this.ipAddress = ipAddress;
+    return this;
   }
 
   public TentacleConfig setBottomChannel(int channel) {
@@ -69,6 +75,10 @@ public class TentacleConfig {
 
   public Size getSize() {
     return size;
+  }
+
+  public String getIpAddress() {
+    return ipAddress;
   }
 
   public int[] getChannels() {

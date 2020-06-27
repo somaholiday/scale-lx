@@ -95,7 +95,7 @@ public class TentacleBuilder {
 
     return new DiscoPussyModel.Dataline(
       tentacleConfig.getId() + "_" + index,
-      DiscoPussyConfig.PIXLITE_IP,
+      tentacleConfig.getIpAddress(),
       tentacleConfig.getChannels()[index],
       strips
     );
