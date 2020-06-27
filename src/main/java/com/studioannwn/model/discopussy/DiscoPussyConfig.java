@@ -26,7 +26,31 @@ public class DiscoPussyConfig {
     public final static float MODULE_PITCH = 4 * INCHES;
   }
 
-  // Channel position names are based on looking from the disco ball outward
+  /*
+   TENTACLE CONFIGURATION
+
+   TentacleConfig( id, angle, size )
+     angle is in degrees, with 0º at North and going clockwise
+     size is SHORT (40 modules) or LONG (70 modules)
+
+   Each tentacle has 3 datalines. It is assumed that all three datalines connect to the same PixLite.
+     setIpAddress(ipAddress) sets the tentacle's IP address
+
+   These methods set the PixLite output number for each dataline going down the tentacle:
+     setBottomChannel(channelNumber)
+     setLeftChannel(channelNumber)
+     setRightChannel(channelNumber)
+
+   Channel position names are based on looking from the disco ball outward
+
+    left ---------- right
+        \          /
+         \        /
+          \      /
+           \    /
+            \  /
+           bottom
+   */
 
   private final TentacleConfig[] tentacles = new TentacleConfig[]{
     new TentacleConfig("0", 0, TentacleConfig.Size.LONG)
