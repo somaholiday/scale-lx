@@ -54,7 +54,7 @@ public class DiscoPussyVisualizer extends UI3dComponent {
   }
 
   private void drawTentacleLabels(UI ui, PGraphics pg) {
-    TentacleConfig[] tentacleConfigs = model.getConfig().getTentacleConfigs();
+    TentacleConfig[] tentacleConfigs = DiscoPussyModel.getConfig().getTentacleConfigs();
 
     for (TentacleConfig tentacleConfig : tentacleConfigs) {
       float angle = tentacleConfig.getAngle();

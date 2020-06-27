@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscoPussyModel extends LXModel {
-  private static List<Dataline> dataline = new ArrayList<>();
-  private DiscoPussyConfig config;
+  private static List<Tentacle> tentacles = new ArrayList<>();
+  private static List<Dataline> datalines = new ArrayList<>();
+  private static DiscoPussyConfig config;
 
   public DiscoPussyModel(DiscoPussyConfig config) {
     super(setup(config));
-    this.config = config;
+    DiscoPussyModel.config = config;
   }
 
   private static Strip[] setup(DiscoPussyConfig config) {
@@ -22,16 +23,34 @@ public class DiscoPussyModel extends LXModel {
     List<Strip> strips = new ArrayList<>();
 
     for (Tentacle tentacle : tentacles) {
-      for (Dataline dataline : tentacle.getDatalines()) {
+      List<Dataline> datalines = tentacle.getDatalines();
+
+      for (Dataline dataline : datalines) {
         strips.addAll(dataline.getStrips());
       }
+
+      DiscoPussyModel.datalines.addAll(datalines);
     }
+
+    DiscoPussyModel.tentacles.addAll(tentacles);
 
     return stripsListToArray(strips);
   }
 
-  public DiscoPussyConfig getConfig() {
-    return this.config;
+  public static DiscoPussyConfig getConfig() {
+    return config;
+  }
+
+  public static List<Tentacle> getTentacles() {
+    return tentacles;
+  }
+
+  public static List<Dataline> getDatalines() {
+    return datalines;
+  }
+
+  public static Dataline[] getDatalinesArray() {
+    return datalines.stream().toArray(Dataline[]::new);
   }
 
   public static class Tentacle extends LXModel {
@@ -74,10 +93,6 @@ public class DiscoPussyModel extends LXModel {
 
     public List<Strip> getStrips() {
       return strips;
-    }
-
-    public Strip[] getStripsArray() {
-      return strips.stream().toArray(Strip[]::new);
     }
   }
 
