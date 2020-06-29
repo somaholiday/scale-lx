@@ -19,6 +19,7 @@ import com.studioannwn.output.ScaleLayout;
 
 import com.studioannwn.output.pixlite.PixLite;
 import com.studioannwn.output.pixlite.PixLite16;
+import com.studioannwn.output.pixlite.PixLite4;
 import com.studioannwn.ui.DiscoPussyVisualizer;
 import heronarts.lx.LXEffect;
 import heronarts.lx.LXPattern;
@@ -187,11 +188,25 @@ public class Scale extends PApplet {
     // Register any patterns and effects LX doesn't recognize
     registerAll(lx);
 
-    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getDatalines()) {
+    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getTentacleDatalines()) {
       String ipAddress = dataline.getIpAddress();
 
       if (!pixlites.containsKey(ipAddress)) {
         PixLite pixlite = new PixLite16(lx, ipAddress);
+        pixlites.put(ipAddress, pixlite);
+        lx.addOutput(pixlite);
+        pixlite.enabled.setValue(true);
+      }
+
+      PixLite pixlite = pixlites.get(ipAddress);
+      pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
+    }
+
+    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getBar().getDatalines()) {
+      String ipAddress = dataline.getIpAddress();
+
+      if (!pixlites.containsKey(ipAddress)) {
+        PixLite pixlite = new PixLite4(lx, ipAddress);
         pixlites.put(ipAddress, pixlite);
         lx.addOutput(pixlite);
         pixlite.enabled.setValue(true);

@@ -84,7 +84,7 @@ public class TentacleBuilder {
 
       for (int i = 0; i < DiscoPussyConfig.LEDModule.POINT_COUNT; i++) {
         if (i != 0) {
-          t.translate(0, DiscoPussyConfig.LEDModule.LED_PITCH);
+          t.translate(0, DiscoPussyConfig.LED_PITCH);
         }
 
         points.add(new LXPoint(t));
