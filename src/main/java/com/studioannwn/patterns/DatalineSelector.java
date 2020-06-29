@@ -3,7 +3,7 @@ package com.studioannwn.patterns;
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;
-import heronarts.lx.LXPattern;
+import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.parameter.DiscreteParameter;
