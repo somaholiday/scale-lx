@@ -131,20 +131,66 @@ public class DiscoPussyConfig {
   };
 
    /*
-   BAR CONFIGURATION
+    BAR CONFIGURATION
 
+                   N
+       ---------------------------
+       |                         |
+       |
+    W  |                            E
+       |
+       |                         |
+       ---------------------------
+                   S
 
+    The bar consists of two datalines of three strips each.
+
+    Strip configs have the following methods:
+      setLedCount(numberOfLeds) sets the number of LEDs in the strip
+      setStart(startPosition) sets where the strip starts
+        options: NW_CORNER, NE_CORNER, SW_CORNER, SE_CORNER, W_CENTER
+      setDirection(direction) sets the direction the strip runs
+        options: NORTH, SOUTH, EAST, WEST
+      setPreSpacing(distance) sets the distance from the start point to the first LED
    */
 
+  // List of strips for bar output 1
+  private final StripConfig[] BAR_STRIPS_DATALINE_1 = new StripConfig[] {
+    new StripConfig()
+      .setLedCount(137)
+      .setStart(W_CENTER)
+      .setDirection(NORTH)
+      .setPreSpacing(LED_PITCH * 0.5f),
+    new StripConfig()
+      .setLedCount(549)
+      .setStart(NW_CORNER)
+      .setDirection(EAST),
+    new StripConfig()
+      .setLedCount(25)
+      .setStart(NE_CORNER)
+      .setDirection(SOUTH),
+  };
+
+  // List of strips for bar output 2
+  private final StripConfig[] BAR_STRIPS_DATALINE_2 = new StripConfig[] {
+    new StripConfig()
+      .setLedCount(137)
+      .setStart(W_CENTER)
+      .setDirection(SOUTH)
+      .setPreSpacing(LED_PITCH * 0.5f),
+    new StripConfig()
+      .setLedCount(549)
+      .setStart(SW_CORNER)
+      .setDirection(EAST),
+    new StripConfig()
+      .setLedCount(25)
+      .setStart(SE_CORNER)
+      .setDirection(NORTH),
+  };
+
   private final DatalineConfig[] barDatalines = new DatalineConfig[] {
-    new DatalineConfig("BAR_1", PIXLITE4, 1)
-      .addStrip(137, W_CENTER, NORTH, LED_PITCH * 0.5f)
-      .addStrip(549, NW_CORNER, EAST)
-      .addStrip(25, NE_CORNER, SOUTH),
-    new DatalineConfig("BAR_2", PIXLITE4, 2)
-      .addStrip(137, W_CENTER, SOUTH, LED_PITCH * 0.5f)
-      .addStrip(549, SW_CORNER, EAST)
-      .addStrip(25, SE_CORNER, NORTH)
+    new DatalineConfig("BAR_1", PIXLITE4, 1, BAR_STRIPS_DATALINE_1),
+    new DatalineConfig("BAR_2", PIXLITE4, 2, BAR_STRIPS_DATALINE_2)
   };
 
   public TentacleConfig[] getTentacleConfigs() {

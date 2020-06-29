@@ -14,23 +14,14 @@ public class DatalineConfig {
   private final String id;
   private final String ipAddress;
   private final int channel;
+  private StripConfig[] stripConfigs;
 
-  private List<StripConfig> stripConfigs = new ArrayList<>();
-
-  public DatalineConfig(String id, String ipAddress, int channel) {
+  public DatalineConfig(String id, String ipAddress, int channel, StripConfig[] stripConfigs) {
     this.id = id;
     this.ipAddress = ipAddress;
     this.channel = channel;
-  }
 
-  public DatalineConfig addStrip(int ledCount, LXVector start, LXVector direction) {
-    stripConfigs.add(new StripConfig(ledCount, start, direction));
-    return this;
-  }
-
-  public DatalineConfig addStrip(int ledCount, LXVector start, LXVector direction, float prespacing) {
-    stripConfigs.add(new StripConfig(ledCount, start, direction, prespacing));
-    return this;
+    this.stripConfigs = stripConfigs;
   }
 
   public String getId() {
@@ -45,7 +36,7 @@ public class DatalineConfig {
     return channel;
   }
 
-  public List<StripConfig> getStripConfigs() {
+  public StripConfig[] getStripConfigs() {
     return stripConfigs;
   }
 }

@@ -188,18 +188,20 @@ public class Scale extends PApplet {
     // Register any patterns and effects LX doesn't recognize
     registerAll(lx);
 
-    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getTentacleDatalines()) {
-      String ipAddress = dataline.getIpAddress();
+    for (DiscoPussyModel.Tentacle tentacle : DiscoPussyModel.getTentacles()) {
+      for (DiscoPussyModel.Dataline dataline : tentacle.getDatalines()) {
+        String ipAddress = dataline.getIpAddress();
 
-      if (!pixlites.containsKey(ipAddress)) {
-        PixLite pixlite = new PixLite16(lx, ipAddress);
-        pixlites.put(ipAddress, pixlite);
-        lx.addOutput(pixlite);
-        pixlite.enabled.setValue(true);
+        if (!pixlites.containsKey(ipAddress)) {
+          PixLite pixlite = new PixLite16(lx, ipAddress);
+          pixlites.put(ipAddress, pixlite);
+          lx.addOutput(pixlite);
+          pixlite.enabled.setValue(true);
+        }
+
+        PixLite pixlite = pixlites.get(ipAddress);
+        pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
       }
-
-      PixLite pixlite = pixlites.get(ipAddress);
-      pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
     }
 
     for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getBar().getDatalines()) {
@@ -218,12 +220,13 @@ public class Scale extends PApplet {
 
     // print used pixlite channels
     System.out.println();
+    System.out.println("-- Setup pixlites ----------------------------");
     pixlites.forEach((ipAddress, pixlite) -> {
-      System.out.println("-- Setup pixlites ----------------------------");
       System.out.println(ipAddress + " - " + pixlite.children.size() + " datalines");
       for (LXOutput output : pixlite.children) {
         System.out.println(" -> Channel " + ((PixLite.PixLiteOutput) output).getOutputIndex());
       }
+      System.out.println("----------------------------------------------");
     });
     System.out.println();
   }

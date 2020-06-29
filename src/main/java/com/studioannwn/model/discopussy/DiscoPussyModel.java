@@ -12,7 +12,6 @@ import java.util.List;
 
 public class DiscoPussyModel extends LXModel {
   private static List<Tentacle> tentacles = new ArrayList<>();
-  private static List<Dataline> tentacleDatalines = new ArrayList<>();
   private static List<Dataline> datalines = new ArrayList<>();
   private static Bar bar;
   private static DiscoPussyConfig config;
@@ -35,7 +34,6 @@ public class DiscoPussyModel extends LXModel {
         strips.addAll(dataline.getStrips());
       }
 
-      DiscoPussyModel.tentacleDatalines.addAll(datalines);
       DiscoPussyModel.datalines.addAll(datalines);
     }
 
@@ -61,10 +59,6 @@ public class DiscoPussyModel extends LXModel {
 
   public static List<Tentacle> getTentacles() {
     return tentacles;
-  }
-
-  public static List<Dataline> getTentacleDatalines() {
-    return tentacleDatalines;
   }
 
   public static Bar getBar() {
