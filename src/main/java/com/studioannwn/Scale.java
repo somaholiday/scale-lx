@@ -166,7 +166,6 @@ public class Scale extends PApplet implements LXPlugin {
   @Override
   public void initialize(LX lx) {
     registerAll(lx);
-    lx.registry.addBlend(LightestBlend.class);
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
