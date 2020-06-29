@@ -21,31 +21,33 @@ import com.studioannwn.output.pixlite.PixLite;
 import com.studioannwn.output.pixlite.PixLite16;
 import com.studioannwn.output.pixlite.PixLite4;
 import com.studioannwn.ui.DiscoPussyVisualizer;
-import heronarts.lx.LXEffect;
-import heronarts.lx.LXPattern;
+
+import heronarts.lx.LX;
+import heronarts.lx.LXPlugin;
+import heronarts.lx.effect.LXEffect;
+import heronarts.lx.pattern.LXPattern;
+
 import heronarts.lx.blend.LightestBlend;
 import heronarts.lx.output.LXOutput;
 import heronarts.lx.studio.LXStudio;
 import processing.core.PApplet;
 
-public class Scale extends PApplet {
+public class Scale extends PApplet implements LXPlugin {
 
   // Configuration flags
   private final static boolean RESIZABLE = true;
   private final static boolean ENABLE_ON_START = true;
-  private final static boolean MULTITHREADED = false;  // Disabled for anything GL
-                                                       // Enable at your own risk!
-                                                       // Could cause VM crashes.
+  private final static boolean MULTITHREADED = false; // Disabled for anything GL
+                                                      // Enable at your own risk!
+                                                      // Could cause VM crashes.
 
   public final static boolean DEBUG = false;
 
-	static {
-    System.setProperty(
-        "java.util.logging.SimpleFormatter.format",
-        "%3$s: %1$tc [%4$s] %5$s%6$s%n");
+  static {
+    System.setProperty("java.util.logging.SimpleFormatter.format", "%3$s: %1$tc [%4$s] %5$s%6$s%n");
   }
 
-    /**
+  /**
    * Set the main logging level here.
    *
    * @param level the new logging level
@@ -61,8 +63,8 @@ public class Scale extends PApplet {
 
 
   /**
-   * Adds logging to a file. The file name will be appended with a dash, date stamp, and
-   * the extension ".log".
+   * Adds logging to a file. The file name will be appended with a dash, date
+   * stamp, and the extension ".log".
    *
    * @param prefix prefix of the log file name
    * @throws IOException if there was an error opening the file.
@@ -104,9 +106,9 @@ public class Scale extends PApplet {
    *
    * @param lx the LX environment
    */
-  private void registerAll(LXStudio lx) {
-    List<Class<? extends LXPattern>> patterns = lx.getRegisteredPatterns();
-    List<Class<? extends LXEffect>> effects = lx.getRegisteredEffects();
+  private void registerAll(LX lx) {
+    //List<Class<? extends LXPattern>> patterns = lx.registry.mutablePatterns; //getRegisteredPatterns();
+    //List<Class<? extends LXEffect>> effects = lx.getRegisteredEffects();
     final String parentPackage = getClass().getPackage().getName();
 
     try {
@@ -122,16 +124,16 @@ public class Scale extends PApplet {
         }
         if (LXPattern.class.isAssignableFrom(c)) {
           Class<? extends LXPattern> p = c.asSubclass(LXPattern.class);
-          if (!patterns.contains(p)) {
-            lx.registerPattern(p);
+          //if (!patterns.contains(p)) {
+            lx.registry.addPattern(p);
             logger.info("Added pattern: " + p);
-          }
+          //}
         } else if (LXEffect.class.isAssignableFrom(c)) {
           Class<? extends LXEffect> e = c.asSubclass(LXEffect.class);
-          if (!effects.contains(e)) {
-            lx.registerEffect(e);
+          //if (!effects.contains(e)) {
+            lx.registry.addEffect(e);
             logger.info("Added effect: " + e);
-          }
+          //}
         }
       }
     } catch (IOException ex) {
@@ -150,7 +152,7 @@ public class Scale extends PApplet {
       logger.log(Level.SEVERE, "Error creating log file: " + LOG_FILENAME_PREFIX, ex);
     }
 
-    LXStudio.Flags flags = new LXStudio.Flags();
+    LXStudio.Flags flags = new LXStudio.Flags(this);
     flags.showFramerate = false;
     flags.isP3LX = true;
     flags.immutableModel = true;
@@ -177,15 +179,8 @@ public class Scale extends PApplet {
     frameRate(GLOBAL_FRAME_RATE);
   }
 
-  public void initialize(final LXStudio lx, LXStudio.UI ui) {
-    // Add custom components or output drivers here
-    // Register settings
-    // lx.engine.registerComponent("scaleSettings", new Settings(lx, ui));
-
-    // Common components
-    // registry = new Registry(this, lx);
-
-    // Register any patterns and effects LX doesn't recognize
+  @Override
+  public void initialize(LX lx) {
     registerAll(lx);
 
     for (DiscoPussyModel.Tentacle tentacle : DiscoPussyModel.getTentacles()) {
@@ -241,4 +236,6 @@ public class Scale extends PApplet {
   public void draw() {
     // All is handled by LX Studio
   }
+
+
 }
