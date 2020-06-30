@@ -12,11 +12,11 @@ import static com.studioannwn.util.DistanceConstants.*;
 
 public class DiscoPussyConfig {
   // IP addresses of PixLite16s (for tentacles)
-  public final static String PIXLITE16_1 = "192.168.0.136";
-  public final static String PIXLITE16_2 = "192.168.0.137";
+  public final static String PIXLITE16_1 = "192.168.1.136";
+  public final static String PIXLITE16_2 = "192.168.1.137";
 
   // IP address of PixLite4 (for bar)
-  public final static String PIXLITE4 = "192.168.0.145";
+  public final static String PIXLITE4 = "192.168.1.145";
 
   // position of disco ball
   public final static LXVector DISCO_BALL_CENTER = new LXVector(0, 0, 0);
@@ -212,12 +212,12 @@ new TentacleConfig("0", 315, LONG)
 
   private final StripConfig[] BAR_STRIPS_DATALINE_SW = new StripConfig[]{
     new StripConfig()
-      .setLedCount(115)
+      .setLedCount(117)
       .setStart(W_CENTER)
       .setDirection(SOUTH)
       .setPreSpacing(LED_PITCH * 0.5f),
     new StripConfig()
-      .setLedCount(404)
+      .setLedCount(407)
       .setStart(SW_CORNER)
       .setDirection(EAST)
   };
@@ -228,12 +228,12 @@ new TentacleConfig("0", 315, LONG)
 
   private final StripConfig[] BAR_STRIPS_DATALINE_NW = new StripConfig[] {
     new StripConfig()
-      .setLedCount(115)
+      .setLedCount(114)
       .setStart(W_CENTER)
       .setDirection(NORTH)
       .setPreSpacing(LED_PITCH * 0.5f),
     new StripConfig()
-      .setLedCount(404)
+      .setLedCount(406)
       .setStart(NW_CORNER)
       .setDirection(EAST)
   };
