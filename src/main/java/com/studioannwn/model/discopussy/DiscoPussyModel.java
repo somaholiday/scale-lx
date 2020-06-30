@@ -4,9 +4,7 @@ import com.studioannwn.model.discopussy.builder.BarBuilder;
 import com.studioannwn.model.discopussy.builder.TentacleBuilder;
 import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
-import javafx.scene.chart.BarChartBuilder;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
