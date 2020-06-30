@@ -253,7 +253,7 @@ new TentacleConfig("0", 315, LONG)
       .setDirection(EAST)
       .setPreSpacing(406 * LED_PITCH),
     new StripConfig()
-      .setLedCount(26)
+      .setLedCount(25)
       .setStart(NE_CORNER)
       .setDirection(SOUTH)
   };
