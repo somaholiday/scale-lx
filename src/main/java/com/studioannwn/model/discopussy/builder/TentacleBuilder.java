@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.studioannwn.model.discopussy.DiscoPussyConfig.DATALINE_DISTANCE;
 import static com.studioannwn.model.discopussy.DiscoPussyConfig.DISCO_BALL_TENTACLE_OFFSET;
+import static com.studioannwn.model.discopussy.TentacleConfig.CHANNEL_NAMES;
 import static com.studioannwn.util.MathConstants.HALF_PI;
 import static com.studioannwn.util.MathConstants.TWO_PI;
 import static java.lang.Math.cos;
@@ -93,8 +94,10 @@ public class TentacleBuilder {
       strips.add(new DiscoPussyModel.Strip(points));
     }
 
+    String hostAddress = tentacleConfig.getIpAddress().split("\\.")[3];
+
     return new DiscoPussyModel.Dataline(
-      tentacleConfig.getId() + "_" + index,
+      hostAddress + ":" + tentacleConfig.getChannels()[index],
       tentacleConfig.getIpAddress(),
       tentacleConfig.getChannels()[index],
       strips

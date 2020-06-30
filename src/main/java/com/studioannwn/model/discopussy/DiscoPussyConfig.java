@@ -79,56 +79,110 @@ public class DiscoPussyConfig {
            bottom
    */
 
-  private final TentacleConfig[] tentacles = new TentacleConfig[]{
+  // private final TentacleConfig[] tentacles = new TentacleConfig[]{
 
-    new TentacleConfig("0", 315, LONG)
+  //   new TentacleConfig("0", 315, LONG)
+  //     .setIpAddress(PIXLITE16_1)
+  //     .setBottomChannel(1)
+  //     .setLeftChannel(2)
+  //     .setRightChannel(3),
+
+  //   new TentacleConfig("1", 10, SHORT)
+  //     .setIpAddress(PIXLITE16_1)
+  //     .setBottomChannel(4)
+  //     .setLeftChannel(5)
+  //     .setRightChannel(6),
+
+  //   new TentacleConfig("2", 45, LONG)
+  //     .setIpAddress(PIXLITE16_1)
+  //     .setBottomChannel(10)
+  //     .setLeftChannel(11)
+  //     .setRightChannel(12),
+
+  //   new TentacleConfig("3", 105, SHORT)
+  //     .setIpAddress(PIXLITE16_1)
+  //     .setBottomChannel(13)
+  //     .setLeftChannel(14)
+  //     .setRightChannel(9),
+
+  //   new TentacleConfig("4", 145, LONG)
+  //     .setIpAddress(PIXLITE16_2)
+  //     .setBottomChannel(1)
+  //     .setLeftChannel(2)
+  //     .setRightChannel(3),
+
+  //   new TentacleConfig("5", 165, SHORT)
+  //     .setIpAddress(PIXLITE16_2)
+  //     .setBottomChannel(4)
+  //     .setLeftChannel(5)
+  //     .setRightChannel(6),
+
+  //   new TentacleConfig("6", 225, LONG)
+  //     .setIpAddress(PIXLITE16_2)
+  //     .setBottomChannel(10)
+  //     .setLeftChannel(11)
+  //     .setRightChannel(9),
+
+  //   new TentacleConfig("7", 300, SHORT)
+  //     .setIpAddress(PIXLITE16_2)
+  //     .setBottomChannel(13)
+  //     .setLeftChannel(14)
+  //     .setRightChannel(12),
+  // };
+
+private final TentacleConfig[] tentacles = new TentacleConfig[]{
+
+
+new TentacleConfig("1", 10, SHORT)
+      .setIpAddress(PIXLITE16_2)
+      .setBottomChannel(14)
+      .setLeftChannel(13)
+      .setRightChannel(15),//wrong
+
+new TentacleConfig("2", 45, LONG)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(1)
-      .setLeftChannel(2)
-      .setRightChannel(3),
+      .setBottomChannel(9)
+      .setLeftChannel(11)      
+      .setRightChannel(10),
 
-    new TentacleConfig("1", 10, SHORT)
+new TentacleConfig("3", 105, SHORT)
+      .setIpAddress(PIXLITE16_1)
+      .setBottomChannel(14)
+      .setLeftChannel(12)
+      .setRightChannel(13),
+
+new TentacleConfig("4", 145, LONG)
       .setIpAddress(PIXLITE16_1)
       .setBottomChannel(4)
       .setLeftChannel(5)
       .setRightChannel(6),
 
-    new TentacleConfig("2", 45, LONG)
+new TentacleConfig("5", 165, LONG)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(7)
-      .setLeftChannel(8)
-      .setRightChannel(9),
-
-    new TentacleConfig("3", 105, SHORT)
-      .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(10)
-      .setLeftChannel(11)
-      .setRightChannel(12),
-
-    new TentacleConfig("4", 145, LONG)
-      .setIpAddress(PIXLITE16_2)
       .setBottomChannel(1)
-      .setLeftChannel(2)
-      .setRightChannel(3),
+      .setLeftChannel(3)
+      .setRightChannel(2),
 
-    new TentacleConfig("5", 165, SHORT)
+new TentacleConfig("6", 225, LONG)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(4)
-      .setLeftChannel(5)
+      .setBottomChannel(8)
+      .setLeftChannel(7)
       .setRightChannel(6),
 
-    new TentacleConfig("6", 225, LONG)
+new TentacleConfig("7", 300, SHORT)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(7)
-      .setLeftChannel(8)
+      .setBottomChannel(5)
+      .setLeftChannel(3)
+      .setRightChannel(4),
+  
+new TentacleConfig("0", 315, LONG)
+      .setIpAddress(PIXLITE16_2)
+      .setBottomChannel(12)
+      .setLeftChannel(11)
       .setRightChannel(9),
 
-    new TentacleConfig("7", 300, SHORT)
-      .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(10)
-      .setLeftChannel(11)
-      .setRightChannel(12),
-  };
+    };
+
 
    /*
     BAR CONFIGURATION

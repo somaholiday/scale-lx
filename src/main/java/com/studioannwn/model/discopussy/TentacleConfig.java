@@ -30,6 +30,12 @@ public class TentacleConfig {
   private final int LEFT = 1;
   private final int RIGHT = 2;
 
+  public static final String[] CHANNEL_NAMES = new String[] {
+    "B",
+    "L",
+    "R",
+  };
+
   private final String id;
   private final Size size;
   private String ipAddress;
