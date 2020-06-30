@@ -10,8 +10,8 @@ import static com.studioannwn.util.DistanceConstants.*;
 
 public class DiscoPussyConfig {
   // IP addresses of PixLite16s (for tentacles)
-  public final static String PIXLITE16_1 = "192.168.2.18";
-  public final static String PIXLITE16_2 = "192.168.2.19";
+  public final static String PIXLITE16_1 = "192.168.0.136";
+  public final static String PIXLITE16_2 = "192.168.0.137";
 
   // IP address of PixLite4 (for bar)
   public final static String PIXLITE4 = "192.168.2.20";
@@ -81,49 +81,49 @@ public class DiscoPussyConfig {
 
   private final TentacleConfig[] tentacles = new TentacleConfig[]{
 
-    new TentacleConfig("0", 0, LONG)
+    new TentacleConfig("0", 315, LONG)
       .setIpAddress(PIXLITE16_1)
       .setBottomChannel(1)
       .setLeftChannel(2)
       .setRightChannel(3),
 
-    new TentacleConfig("1", 45, SHORT)
+    new TentacleConfig("1", 10, SHORT)
       .setIpAddress(PIXLITE16_1)
       .setBottomChannel(4)
       .setLeftChannel(5)
       .setRightChannel(6),
 
-    new TentacleConfig("2", 90, LONG)
+    new TentacleConfig("2", 45, LONG)
       .setIpAddress(PIXLITE16_1)
       .setBottomChannel(7)
       .setLeftChannel(8)
       .setRightChannel(9),
 
-    new TentacleConfig("3", 135, SHORT)
+    new TentacleConfig("3", 105, SHORT)
       .setIpAddress(PIXLITE16_1)
       .setBottomChannel(10)
       .setLeftChannel(11)
       .setRightChannel(12),
 
-    new TentacleConfig("4", 180, LONG)
+    new TentacleConfig("4", 145, LONG)
       .setIpAddress(PIXLITE16_2)
       .setBottomChannel(1)
       .setLeftChannel(2)
       .setRightChannel(3),
 
-    new TentacleConfig("5", 225, SHORT)
+    new TentacleConfig("5", 165, SHORT)
       .setIpAddress(PIXLITE16_2)
       .setBottomChannel(4)
       .setLeftChannel(5)
       .setRightChannel(6),
 
-    new TentacleConfig("6", 270, LONG)
+    new TentacleConfig("6", 225, LONG)
       .setIpAddress(PIXLITE16_2)
       .setBottomChannel(7)
       .setLeftChannel(8)
       .setRightChannel(9),
 
-    new TentacleConfig("7", 315, SHORT)
+    new TentacleConfig("7", 300, SHORT)
       .setIpAddress(PIXLITE16_2)
       .setBottomChannel(10)
       .setLeftChannel(11)
