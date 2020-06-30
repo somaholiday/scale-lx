@@ -1,36 +1,26 @@
 package com.studioannwn;
 
+import com.google.common.reflect.ClassPath;
+import com.studioannwn.model.discopussy.DiscoPussyConfig;
+import com.studioannwn.model.discopussy.DiscoPussyModel;
+import com.studioannwn.output.ScaleLayout;
+import com.studioannwn.output.pixlite.LuckyPixlite;
+import com.studioannwn.ui.DiscoPussyVisualizer;
+import com.studioannwn.util.PointsGrouping;
+import heronarts.lx.LX;
+import heronarts.lx.LXPlugin;
+import heronarts.lx.effect.LXEffect;
+import heronarts.lx.output.LXOutput;
+import heronarts.lx.pattern.LXPattern;
+import heronarts.lx.studio.LXStudio;
+import processing.core.PApplet;
+
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
-
-import com.google.common.reflect.ClassPath;
-import com.studioannwn.model.discopussy.DiscoPussyConfig;
-import com.studioannwn.model.discopussy.DiscoPussyModel;
-import com.studioannwn.output.ScaleLayout;
-
-import com.studioannwn.output.pixlite.PixLite;
-import com.studioannwn.output.pixlite.PixLite16;
-import com.studioannwn.output.pixlite.PixLite4;
-import com.studioannwn.ui.DiscoPussyVisualizer;
-
-import heronarts.lx.LX;
-import heronarts.lx.LXPlugin;
-import heronarts.lx.effect.LXEffect;
-import heronarts.lx.pattern.LXPattern;
-
-import heronarts.lx.blend.LightestBlend;
-import heronarts.lx.output.LXOutput;
-import heronarts.lx.studio.LXStudio;
-import processing.core.PApplet;
+import java.util.logging.*;
 
 public class Scale extends PApplet implements LXPlugin {
 
@@ -93,7 +83,7 @@ public class Scale extends PApplet implements LXPlugin {
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
 
-  public final HashMap<String, PixLite> pixlites = new HashMap<String, PixLite>();
+  public final HashMap<String, LuckyPixlite> pixlites = new HashMap<String, LuckyPixlite>();
 
   @Override
   public void settings() {
@@ -188,14 +178,14 @@ public class Scale extends PApplet implements LXPlugin {
         String ipAddress = dataline.getIpAddress();
 
         if (!pixlites.containsKey(ipAddress)) {
-          PixLite pixlite = new PixLite16(lx, ipAddress);
+          LuckyPixlite pixlite = new LuckyPixlite(lx, ipAddress);
           pixlites.put(ipAddress, pixlite);
           lx.addOutput(pixlite);
           pixlite.enabled.setValue(true);
         }
 
-        PixLite pixlite = pixlites.get(ipAddress);
-        pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
+        LuckyPixlite pixlite = pixlites.get(ipAddress);
+        pixlite.addPixliteChannel(dataline.getChannel(), new PointsGrouping(dataline.points));
       }
     }
 
@@ -203,14 +193,14 @@ public class Scale extends PApplet implements LXPlugin {
       String ipAddress = dataline.getIpAddress();
 
       if (!pixlites.containsKey(ipAddress)) {
-        PixLite pixlite = new PixLite4(lx, ipAddress);
+        LuckyPixlite pixlite = new LuckyPixlite(lx, ipAddress);
         pixlites.put(ipAddress, pixlite);
         lx.addOutput(pixlite);
         pixlite.enabled.setValue(true);
       }
 
-      PixLite pixlite = pixlites.get(ipAddress);
-      pixlite.addOutput(dataline.getChannel(), dataline.getPoints());
+      LuckyPixlite pixlite = pixlites.get(ipAddress);
+      pixlite.addPixliteChannel(dataline.getChannel(), new PointsGrouping(dataline.points));
     }
 
     // print used pixlite channels
@@ -218,8 +208,8 @@ public class Scale extends PApplet implements LXPlugin {
     System.out.println("-- Setup pixlites ----------------------------");
     pixlites.forEach((ipAddress, pixlite) -> {
       System.out.println(ipAddress + " - " + pixlite.children.size() + " datalines");
-      for (LXOutput output : pixlite.children) {
-        System.out.println(" -> Channel " + ((PixLite.PixLiteOutput) output).getOutputIndex());
+      for (LXOutput channel : pixlite.children) {
+        System.out.println(" -> Channel " + ((LuckyPixlite.Channel) channel).getIndex());
       }
       System.out.println("----------------------------------------------");
     });
