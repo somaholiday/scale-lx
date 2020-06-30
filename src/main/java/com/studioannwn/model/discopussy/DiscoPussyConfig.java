@@ -14,7 +14,7 @@ public class DiscoPussyConfig {
   public final static String PIXLITE16_2 = "192.168.0.137";
 
   // IP address of PixLite4 (for bar)
-  public final static String PIXLITE4 = "192.168.2.20";
+  public final static String PIXLITE4 = "192.168.0.145";
 
   // position of disco ball
   public final static LXVector DISCO_BALL_CENTER = new LXVector(0, 0, 0);
