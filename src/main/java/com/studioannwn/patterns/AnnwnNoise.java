@@ -15,7 +15,7 @@ import processing.core.PImage;
 import processing.core.PVector;
 
 @LXCategory("Texture")
-public class Noise extends DPat {
+public class AnnwnNoise extends DPat {
     private int currModeIndex, iSymm;
     public final CompoundParameter speed = new CompoundParameter("Speed", 0.55, -2, 2);
     public final CompoundParameter density = new CompoundParameter("Dens", 0.6);
@@ -31,7 +31,7 @@ public class Noise extends DPat {
     private int NUM_NDAT = 4;
     private NDat n[] = new NDat[NUM_NDAT];
 
-    public Noise(LX lx) {
+    public AnnwnNoise(LX lx) {
         super(lx);
         addParameter(speed);
         addParameter(symm);
