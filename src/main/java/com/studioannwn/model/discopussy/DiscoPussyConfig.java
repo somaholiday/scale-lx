@@ -159,7 +159,7 @@ new TentacleConfig("4", 145, LONG)
       .setLeftChannel(5)
       .setRightChannel(6),
 
-new TentacleConfig("5", 165, LONG)
+new TentacleConfig("5", 165, SHORT)
       .setIpAddress(PIXLITE16_1)
       .setTopChannel(1)
       .setLeftChannel(3)
