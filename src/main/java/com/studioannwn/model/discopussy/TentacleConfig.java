@@ -18,15 +18,15 @@ public class TentacleConfig {
 
   /*
     Channel index positions, looking outward from the disco ball
-    1 ----------- 2
-     \           /
-      \         /
-       \       /
-        \     /
-         \   /
            0
+         /   \
+        /     \
+       /       \
+      /         \
+     /           \
+    1 ----------- 2
    */
-  private final int BOTTOM = 0;
+  private final int TOP = 0;
   private final int LEFT = 1;
   private final int RIGHT = 2;
 
@@ -49,8 +49,8 @@ public class TentacleConfig {
     return this;
   }
 
-  public TentacleConfig setBottomChannel(int channel) {
-    this.channels[BOTTOM] = channel;
+  public TentacleConfig setTopChannel(int channel) {
+    this.channels[TOP] = channel;
     return this;
   }
 

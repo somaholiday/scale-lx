@@ -70,62 +70,62 @@ public class DiscoPussyConfig {
 
    Channel position names are based on looking from the disco ball outward
 
+            top
+           /   \
+          /     \
+         /       \
+        /         \
+       /           \
     left ---------- right
-        \          /
-         \        /
-          \      /
-           \    /
-            \  /
-           bottom
    */
 
   private final TentacleConfig[] tentacles = new TentacleConfig[]{
 
     new TentacleConfig("0", 0, LONG)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(1)
+      .setTopChannel(1)
       .setLeftChannel(2)
       .setRightChannel(3),
 
     new TentacleConfig("1", 45, SHORT)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(4)
+      .setTopChannel(4)
       .setLeftChannel(5)
       .setRightChannel(6),
 
     new TentacleConfig("2", 90, LONG)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(7)
+      .setTopChannel(7)
       .setLeftChannel(8)
       .setRightChannel(9),
 
     new TentacleConfig("3", 135, SHORT)
       .setIpAddress(PIXLITE16_1)
-      .setBottomChannel(10)
+      .setTopChannel(10)
       .setLeftChannel(11)
       .setRightChannel(12),
 
     new TentacleConfig("4", 180, LONG)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(1)
+      .setTopChannel(1)
       .setLeftChannel(2)
       .setRightChannel(3),
 
     new TentacleConfig("5", 225, SHORT)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(4)
+      .setTopChannel(4)
       .setLeftChannel(5)
       .setRightChannel(6),
 
     new TentacleConfig("6", 270, LONG)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(7)
+      .setTopChannel(7)
       .setLeftChannel(8)
       .setRightChannel(9),
 
     new TentacleConfig("7", 315, SHORT)
       .setIpAddress(PIXLITE16_2)
-      .setBottomChannel(10)
+      .setTopChannel(10)
       .setLeftChannel(11)
       .setRightChannel(12),
   };
