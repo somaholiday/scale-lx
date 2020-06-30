@@ -2,6 +2,8 @@ package com.studioannwn.model.discopussy;
 
 import heronarts.lx.transform.LXVector;
 
+import javax.naming.NamingEnumeration;
+
 import static com.studioannwn.model.discopussy.DatalineConfig.*;
 import static com.studioannwn.model.discopussy.DiscoPussyConfig.BarDimensions.*;
 import static com.studioannwn.model.discopussy.TentacleConfig.Size.LONG;
@@ -41,7 +43,7 @@ public class DiscoPussyConfig {
 
   public final static class BarDimensions {
     // bar length (north-south)
-    public final static float LENGTH = 15 * FEET;
+    public final static float LENGTH = 115 * LED_PITCH * 2;
 
     // bar width (east-west)
     public final static float WIDTH = 30 * FEET;
@@ -142,7 +144,7 @@ new TentacleConfig("1", 10, SHORT)
 new TentacleConfig("2", 45, LONG)
       .setIpAddress(PIXLITE16_1)
       .setTopChannel(9)
-      .setLeftChannel(11)      
+      .setLeftChannel(11)
       .setRightChannel(10),
 
 new TentacleConfig("3", 105, SHORT)
@@ -174,7 +176,7 @@ new TentacleConfig("7", 300, SHORT)
       .setTopChannel(5)
       .setLeftChannel(3)
       .setRightChannel(4),
-  
+
 new TentacleConfig("0", 315, LONG)
       .setIpAddress(PIXLITE16_2)
       .setTopChannel(12)
@@ -208,43 +210,43 @@ new TentacleConfig("0", 315, LONG)
       setPreSpacing(distance) sets the distance from the start point to the first LED
    */
 
-  // List of strips for bar output 1
-  private final StripConfig[] BAR_STRIPS_DATALINE_1 = new StripConfig[] {
+  private final StripConfig[] BAR_STRIPS_DATALINE_SW = new StripConfig[]{
     new StripConfig()
-      .setLedCount(137)
-      .setStart(W_CENTER)
-      .setDirection(NORTH)
-      .setPreSpacing(LED_PITCH * 0.5f),
-    new StripConfig()
-      .setLedCount(549)
-      .setStart(NW_CORNER)
-      .setDirection(EAST),
-    new StripConfig()
-      .setLedCount(25)
-      .setStart(NE_CORNER)
-      .setDirection(SOUTH),
-  };
-
-  // List of strips for bar output 2
-  private final StripConfig[] BAR_STRIPS_DATALINE_2 = new StripConfig[] {
-    new StripConfig()
-      .setLedCount(137)
+      .setLedCount(115)
       .setStart(W_CENTER)
       .setDirection(SOUTH)
       .setPreSpacing(LED_PITCH * 0.5f),
     new StripConfig()
-      .setLedCount(549)
+      .setLedCount(404)
       .setStart(SW_CORNER)
-      .setDirection(EAST),
+      .setDirection(EAST)
+  };
+
+  private final StripConfig[] BAR_STRIPS_DATALINE_SE = new StripConfig[] {
+    new StripConfig().setLedCount(1)
+  };
+
+  private final StripConfig[] BAR_STRIPS_DATALINE_NW = new StripConfig[] {
     new StripConfig()
-      .setLedCount(25)
-      .setStart(SE_CORNER)
-      .setDirection(NORTH),
+      .setLedCount(115)
+      .setStart(W_CENTER)
+      .setDirection(NORTH)
+      .setPreSpacing(LED_PITCH * 0.5f),
+    new StripConfig()
+      .setLedCount(404)
+      .setStart(NW_CORNER)
+      .setDirection(EAST)
+  };
+
+  private final StripConfig[] BAR_STRIPS_DATALINE_NE = new StripConfig[] {
+    new StripConfig().setLedCount(1)
   };
 
   private final DatalineConfig[] barDatalines = new DatalineConfig[] {
-    new DatalineConfig("BAR_1", PIXLITE4, 1, BAR_STRIPS_DATALINE_1),
-    new DatalineConfig("BAR_2", PIXLITE4, 2, BAR_STRIPS_DATALINE_2)
+    new DatalineConfig("BAR_SE", PIXLITE4, 1, BAR_STRIPS_DATALINE_SE),
+    new DatalineConfig("BAR_SW", PIXLITE4, 2, BAR_STRIPS_DATALINE_SW),
+    new DatalineConfig("BAR_NE", PIXLITE4, 3, BAR_STRIPS_DATALINE_NE),
+    new DatalineConfig("BAR_NW", PIXLITE4, 4, BAR_STRIPS_DATALINE_NW)
   };
 
   public TentacleConfig[] getTentacleConfigs() {
