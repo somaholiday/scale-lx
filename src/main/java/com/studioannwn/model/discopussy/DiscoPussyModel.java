@@ -2,6 +2,7 @@ package com.studioannwn.model.discopussy;
 
 import com.studioannwn.model.discopussy.builder.BarBuilder;
 import com.studioannwn.model.discopussy.builder.TentacleBuilder;
+import heronarts.lx.LX;
 import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
 import javafx.scene.chart.BarChartBuilder;
@@ -104,7 +105,7 @@ public class DiscoPussyModel extends LXModel {
     private List<Strip> strips = new ArrayList<>();
 
     public Dataline(String id, String ipAddress, int channel, List<Strip> strips) {
-      super(stripsListToArray(strips));
+      super(stripsListToPoints(strips), stripsListToArray(strips));
       this.id = id;
       this.ipAddress = ipAddress;
       this.channel = channel;
@@ -137,6 +138,17 @@ public class DiscoPussyModel extends LXModel {
   // quick hack
   private static Strip[] stripsListToArray(List<Strip> strips) {
     return strips.stream().toArray(Strip[]::new);
+  }
+
+  // another quick hack
+  private static List<LXPoint> stripsListToPoints(List<Strip> strips) {
+    List<LXPoint> points = new ArrayList<>();
+
+    for (Strip strip : strips) {
+      points.addAll(strip.getPoints());
+    }
+
+    return points;
   }
 }
 
