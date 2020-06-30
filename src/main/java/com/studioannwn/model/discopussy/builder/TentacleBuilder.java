@@ -60,7 +60,7 @@ public class TentacleBuilder {
     for (int datalineIndex = 0; datalineIndex < channels.length; datalineIndex++) {
       t.push();
       float datalineIndexN = 1.f * datalineIndex / channels.length;
-      float datalineAngle = datalineIndexN * TWO_PI + HALF_PI;
+      float datalineAngle = datalineIndexN * TWO_PI - HALF_PI;
       t.translate((float) (DATALINE_DISTANCE * cos(datalineAngle)), 0, (float) (DATALINE_DISTANCE * sin(datalineAngle)));
 
       datalines.add(buildDataline(tentacleConfig, datalineIndex, t));
