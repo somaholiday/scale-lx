@@ -224,7 +224,7 @@ new TentacleConfig("0", 315, LONG)
 
   private final StripConfig[] BAR_STRIPS_DATALINE_SE = new StripConfig[] {
     new StripConfig()
-      .setLedCount(288)
+      .setLedCount(274)
       .setStart(SW_CORNER)
       .setDirection(EAST)
       .setPreSpacing(407 * LED_PITCH),
@@ -248,8 +248,8 @@ new TentacleConfig("0", 315, LONG)
 
   private final StripConfig[] BAR_STRIPS_DATALINE_NE = new StripConfig[] {
     new StripConfig()
-      .setLedCount(288)
-      .setStart(NW_CORNER.copy().add(406 * LED_PITCH, 0))
+      .setLedCount(274)
+      .setStart(NW_CORNER)
       .setDirection(EAST)
       .setPreSpacing(406 * LED_PITCH),
     new StripConfig()
