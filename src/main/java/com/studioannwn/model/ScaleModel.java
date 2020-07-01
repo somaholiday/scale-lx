@@ -1,6 +1,7 @@
 package com.studioannwn.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -9,7 +10,7 @@ import heronarts.lx.model.LXModel;
 import heronarts.lx.transform.LXTransform;
 import heronarts.lx.transform.LXVector;
 
-public abstract class ScaleModel extends LXModel {
+public abstract class ScaleModel extends StripsModel {
 
 	public static final String MODEL_KEY = "scale";
 
@@ -46,4 +47,8 @@ public abstract class ScaleModel extends LXModel {
 
 		return submodels.toArray(new LXModel[0]);
 	}
+
+  public List<? extends LXModel> getStrips() {
+	  return Arrays.asList(children);
+  }
 }
