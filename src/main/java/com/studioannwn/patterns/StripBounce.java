@@ -1,17 +1,17 @@
 package com.studioannwn.patterns;
 
-import java.lang.Math;
-
+import com.studioannwn.model.StripsModel;
 import heronarts.lx.LX;
+import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.modulator.SinLFO;
 import heronarts.lx.parameter.CompoundParameter;
-import heronarts.lx.pattern.LXPattern;
+import heronarts.lx.pattern.LXModelPattern;
 
-import static heronarts.lx.utils.LXUtils.random;
 import static heronarts.lx.utils.LXUtils.distance;
+import static heronarts.lx.utils.LXUtils.random;
 
-public class StripBounce extends LXPattern {
+public class StripBounce extends LXModelPattern<StripsModel> {
   private final int numOsc = 30;
   SinLFO[] fX = new SinLFO[numOsc];
   SinLFO[] fY = new SinLFO[numOsc];
@@ -42,7 +42,7 @@ public class StripBounce extends LXPattern {
   public void run(double deltaMs) {
     float[] bright = new float[model.points.length];
 
-    for (Strip strip : model.getStrips()) {
+    for (LXModel strip : model.getStrips()) {
       for (int i = 0; i < numOsc; i++) {
         float avgdist = (float)distance(strip.cx, strip.cy, fX[i].getValuef(), fY[i].getValuef());
         float hv = palette.getHuef() + colorOffset[i]*hueVariance.getValuef();
