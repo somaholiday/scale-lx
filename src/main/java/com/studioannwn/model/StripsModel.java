@@ -1,6 +1,5 @@
 package com.studioannwn.model;
 
-import com.studioannwn.model.discopussy.DiscoPussyModel;
 import heronarts.lx.model.LXModel;
 
 import java.util.List;
