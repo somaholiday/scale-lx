@@ -41,20 +41,6 @@ public class DiscoPussyConfig {
     public final static float MODULE_PITCH = 4 * INCHES;
   }
 
-  public final static class BarDimensions {
-    // bar length (north-south)
-    public final static float LENGTH = 115 * LED_PITCH * 2;
-
-    // bar width (east-west)
-    public final static float WIDTH = 30 * FEET;
-
-    public final static LXVector NW_CORNER = new LXVector(-WIDTH * 0.5f, LENGTH * 0.5f, 0);
-    public final static LXVector NE_CORNER = new LXVector(WIDTH * 0.5f, LENGTH * 0.5f, 0);
-    public final static LXVector SW_CORNER = new LXVector(-WIDTH * 0.5f, -LENGTH * 0.5f, 0);
-    public final static LXVector SE_CORNER = new LXVector(WIDTH * 0.5f, -LENGTH * 0.5f, 0);
-    public final static LXVector W_CENTER = new LXVector(-WIDTH * 0.5f, 0, 0);
-  }
-
   /*
    TENTACLE CONFIGURATION
 
@@ -210,24 +196,51 @@ new TentacleConfig("0", 315, LONG)
       setPreSpacing(distance) sets the distance from the start point to the first LED
    */
 
+  public final static class BarDimensions {
+    // This got ugly and embarrassing fast.
+    // The original layout was based on dimensions that weren't quite right, so now basing the corners off of LED counts.
+    // This was done on-the-fly and would be much much saner if the DatalineConfig just kept a running position cursor.
+    public final static int WEST_NORTH_COUNT = 114;
+    public final static int WEST_SOUTH_COUNT = 117;
+    public final static int WEST_TOTAL_COUNT = WEST_NORTH_COUNT + WEST_SOUTH_COUNT;
+
+    public final static int SOUTH_WEST_COUNT = 407;
+    public final static int SOUTH_EAST_COUNT = 274;
+    public final static int SOUTH_TOTAL_COUNT = SOUTH_WEST_COUNT + SOUTH_EAST_COUNT;
+
+    public final static int NORTH_WEST_COUNT = 406;
+    public final static int NORTH_EAST_COUNT = 274;
+
+    // bar width (east-west)
+    public final static float WIDTH = (SOUTH_TOTAL_COUNT - 1) * LED_PITCH;
+
+    public final static LXVector W_CENTER = new LXVector(-WIDTH * 0.5f, 0, 0);
+    public final static LXVector NW_CORNER = W_CENTER.copy().add(0, WEST_NORTH_COUNT * LED_PITCH, 0);
+    public final static LXVector NE_CORNER = NW_CORNER.copy().add(SOUTH_TOTAL_COUNT * LED_PITCH, 0, 0);
+    public final static LXVector SW_CORNER = W_CENTER.copy().add(0, -WEST_SOUTH_COUNT * LED_PITCH, 0);
+    public final static LXVector SE_CORNER = SW_CORNER.copy().add(SOUTH_TOTAL_COUNT * LED_PITCH, 0, 0);
+
+  }
+
   private final StripConfig[] BAR_STRIPS_DATALINE_SW = new StripConfig[]{
     new StripConfig()
-      .setLedCount(117)
+      .setLedCount(WEST_SOUTH_COUNT)
       .setStart(W_CENTER)
       .setDirection(SOUTH)
       .setPreSpacing(LED_PITCH * 0.5f),
     new StripConfig()
-      .setLedCount(407)
+      .setLedCount(SOUTH_WEST_COUNT)
       .setStart(SW_CORNER)
       .setDirection(EAST)
+      .setPreSpacing(LED_PITCH)
   };
 
   private final StripConfig[] BAR_STRIPS_DATALINE_SE = new StripConfig[] {
     new StripConfig()
-      .setLedCount(274)
+      .setLedCount(SOUTH_EAST_COUNT)
       .setStart(SW_CORNER)
       .setDirection(EAST)
-      .setPreSpacing(407 * LED_PITCH),
+      .setPreSpacing(SOUTH_WEST_COUNT * LED_PITCH),
     new StripConfig()
       .setLedCount(26)
       .setStart(SE_CORNER)
@@ -236,22 +249,23 @@ new TentacleConfig("0", 315, LONG)
 
   private final StripConfig[] BAR_STRIPS_DATALINE_NW = new StripConfig[] {
     new StripConfig()
-      .setLedCount(114)
+      .setLedCount(WEST_NORTH_COUNT)
       .setStart(W_CENTER)
       .setDirection(NORTH)
       .setPreSpacing(LED_PITCH * 0.5f),
     new StripConfig()
-      .setLedCount(406)
+      .setLedCount(NORTH_WEST_COUNT)
       .setStart(NW_CORNER)
       .setDirection(EAST)
+      .setPreSpacing(LED_PITCH * 1),
   };
 
   private final StripConfig[] BAR_STRIPS_DATALINE_NE = new StripConfig[] {
     new StripConfig()
-      .setLedCount(274)
+      .setLedCount(NORTH_EAST_COUNT)
       .setStart(NW_CORNER)
       .setDirection(EAST)
-      .setPreSpacing(406 * LED_PITCH),
+      .setPreSpacing((NORTH_WEST_COUNT + 1) * LED_PITCH),
     new StripConfig()
       .setLedCount(25)
       .setStart(NE_CORNER)
@@ -259,10 +273,10 @@ new TentacleConfig("0", 315, LONG)
   };
 
   private final DatalineConfig[] barDatalines = new DatalineConfig[] {
-    new DatalineConfig("BAR_SE", PIXLITE4, 1, BAR_STRIPS_DATALINE_SE),
-    new DatalineConfig("BAR_SW", PIXLITE4, 2, BAR_STRIPS_DATALINE_SW),
-    new DatalineConfig("BAR_NE", PIXLITE4, 3, BAR_STRIPS_DATALINE_NE),
-    new DatalineConfig("BAR_NW", PIXLITE4, 4, BAR_STRIPS_DATALINE_NW)
+    new DatalineConfig("BarSE", PIXLITE4, 1, BAR_STRIPS_DATALINE_SE),
+    new DatalineConfig("BarSW", PIXLITE4, 2, BAR_STRIPS_DATALINE_SW),
+    new DatalineConfig("BarNE", PIXLITE4, 3, BAR_STRIPS_DATALINE_NE),
+    new DatalineConfig("BarNW", PIXLITE4, 4, BAR_STRIPS_DATALINE_NW)
   };
 
   public TentacleConfig[] getTentacleConfigs() {
