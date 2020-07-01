@@ -57,7 +57,7 @@ public class SpaceTime extends LXModelPattern<StripsModel> {
         colors[p.index] = lx.hsb(
           palette.getHuef() + 360 - p.x * .2f + p.y * .3f,
           constrain(.4f * min(abs(s - sVal1), abs(s - sVal2)), 20, 100),
-          max(0, 100 - fVal * abs(i - pVal * (strip.getPoints().size() - 1)))
+          max(0, 100 - fVal * abs(i - pVal * (strip.points.length - 1)))
         );
         ++i;
       }
