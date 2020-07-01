@@ -1,4 +1,4 @@
-package com.studioannwn.effect;
+package com.studioannwn.effect.discopussy;
 
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import heronarts.lx.LX;
