@@ -6,11 +6,16 @@ import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DiscoPussyModel extends LXModel {
   private static List<Tentacle> tentacles = new ArrayList<>();
   private static List<Dataline> datalines = new ArrayList<>();
+  private static Set<LXPoint> tentaclePoints = new HashSet<>();
+  private static Set<LXPoint> barPoints = new HashSet<>();
+
   private static Bar bar;
   private static DiscoPussyConfig config;
 
@@ -33,6 +38,8 @@ public class DiscoPussyModel extends LXModel {
       }
 
       DiscoPussyModel.datalines.addAll(datalines);
+
+      tentaclePoints.addAll(tentacle.getPoints());
     }
 
     DiscoPussyModel.tentacles.addAll(tentacles);
@@ -44,6 +51,8 @@ public class DiscoPussyModel extends LXModel {
 
     for (Dataline dataline : barDatalines) {
       strips.addAll(dataline.getStrips());
+
+      barPoints.addAll(dataline.getPoints());
     }
 
     DiscoPussyModel.datalines.addAll(barDatalines);
@@ -61,6 +70,14 @@ public class DiscoPussyModel extends LXModel {
 
   public static Bar getBar() {
     return bar;
+  }
+
+  public static Set<LXPoint> getTentaclePoints() {
+    return tentaclePoints;
+  }
+
+  public static Set<LXPoint> getBarPoints() {
+    return barPoints;
   }
 
   public static List<Dataline> getDatalines() {
@@ -87,6 +104,7 @@ public class DiscoPussyModel extends LXModel {
     private List<Dataline> datalines = new ArrayList<>();
 
     public Tentacle(List<Dataline> datalines) {
+      super(datalinesListToArray(datalines));
       this.datalines.addAll(datalines);
     }
 
@@ -135,6 +153,10 @@ public class DiscoPussyModel extends LXModel {
   // quick hack
   private static Strip[] stripsListToArray(List<Strip> strips) {
     return strips.stream().toArray(Strip[]::new);
+  }
+
+  private static Dataline[] datalinesListToArray(List<Dataline> datalines) {
+    return datalines.stream().toArray(Dataline[]::new);
   }
 }
 
