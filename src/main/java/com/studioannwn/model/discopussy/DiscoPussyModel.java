@@ -1,5 +1,6 @@
 package com.studioannwn.model.discopussy;
 
+import com.studioannwn.model.StripsModel;
 import com.studioannwn.model.discopussy.builder.BarBuilder;
 import com.studioannwn.model.discopussy.builder.TentacleBuilder;
 import heronarts.lx.model.LXModel;
@@ -10,11 +11,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class DiscoPussyModel extends LXModel {
+public class DiscoPussyModel extends StripsModel {
   private static List<Tentacle> tentacles = new ArrayList<>();
   private static List<Dataline> datalines = new ArrayList<>();
   private static Set<LXPoint> tentaclePoints = new HashSet<>();
   private static Set<LXPoint> barPoints = new HashSet<>();
+  // list of submodels to use as strips in strip-based patterns
+  private static List<LXModel> patternStrips = new ArrayList<>();
 
   private static Bar bar;
   private static DiscoPussyConfig config;
@@ -57,6 +60,12 @@ public class DiscoPussyModel extends LXModel {
 
     DiscoPussyModel.datalines.addAll(barDatalines);
 
+    // build list of logical strips for strip-based patterns
+    for (Tentacle tentacle : getTentacles()) {
+      patternStrips.addAll(tentacle.getDatalines());
+    }
+    patternStrips.add(getBar());
+
     return stripsListToArray(strips);
   }
 
@@ -88,10 +97,16 @@ public class DiscoPussyModel extends LXModel {
     return datalines.stream().toArray(Dataline[]::new);
   }
 
+  @Override
+  public List<? extends LXModel> getStrips() {
+    return patternStrips;
+  }
+
   public static class Bar extends LXModel {
     private List<Dataline> datalines = new ArrayList<>();
 
     public Bar(List<Dataline> datalines) {
+      super(datalinesListToArray(datalines));
       this.datalines.addAll(datalines);
     }
 
