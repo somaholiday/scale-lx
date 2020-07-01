@@ -1,13 +1,17 @@
 package com.studioannwn.patterns;
 
+import com.studioannwn.model.StripsModel;
 import com.studioannwn.util.MathUtils;
 import heronarts.lx.LX;
+import heronarts.lx.model.LXModel;
 import heronarts.lx.model.LXPoint;
+import heronarts.lx.model.StripModel;
 import heronarts.lx.modulator.SinLFO;
 import heronarts.lx.modulator.TriangleLFO;
+import heronarts.lx.pattern.LXModelPattern;
 import heronarts.lx.pattern.LXPattern;
 
-public class Blinders extends LXPattern {
+public class Blinders extends LXModelPattern<StripsModel> {
     final SinLFO[] m;
     final TriangleLFO r;
     final SinLFO s;
@@ -31,14 +35,14 @@ public class Blinders extends LXPattern {
     public void run(double deltaMs) {
         float hv = palette.getHuef();
         int si = 0;
-        for (Strip strip : model.getStrips()) {
+        for (LXModel strip : model.getStrips()) {
             int i = 0;
             float mv = m[si % m.length].getValuef();
             for (LXPoint p : strip.points) {
                 colors[p.index] = lx.hsb(
                     hv + p.z + p.y*hs.getValuef(),
                     MathUtils.min(100, MathUtils.abs(p.x - s.getValuef())/2f),
-                    MathUtils.max(0, 100 - mv/2f - mv * MathUtils.abs(i - (strip.metrics.numPoints-1f)/2f))
+                    MathUtils.max(0, 100 - mv/2f - mv * MathUtils.abs(i - (strip.points.length-1f)/2f))
                 );
                 ++i;
             }
