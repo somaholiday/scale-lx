@@ -2,6 +2,7 @@ package com.studioannwn.patterns;
 
 import com.studioannwn.util.TimeConstants;
 import heronarts.lx.LX;
+import heronarts.lx.LXCategory;
 import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.modulator.SinLFO;
@@ -14,9 +15,8 @@ import heronarts.lx.transform.LXVector;
 import static com.studioannwn.util.MathConstants.TAU;
 import static com.studioannwn.util.MathUtils.*;
 
+@LXCategory(LXCategory.FORM)
 public class Ripple extends LXPattern {
-  SinLFO mask = new SinLFO(0, 1, 3000);
-
   CompoundParameter hueParameter = new CompoundParameter("Hue", 0.5).setDescription("Sets hue of wave");
   CompoundParameter speedParameter = new CompoundParameter("Speed", 10, -50, 50).setDescription("Sets speed of wave movement").setPolarity(LXParameter.Polarity.BIPOLAR);
   CompoundParameter wavelengthParameter = new CompoundParameter("Wavelength", 1, 0.1, 4).setDescription("Sets wavelength between peaks");
@@ -29,8 +29,6 @@ public class Ripple extends LXPattern {
 
   public Ripple(LX lx) {
     super(lx);
-
-    addModulator(mask).trigger();
 
     addParameter(speedParameter.getLabel().toLowerCase(), speedParameter);
     addParameter(wavelengthParameter.getLabel().toLowerCase(), wavelengthParameter);
