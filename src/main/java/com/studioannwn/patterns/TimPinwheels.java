@@ -81,7 +81,7 @@ public class TimPinwheels extends LXPattern {
     addParameter(hueParameter.getLabel().toLowerCase(), hueParameter);
     addParameter(hueSpreadParameter.getLabel().toLowerCase(), hueSpreadParameter);
 
-    pinwheels = new ArrayList();
+    pinwheels = new ArrayList<>();
     pinwheels.add(new Pinwheel(0, 0, NUM_BLADES, 0.1f));
     pinwheels.add(new Pinwheel(0, 0, NUM_BLADES, -0.1f));
 
