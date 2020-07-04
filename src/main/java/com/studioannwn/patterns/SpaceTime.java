@@ -27,8 +27,8 @@ public class SpaceTime extends LXModelPattern<StripsModel> {
     addModulator(rate).trigger();
     addModulator(falloff).trigger();
     pos.setPeriod(rate);
-    addParameter(rateParameter);
-    addParameter(sizeParameter);
+    addParameter(rateParameter.getLabel().toLowerCase(), rateParameter);
+    addParameter(sizeParameter.getLabel().toLowerCase(), sizeParameter);
   }
 
   public void onParameterChanged(LXParameter parameter) {

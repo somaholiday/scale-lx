@@ -33,11 +33,11 @@ public class AnnwnNoise extends DPat {
 
     public AnnwnNoise(LX lx) {
         super(lx);
-        addParameter(speed);
-        addParameter(symm);
-        addParameter(mode);
-        addParameter(density);
-        addParameter(animReset);
+        addParameter(speed.getLabel().toLowerCase(), speed);
+        addParameter(symm.getLabel().toLowerCase(), symm);
+        addParameter(mode.getLabel().toLowerCase(), mode);
+        addParameter(density.getLabel().toLowerCase(), density);
+        addParameter(animReset.getLabel().toLowerCase(), animReset);
         mode.setValue(5);
 
         for (int i = 0; i < NUM_NDAT; i++) {

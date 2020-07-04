@@ -126,7 +126,7 @@ public class UIConfig extends UICollapsibleSection implements LXParameterListene
     int knobCountThisRow = 0;
     setTitle(title);
     setLayout(UI2dContainer.Layout.VERTICAL);
-    setChildMargin(2);
+    setChildSpacing(2);
     UI2dContainer horizContainer = null;
     for (LXParameter p : parameters) {
       if (p instanceof DiscreteParameter && toggleOptions != null) {

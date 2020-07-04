@@ -80,9 +80,9 @@ public class Play extends DPat {
         pShape = new DiscreteParameter("Shape", new String[] { "Line", "Tap", "V", "RndV", "Prmd", "Wings", "W2",
                 "Clock", "Trngle", "Quad", "Sphr", "Cone", "Noise", "Wave", "?", "?" });
         pTimePattern.setValue(1);
-        addParameter(pTempoMult);
-        addParameter(pTimePattern);
-        addParameter(pShape);
+        addParameter(pTempoMult.getLabel().toLowerCase(), pTempoMult);
+        addParameter(pTimePattern.getLabel().toLowerCase(), pTimePattern);
+        addParameter(pShape.getLabel().toLowerCase(), pShape);
     }
 
     public class rWave {

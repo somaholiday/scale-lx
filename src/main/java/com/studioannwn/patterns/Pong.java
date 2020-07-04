@@ -35,7 +35,7 @@ public class Pong extends DPat {
         pChoose = new DiscreteParameter("Anim", new String[]{"Pong", "Ball", "Cone"});
         pSize = addParam("Size", 0.4f);
         pChoose.setValue(2);
-        addParameter(pChoose);
+        addParameter(pChoose.getLabel().toLowerCase(), pChoose);
 
         removeParameter(pRotX);
         removeParameter(pRotY);
