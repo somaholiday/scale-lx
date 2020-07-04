@@ -133,6 +133,7 @@ public class DiscoPussyModel extends StripsModel {
     private String ipAddress;
     private int channel;
     private List<Strip> strips = new ArrayList<>();
+    private boolean reverse;
 
     public Dataline(String id, String ipAddress, int channel, List<Strip> strips) {
       super(stripsListToArray(strips));
@@ -156,6 +157,15 @@ public class DiscoPussyModel extends StripsModel {
 
     public List<Strip> getStrips() {
       return strips;
+    }
+
+    public Dataline reverse(boolean reverse) {
+      this.reverse = reverse;
+      return this;
+    }
+
+    public boolean shouldReverse() {
+      return reverse;
     }
   }
 
