@@ -103,13 +103,13 @@ public abstract class DPat extends LXPattern {
 
     public CompoundParameter addParam(String label, double value) {
         CompoundParameter p = new CompoundParameter(label, value);
-        addParameter(p);
+        addParameter(p.getLabel().toLowerCase(), p);
         return p;
     }
 
     public CompoundParameter addParam(String label, double value, double min, double max) {
         CompoundParameter p2 = new CompoundParameter(label, value, min, max);
-        addParameter(p2);
+        addParameter(p2.getLabel().toLowerCase(), p2);
         return p2;
     }
 
@@ -194,12 +194,12 @@ public abstract class DPat extends LXPattern {
         pJog = new BooleanParameter("JOG");
         pGrey = new BooleanParameter("GREY");
 
-        addParameter(pXsym);
-        addParameter(pYsym);
-        addParameter(pRsym);
-        addParameter(pXdup);
-        // addParameter(pJog);
-        addParameter(pGrey);
+        addParameter(pXsym.getLabel().toLowerCase(), pXsym);
+        addParameter(pYsym.getLabel().toLowerCase(), pYsym);
+        addParameter(pRsym.getLabel().toLowerCase(), pRsym);
+        addParameter(pXdup.getLabel().toLowerCase(), pXdup);
+        // addParameter(pJog.getLabel().toLowerCase(), pJog);
+        addParameter(pGrey.getLabel().toLowerCase(), pGrey);
 
         modmin = new PVector(model.xMin, model.yMin, model.zMin);
         mMax = new PVector(model.xMax, model.yMax, model.zMax);

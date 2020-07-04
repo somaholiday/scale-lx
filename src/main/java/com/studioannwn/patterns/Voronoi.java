@@ -55,9 +55,9 @@ public class Voronoi extends DPat {
 
   public Voronoi(LX lx) {
     super(lx);
-    addParameter(speed);
-    addParameter(width);
-    addParameter(num);
+    addParameter(speed.getLabel().toLowerCase(), speed);
+    addParameter(width.getLabel().toLowerCase(), width);
+    addParameter(num.getLabel().toLowerCase(), num);
   }
 
   @Override

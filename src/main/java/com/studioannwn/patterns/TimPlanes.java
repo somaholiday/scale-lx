@@ -44,15 +44,15 @@ public class TimPlanes extends LXPattern {
     centerY = (model.yMin + model.yMax) / 2;
     centerZ = (model.zMin + model.zMax) / 2;
     phase = 0;
-    addParameter(wobbleParameter);
-    addParameter(wobbleSpreadParameter);
-    addParameter(wobbleSpeedParameter);
-//    addParameter(wobbleOffsetParameter);
-    addParameter(derezParameter);
-    addParameter(thicknessParameter);
-    addParameter(ySpreadParameter);
-    addParameter(hueParameter);
-    addParameter(hueSpreadParameter);
+    addParameter(wobbleParameter.getLabel().toLowerCase(), wobbleParameter);
+    addParameter(wobbleSpreadParameter.getLabel().toLowerCase(), wobbleSpreadParameter);
+    addParameter(wobbleSpeedParameter.getLabel().toLowerCase(), wobbleSpeedParameter);
+//    addParameter(wobbleOffsetParameter.getLabel().toLowerCase(), wobbleOffsetParameter);
+    addParameter(derezParameter.getLabel().toLowerCase(), derezParameter);
+    addParameter(thicknessParameter.getLabel().toLowerCase(), thicknessParameter);
+    addParameter(ySpreadParameter.getLabel().toLowerCase(), ySpreadParameter);
+    addParameter(hueParameter.getLabel().toLowerCase(), hueParameter);
+    addParameter(hueSpreadParameter.getLabel().toLowerCase(), hueSpreadParameter);
   }
 
   int beat = 0;
