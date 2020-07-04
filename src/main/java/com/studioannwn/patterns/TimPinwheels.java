@@ -71,15 +71,15 @@ public class TimPinwheels extends LXPattern {
   public TimPinwheels(LX lx) {
     super(lx);
 
-    addParameter(horizSpreadParameter);
-//    addParameter(vertSpreadParameter);
-    addParameter(vertOffsetParameter);
-    addParameter(zSlopeParameter);
-    addParameter(sharpnessParameter);
-    addParameter(derezParameter);
-    addParameter(clickinessParameter);
-    addParameter(hueParameter);
-    addParameter(hueSpreadParameter);
+    addParameter(horizSpreadParameter.getLabel().toLowerCase(), horizSpreadParameter);
+//    addParameter(vertSpreadParameter.getLabel().toLowerCase(), vertSpreadParameter);
+    addParameter(vertOffsetParameter.getLabel().toLowerCase(), vertOffsetParameter);
+    addParameter(zSlopeParameter.getLabel().toLowerCase(), zSlopeParameter);
+    addParameter(sharpnessParameter.getLabel().toLowerCase(), sharpnessParameter);
+    addParameter(derezParameter.getLabel().toLowerCase(), derezParameter);
+    addParameter(clickinessParameter.getLabel().toLowerCase(), clickinessParameter);
+    addParameter(hueParameter.getLabel().toLowerCase(), hueParameter);
+    addParameter(hueSpreadParameter.getLabel().toLowerCase(), hueSpreadParameter);
 
     pinwheels = new ArrayList();
     pinwheels.add(new Pinwheel(0, 0, NUM_BLADES, 0.1f));

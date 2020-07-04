@@ -17,8 +17,8 @@ public class WhiteTemp extends LXPattern {
 
   public WhiteTemp(LX lx) {
     super(lx);
-    addParameter(tempKnob);
-    addParameter(intensityKnob);
+    addParameter(tempKnob.getLabel().toLowerCase(), tempKnob);
+    addParameter(intensityKnob.getLabel().toLowerCase(), intensityKnob);
   }
 
   /**

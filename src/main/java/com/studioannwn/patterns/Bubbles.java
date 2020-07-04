@@ -39,13 +39,13 @@ public class Bubbles extends LXPattern {
     public Bubbles(LX lx) {
         super(lx);
 
-        addParameter(rate);
-        addParameter(speed);
-        addParameter(saturation);
-        addParameter(maxBubbleSize);
-        addParameter(transparency);
-        addParameter(popFrequency);
-        addParameter(zDep);
+        addParameter(rate.getLabel().toLowerCase(), rate);
+        addParameter(speed.getLabel().toLowerCase(), speed);
+        addParameter(saturation.getLabel().toLowerCase(), saturation);
+        addParameter(maxBubbleSize.getLabel().toLowerCase(), maxBubbleSize);
+        addParameter(transparency.getLabel().toLowerCase(), transparency);
+        addParameter(popFrequency.getLabel().toLowerCase(), popFrequency);
+        addParameter(zDep.getLabel().toLowerCase(), zDep);
     }
 
     public void run(final double deltaMs) {

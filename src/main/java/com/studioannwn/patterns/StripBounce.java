@@ -35,8 +35,8 @@ public class StripBounce extends LXModelPattern<StripsModel> {
       colorOffset[i] = (float)random(0, 256);
     }
 
-    addParameter(size);
-    addParameter(hueVariance);
+    addParameter(size.getLabel().toLowerCase(), size);
+    addParameter(hueVariance.getLabel().toLowerCase(), hueVariance);
   }
 
   public void run(double deltaMs) {

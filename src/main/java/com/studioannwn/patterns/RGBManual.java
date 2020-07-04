@@ -15,9 +15,9 @@ public class RGBManual extends LXPattern {
 
   public RGBManual(LX lx) {
     super(lx);
-    addParameter(redKnob);
-    addParameter(greenKnob);
-    addParameter(blueKnob);
+    addParameter(redKnob.getLabel().toLowerCase(), redKnob);
+    addParameter(greenKnob.getLabel().toLowerCase(), greenKnob);
+    addParameter(blueKnob.getLabel().toLowerCase(), blueKnob);
   }
 
   /**
