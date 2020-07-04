@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name = Scale
-Comment = Scale
-Exec = /home/pi/forever.sh
-Type = Application

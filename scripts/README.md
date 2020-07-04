@@ -1,11 +1,19 @@
-## Startup Script Notes
+# Startup Script Notes
 
-This project runs on a Raspberry Pi.
+## Raspberry Pi
 
-To start on boot, add the `scale.desktop` file to `/home/pi/.config/autostart`
+(assumes Raspbian and LXDE)
 
-`scale.desktop` runs `/home/pi/forever.sh`, which runs `/home/pi/scale.sh` and re-runs it if it dies for any reason.
+### To auto-start on boot
 
-`scale.sh` expects a Java main `com.studioannwn.Scale` in `/home/pi/scale/`, which is packaged in `scale-1.0.0.jar`
+Add the `annwn-lx.desktop` file to `/home/pi/.config/autostart`
 
-To disable the auto-start on boot, go to Start > Preferences > Desktop Session Settings, or remove the `scale.desktop` file.
+`annwn-lx.desktop` runs `/home/pi/forever.sh`
+
+`/home/pi/forever.sh` runs `/home/pi/annwn-lx.sh` and re-runs it if it dies for any reason.
+
+`annwn-lx.sh` runs a Java main `com.studioannwn.AnnwnLX` which is packaged in `annwn-lx-1.0.0.jar`.
+
+### To disable the auto-start on boot
+
+Go to Start > Preferences > Desktop Session Settings and uncheck the "Annwn-LX" entry, or remove `/home/pi/.config/autostart/annwn-lx.desktop`

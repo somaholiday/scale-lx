@@ -4,12 +4,13 @@
 #
 # Restarts process if it dies for any reason.
 
-NAME="scale"
+NAME="annwn-lx"
 SCRIPTNAME="$NAME.sh"
 USERNAME=$(whoami)
-BASE="/home/$USERNAME"
-COMMAND="$BASE/$SCRIPTNAME"
-LOGDIR="$BASE/logs"
+PROJECT_DIR="/home/$USERNAME/$NAME"
+SCRIPT_DIR="$PROJECT_DIR/scripts/rpi"
+COMMAND="$SCRIPT_DIR/$SCRIPTNAME"
+LOGDIR="$PROJECT_DIR/logs"
 
 mkdir -p $LOGDIR
 
