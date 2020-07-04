@@ -200,11 +200,7 @@ public class Scale extends PApplet implements LXPlugin {
       }
 
       LuckyPixlite pixlite = pixlites.get(ipAddress);
-      PointsGrouping group = new PointsGrouping(dataline.points);
-      if (dataline.shouldReverse()) {
-        group.reversePoints();
-      }
-      pixlite.addPixliteChannel(dataline.getChannel(), group);
+      pixlite.addPixliteChannel(dataline.getChannel(), new PointsGrouping(dataline.points));
     }
 
     // print used pixlite channels
