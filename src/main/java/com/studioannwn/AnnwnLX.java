@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -18,11 +17,10 @@ import heronarts.lx.LX;
 import heronarts.lx.LXPlugin;
 import heronarts.lx.effect.LXEffect;
 import heronarts.lx.pattern.LXPattern;
-import heronarts.lx.blend.LightestBlend;
 import heronarts.lx.studio.LXStudio;
 import processing.core.PApplet;
 
-public class Scale extends PApplet implements LXPlugin {
+public class AnnwnLX extends PApplet implements LXPlugin {
 
   // Configuration flags
   private final static boolean RESIZABLE = true;
@@ -66,13 +64,12 @@ public class Scale extends PApplet implements LXPlugin {
     root.addHandler(h);
   }
 
-  private static final Logger logger = Logger.getLogger(Scale.class.getName());
+  private static final Logger logger = Logger.getLogger(AnnwnLX.class.getName());
+  private static final String LOG_FILENAME_PREFIX = AnnwnLX.class.getSimpleName();
 
   public static void main(String[] args) {
-    PApplet.main(Scale.class.getName(), args);
+    PApplet.main(AnnwnLX.class.getName(), args);
   }
-
-  private static final String LOG_FILENAME_PREFIX = "scale";
 
   // Reference to top-level LX instance
   private heronarts.lx.studio.LXStudio lx;
