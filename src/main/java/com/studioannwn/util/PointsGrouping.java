@@ -66,7 +66,7 @@ public class PointsGrouping {
   }
 
   public PointsGrouping reversePoints() {
-    Collections.reverse(Arrays.asList(points));
+    Collections.reverse(points);
     return this;
   }
 
