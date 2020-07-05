@@ -19,10 +19,12 @@ import static com.studioannwn.util.MathUtils.*;
 public class Ripple extends LXPattern {
   CompoundParameter hueParameter = new CompoundParameter("Hue", 0.5).setDescription("Sets hue of wave");
   CompoundParameter speedParameter = new CompoundParameter("Speed", 10, -50, 50).setDescription("Sets speed of wave movement").setPolarity(LXParameter.Polarity.BIPOLAR);
-  CompoundParameter wavelengthParameter = new CompoundParameter("Wavelength", 1, 0.1, 4).setDescription("Sets wavelength between peaks");
+  CompoundParameter wavelengthParameter = new CompoundParameter("Wavelength", 4, 0.1, 8).setDescription("Sets wavelength between peaks");
   CompoundParameter sizeParameter = new CompoundParameter("Size", 0, -1, 1).setDescription("Changes size of wave by applying exponential scaling").setPolarity(LXParameter.Polarity.BIPOLAR);
   CompoundParameter shapeParameter = new CompoundParameter("Shape", 0, -1, 1).setDescription("Applies shaping to the waveshape").setPolarity(LXParameter.Polarity.BIPOLAR);
   BooleanParameter grayscaleParameter = new BooleanParameter("Gray", false).setDescription("Sets output to grayscale");
+  CompoundParameter centerXParameter = new CompoundParameter("CenterX", 0.5, 0, 1).setDescription("Sets x position of ripple center");
+  CompoundParameter centerYParameter = new CompoundParameter("CenterY", 0.5, 0, 1).setDescription("Sets y position of ripple center");
 
   LXVector center = new LXVector(0, 0, 0);
   float t = 0;
@@ -36,6 +38,22 @@ public class Ripple extends LXPattern {
     addParameter(shapeParameter.getLabel().toLowerCase(), shapeParameter);
     addParameter(hueParameter.getLabel().toLowerCase(), hueParameter);
     addParameter(grayscaleParameter.getLabel().toLowerCase(), grayscaleParameter);
+    addParameter(centerXParameter.getLabel().toLowerCase(), centerXParameter);
+    addParameter(centerYParameter.getLabel().toLowerCase(), centerYParameter);
+  }
+
+  private void updateCenter() {
+    float xn = centerXParameter.getValuef();
+    float yn = centerYParameter.getValuef();
+    float x = map(xn, 0, 1, model.xMin, model.xMax);
+    float y = map(yn, 0, 1, model.yMin, model.yMax);
+    center.set(x, y);
+  }
+
+  public void onParameterChanged(LXParameter parameter) {
+    if (parameter == centerXParameter || parameter == centerYParameter) {
+      updateCenter();
+    }
   }
 
   @Override
