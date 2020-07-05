@@ -40,7 +40,6 @@ public class Pong extends DPat {
         removeParameter(pRotX);
         removeParameter(pRotY);
         removeParameter(pRotZ);
-        removeParameter(pRotX);
         removeParameter(pSpin);
     }
 
