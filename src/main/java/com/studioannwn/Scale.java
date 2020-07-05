@@ -1,6 +1,7 @@
 package com.studioannwn;
 
 import com.google.common.reflect.ClassPath;
+import com.studioannwn.effect.discopussy.DiscoPussyMask;
 import com.studioannwn.model.discopussy.DiscoPussyConfig;
 import com.studioannwn.model.discopussy.DiscoPussyModel;
 import com.studioannwn.output.ScaleLayout;
@@ -10,6 +11,8 @@ import com.studioannwn.util.PointsGrouping;
 import heronarts.lx.LX;
 import heronarts.lx.LXPlugin;
 import heronarts.lx.effect.LXEffect;
+import heronarts.lx.mixer.LXAbstractChannel;
+import heronarts.lx.mixer.LXMixerEngine;
 import heronarts.lx.output.LXOutput;
 import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.studio.LXStudio;
@@ -173,6 +176,8 @@ public class Scale extends PApplet implements LXPlugin {
   public void initialize(LX lx) {
     registerAll(lx);
 
+    addChannelListener(lx);
+
     for (DiscoPussyModel.Tentacle tentacle : DiscoPussyModel.getTentacles()) {
       for (DiscoPussyModel.Dataline dataline : tentacle.getDatalines()) {
         String ipAddress = dataline.getIpAddress();
@@ -225,6 +230,24 @@ public class Scale extends PApplet implements LXPlugin {
 
   public void draw() {
     // All is handled by LX Studio
+  }
+
+  /**
+   * Automatically adds a bar/tenacles mask effect to any new channel.
+   *
+   * @param lx the LX environment
+   */
+  private void addChannelListener(LX lx) {
+    lx.engine.mixer.addListener(new LXMixerEngine.Listener() {
+      @Override
+      public void channelAdded(LXMixerEngine mixerEngine, LXAbstractChannel channel) {
+        channel.addEffect(new DiscoPussyMask(lx));
+      }
+      @Override
+      public void channelRemoved(LXMixerEngine mixerEngine, LXAbstractChannel channel) {}
+      @Override
+      public void channelMoved(LXMixerEngine mixerEngine, LXAbstractChannel channel) {}
+    });
   }
 
 
