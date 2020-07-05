@@ -15,6 +15,7 @@ public class DatalineConfig {
   private final String ipAddress;
   private final int channel;
   private StripConfig[] stripConfigs;
+  private boolean reverse = false;
 
   public DatalineConfig(String id, String ipAddress, int channel, StripConfig[] stripConfigs) {
     this.id = id;
@@ -38,5 +39,14 @@ public class DatalineConfig {
 
   public StripConfig[] getStripConfigs() {
     return stripConfigs;
+  }
+
+  public DatalineConfig reverse(boolean reverse) {
+    this.reverse = reverse;
+    return this;
+  }
+
+  public boolean shouldReverse() {
+    return reverse;
   }
 }

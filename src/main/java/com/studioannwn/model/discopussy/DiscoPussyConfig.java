@@ -273,8 +273,8 @@ new TentacleConfig("0", 315, LONG)
   };
 
   private final DatalineConfig[] barDatalines = new DatalineConfig[] {
-    new DatalineConfig("BarNE", PIXLITE4, 3, BAR_STRIPS_DATALINE_NE),
-    new DatalineConfig("BarNW", PIXLITE4, 4, BAR_STRIPS_DATALINE_NW),
+    new DatalineConfig("BarNE", PIXLITE4, 3, BAR_STRIPS_DATALINE_NE).reverse(true),
+    new DatalineConfig("BarNW", PIXLITE4, 4, BAR_STRIPS_DATALINE_NW).reverse(true),
     new DatalineConfig("BarSW", PIXLITE4, 2, BAR_STRIPS_DATALINE_SW),
     new DatalineConfig("BarSE", PIXLITE4, 1, BAR_STRIPS_DATALINE_SE),
   };

@@ -6,6 +6,7 @@ import heronarts.lx.transform.LXTransform;
 import heronarts.lx.transform.LXVector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BarBuilder {
@@ -50,9 +51,17 @@ public class BarBuilder {
         points.add(new LXPoint(t));
       }
 
+      if (datalineConfig.shouldReverse()) {
+        Collections.reverse(points);
+      }
+
       strips.add(new DiscoPussyModel.Strip(points));
 
       t.pop();
+    }
+
+    if (datalineConfig.shouldReverse()) {
+      Collections.reverse(strips);
     }
 
     return new DiscoPussyModel.Dataline(
@@ -60,6 +69,6 @@ public class BarBuilder {
       datalineConfig.getIpAddress(),
       datalineConfig.getChannel(),
       strips
-    );
+    ).reverse(datalineConfig.shouldReverse());
   }
 }

@@ -23,7 +23,7 @@ public class PointsGrouping {
   }
 
   public PointsGrouping(LXPoint[] points) {
-    this("ni-humanID", points);
+    this("no-humanID", points);
   }
 
   public PointsGrouping(String id, List<LXPoint> points) {
@@ -66,7 +66,7 @@ public class PointsGrouping {
   }
 
   public PointsGrouping reversePoints() {
-    Collections.reverse(Arrays.asList(points));
+    Collections.reverse(points);
     return this;
   }
 
