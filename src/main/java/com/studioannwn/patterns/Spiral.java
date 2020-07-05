@@ -9,6 +9,7 @@ import heronarts.lx.parameter.BooleanParameter;
 import heronarts.lx.parameter.CompoundParameter;
 import heronarts.lx.parameter.LXParameter;
 import heronarts.lx.pattern.LXPattern;
+import heronarts.lx.transform.LXVector;
 
 import static com.studioannwn.util.MathConstants.TAU;
 import static com.studioannwn.util.MathUtils.*;
@@ -24,6 +25,10 @@ public class Spiral extends LXPattern {
   CompoundParameter hueParameter = new CompoundParameter("Hue", 0.5).setDescription("Sets hue of spiral");
   BooleanParameter grayscaleParameter = new BooleanParameter("Gray", false).setDescription("Sets output to grayscale");
 
+  CompoundParameter centerXParameter = new CompoundParameter("CenterX", 0.5, 0, 1).setDescription("Sets x position of ripple center");
+  CompoundParameter centerYParameter = new CompoundParameter("CenterY", 0.5, 0, 1).setDescription("Sets y position of ripple center");
+
+  LXVector center = new LXVector(0, 0, 0);
   float t = 0;
 
   public Spiral(LX lx) {
@@ -36,6 +41,22 @@ public class Spiral extends LXPattern {
     addParameter(thetaIncParameter.getLabel().toLowerCase(), thetaIncParameter);
     addParameter(hueParameter.getLabel().toLowerCase(), hueParameter);
     addParameter(grayscaleParameter.getLabel().toLowerCase(), grayscaleParameter);
+    addParameter(centerXParameter.getLabel().toLowerCase(), centerXParameter);
+    addParameter(centerYParameter.getLabel().toLowerCase(), centerYParameter);
+  }
+
+  private void updateCenter() {
+    float xn = centerXParameter.getValuef();
+    float yn = centerYParameter.getValuef();
+    float x = map(xn, 0, 1, model.xMin, model.xMax);
+    float y = map(yn, 0, 1, model.yMin, model.yMax);
+    center.set(x, y);
+  }
+
+  public void onParameterChanged(LXParameter parameter) {
+    if (parameter == centerXParameter || parameter == centerYParameter) {
+      updateCenter();
+    }
   }
 
   @Override
@@ -56,8 +77,8 @@ public class Spiral extends LXPattern {
     float r = 0;
     float theta = 0;
     for (int i = 0; i < iterations; i++) {
-      float x = r * cos(theta + t);
-      float y = r * sin(theta + t);
+      float x = center.x + r * cos(theta + t);
+      float y = center.y + r * sin(theta + t);
 
       for (LXPoint p : model.points) {
         if (dist(x, y, p.x, p.y) < width) {
