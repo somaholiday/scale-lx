@@ -1,7 +1,7 @@
-# Scale
+# annwn-lx
 
 ---
-Based on LX Studio.  Lighting software for an installation in the reception area of Scale AI headquarters.
+Based on LX-Studio.  Lighting software for Studio Annwn installations.
 
 ---
 **BY DOWNLOADING OR USING THE LX STUDIO SOFTWARE OR ANY PART THEREOF,
@@ -21,17 +21,17 @@ contact me to discuss proprietary licensing: mark@heronarts.com
 
 ## Getting Started
 
-To set up Scale, perform the following steps:
+To set up annwn-lx, perform the following steps:
 
 1. [Download and install JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 2. [Download and install Maven](https://maven.apache.org).
-3. Clone this [project](https://github.com/tracyscott/Scale.git).
+3. Clone this [project](https://github.com/tracyscott/annwn-lx.git).
 4. From the cloned directory, build the project using `mvn package`.
 5. Change directories to `projects/` and execute
-   `java -jar ../target/scale-1.0.0-jar-with-dependencies.jar`.
-5. Scale should launch with a side-scrolling white dot on a black grid
+   `java -jar ../target/annwn-lx-1.0.0-jar-with-dependencies.jar`.
+5. annwn-lx should launch with a side-scrolling white dot on a black grid
    1. Click "Folder" icon in top-center and select a pattern
-   3. Scale should now show the desired pattern.
+   3. annwn-lx should now show the desired pattern.
 
 Helpful links for Linux environments:
 
@@ -65,7 +65,7 @@ com.jogamp.opengl.GLException: Caught ThreadDeath: null on thread main-FPSAWTAni
 ```
 
 Then we recommend wiping your `.lxproject` file, selecting a `.lxp` file,
-and rebooting Scale twice. It was causing us issues, potentially due
+and rebooting annwn-lx twice. It was causing us issues, potentially due
 to odd-sized windows.
 
 ## LX Studio Contact and Collaboration
