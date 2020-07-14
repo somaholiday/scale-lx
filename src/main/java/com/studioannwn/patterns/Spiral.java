@@ -53,17 +53,12 @@ public class Spiral extends LXPattern {
     center.set(x, y);
   }
 
-  public void onParameterChanged(LXParameter parameter) {
-    if (parameter == centerXParameter || parameter == centerYParameter) {
-      updateCenter();
-    }
-  }
-
   @Override
   protected void run(double deltaMs) {
     t += (float) deltaMs / TimeConstants.SEC * speedParameter.getValuef() * -1;
     t = t % TAU;
     setColors(LXColor.BLACK);
+    updateCenter();
 
     float width = sizeParameter.getValuef();
     float spacing = spacingParameter.getValuef();
