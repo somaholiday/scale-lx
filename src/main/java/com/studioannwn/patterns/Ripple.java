@@ -50,16 +50,11 @@ public class Ripple extends LXPattern {
     center.set(x, y);
   }
 
-  public void onParameterChanged(LXParameter parameter) {
-    if (parameter == centerXParameter || parameter == centerYParameter) {
-      updateCenter();
-    }
-  }
-
   @Override
   protected void run(double deltaMs) {
     t += (float) deltaMs / TimeConstants.SEC * speedParameter.getValuef() * -1;
     t = t % TAU;
+    updateCenter();
 
     float freq = 1.f / wavelengthParameter.getValuef();
     float offset;
