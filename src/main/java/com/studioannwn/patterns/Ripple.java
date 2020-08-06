@@ -18,7 +18,7 @@ import static com.studioannwn.util.MathUtils.*;
 @LXCategory(LXCategory.FORM)
 public class Ripple extends LXPattern {
   CompoundParameter hueParameter = new CompoundParameter("Hue", 0.5).setDescription("Sets hue of wave");
-  CompoundParameter speedParameter = new CompoundParameter("Speed", 1, -50, 50).setDescription("Sets speed of wave movement").setPolarity(LXParameter.Polarity.BIPOLAR);
+  CompoundParameter speedParameter = new CompoundParameter("Speed", 1, -5, 5).setDescription("Sets speed of wave movement").setPolarity(LXParameter.Polarity.BIPOLAR);
   CompoundParameter wavelengthParameter = new CompoundParameter("Wavelength", 15, 0.1, 40).setDescription("Sets wavelength between peaks");
   CompoundParameter sizeParameter = new CompoundParameter("Size", -0.1, -3, 1).setDescription("Changes size of wave by applying exponential scaling").setPolarity(LXParameter.Polarity.BIPOLAR);
   CompoundParameter shapeParameter = new CompoundParameter("Shape", -0.5, -2, 1).setDescription("Applies shaping to the waveshape").setPolarity(LXParameter.Polarity.BIPOLAR);
