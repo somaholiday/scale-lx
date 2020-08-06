@@ -41,31 +41,31 @@
 
             <!-- To install a new dep into the local repo, uncomment this, modify paths as needed,
                 and run mvn clean once, then re-comment this out -->
-            <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>local-deps</id>
-                        <phase>clean</phase>
-                        <configuration>
-                            <file>${project.basedir}/lib/p3lx-0.2.1-SNAPSHOT-jar-with-dependencies.jar</file>
-                            <repositoryLayout>default</repositoryLayout>
-                            <groupId>heronarts</groupId>
-                            <artifactId>P3LX</artifactId>
-                            <version>0.2.1-SNAPSHOT</version>
-                            <packaging>jar</packaging>
-                            <pomFile>${project.basedir}/lib/P3LX-0.2.1-SNAPSHOT.pom</pomFile>
-                            <localRepositoryPath>${project.basedir}/repo</localRepositoryPath>
-                            <createChecksum>true</createChecksum>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin> -->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-install-plugin</artifactId>-->
+<!--                <version>2.5.2</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>local-deps</id>-->
+<!--                        <phase>clean</phase>-->
+<!--                        <configuration>-->
+<!--                            <file>${project.basedir}/lib/lxstudio-0.2.1-SNAPSHOT-2020-08-06-jar-with-dependencies.jar</file>-->
+<!--                            <repositoryLayout>default</repositoryLayout>-->
+<!--                            <groupId>heronarts</groupId>-->
+<!--                            <artifactId>LXStudio</artifactId>-->
+<!--                            <version>0.2.1-SNAPSHOT-2020-08-06</version>-->
+<!--                            <packaging>jar</packaging>-->
+<!--                            <pomFile>${project.basedir}/lib/LXStudio-0.2.1-SNAPSHOT.pom</pomFile>-->
+<!--                            <localRepositoryPath>${project.basedir}/repo</localRepositoryPath>-->
+<!--                            <createChecksum>true</createChecksum>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>install-file</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
 
             <!-- For creating a single executable JAR. -->
@@ -148,7 +148,7 @@
         <dependency>
             <groupId>heronarts</groupId>
             <artifactId>LXStudio</artifactId>
-            <version>0.2.1-SNAPSHOT</version>
+            <version>0.2.1-SNAPSHOT-2020-08-06</version>
         </dependency>
 
         <dependency>
