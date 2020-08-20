@@ -50,11 +50,11 @@
 <!--                        <id>local-deps</id>-->
 <!--                        <phase>clean</phase>-->
 <!--                        <configuration>-->
-<!--                            <file>${project.basedir}/lib/lxstudio-0.2.1-SNAPSHOT-2020-08-06-jar-with-dependencies.jar</file>-->
+<!--                            <file>${project.basedir}/lib/lxstudio-0.2.1-SNAPSHOT-2020-08-18-jar-with-dependencies.jar</file>-->
 <!--                            <repositoryLayout>default</repositoryLayout>-->
 <!--                            <groupId>heronarts</groupId>-->
 <!--                            <artifactId>LXStudio</artifactId>-->
-<!--                            <version>0.2.1-SNAPSHOT-2020-08-06</version>-->
+<!--                            <version>0.2.1-SNAPSHOT-2020-08-18</version>-->
 <!--                            <packaging>jar</packaging>-->
 <!--                            <pomFile>${project.basedir}/lib/LXStudio-0.2.1-SNAPSHOT.pom</pomFile>-->
 <!--                            <localRepositoryPath>${project.basedir}/repo</localRepositoryPath>-->
@@ -148,7 +148,7 @@
         <dependency>
             <groupId>heronarts</groupId>
             <artifactId>LXStudio</artifactId>
-            <version>0.2.1-SNAPSHOT-2020-08-06</version>
+            <version>0.2.1-SNAPSHOT-2020-08-18</version>
         </dependency>
 
         <dependency>
