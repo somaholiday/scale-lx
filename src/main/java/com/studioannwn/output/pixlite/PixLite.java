@@ -5,7 +5,7 @@ import java.net.SocketException;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.studioannwn.Scale;
+import com.studioannwn.AnnwnLX;
 import com.studioannwn.output.ScaleOutput;
 
 import heronarts.lx.LX;
@@ -89,7 +89,7 @@ public abstract class PixLite extends LXOutputGroup {
       List<List<LXPoint>> pointsByUniverse = Lists.partition(points, LEDS_PER_UNIVERSE);
       int universeOffset = 0;
 
-      if (Scale.DEBUG) {
+      if (AnnwnLX.DEBUG) {
         System.out.println(String.format("Output %d (Universes %d-%d)", outputIndex, startUniverse,
             startUniverse + getNumUniversesPerOutput()));
       }
@@ -101,7 +101,7 @@ public abstract class PixLite extends LXOutputGroup {
           universeIndexBuffer[i] = universePoints.get(i).index;
         }
 
-        if (Scale.DEBUG) {
+        if (AnnwnLX.DEBUG) {
           printUniverseIndexBuffer(startUniverse + universeOffset, universeIndexBuffer);
         }
 

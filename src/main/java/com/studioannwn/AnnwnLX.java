@@ -1,31 +1,26 @@
 package com.studioannwn;
 
-import com.google.common.reflect.ClassPath;
-import com.studioannwn.effect.discopussy.DiscoPussyMask;
-import com.studioannwn.model.discopussy.DiscoPussyConfig;
-import com.studioannwn.model.discopussy.DiscoPussyModel;
-import com.studioannwn.output.ScaleLayout;
-import com.studioannwn.output.pixlite.LuckyPixlite;
-import com.studioannwn.ui.DiscoPussyVisualizer;
-import com.studioannwn.util.PointsGrouping;
-import heronarts.lx.LX;
-import heronarts.lx.LXPlugin;
-import heronarts.lx.effect.LXEffect;
-import heronarts.lx.mixer.LXAbstractChannel;
-import heronarts.lx.mixer.LXMixerEngine;
-import heronarts.lx.output.LXOutput;
-import heronarts.lx.pattern.LXPattern;
-import heronarts.lx.studio.LXStudio;
-import processing.core.PApplet;
-
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
-public class Scale extends PApplet implements LXPlugin {
+import com.google.common.reflect.ClassPath;
+import com.studioannwn.output.ScaleLayout;
+
+import heronarts.lx.LX;
+import heronarts.lx.LXPlugin;
+import heronarts.lx.effect.LXEffect;
+import heronarts.lx.pattern.LXPattern;
+import heronarts.lx.studio.LXStudio;
+import processing.core.PApplet;
+
+public class AnnwnLX extends PApplet implements LXPlugin {
 
   // Configuration flags
   private final static boolean RESIZABLE = true;
@@ -54,7 +49,6 @@ public class Scale extends PApplet implements LXPlugin {
     }
   }
 
-
   /**
    * Adds logging to a file. The file name will be appended with a dash, date
    * stamp, and the extension ".log".
@@ -70,13 +64,12 @@ public class Scale extends PApplet implements LXPlugin {
     root.addHandler(h);
   }
 
-  private static final Logger logger = Logger.getLogger(Scale.class.getName());
+  private static final Logger logger = Logger.getLogger(AnnwnLX.class.getName());
+  private static final String LOG_FILENAME_PREFIX = AnnwnLX.class.getSimpleName();
 
   public static void main(String[] args) {
-    PApplet.main(Scale.class.getName(), args);
+    PApplet.main(AnnwnLX.class.getName(), args);
   }
-
-  private static final String LOG_FILENAME_PREFIX = "scale";
 
   // Reference to top-level LX instance
   private heronarts.lx.studio.LXStudio lx;
@@ -85,8 +78,6 @@ public class Scale extends PApplet implements LXPlugin {
 
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
-
-  public final HashMap<String, LuckyPixlite> pixlites = new HashMap<String, LuckyPixlite>();
 
   @Override
   public void settings() {
@@ -149,7 +140,7 @@ public class Scale extends PApplet implements LXPlugin {
     flags.showFramerate = false;
     flags.isP3LX = true;
     flags.immutableModel = true;
-    flags.useGLPointCloud = false; // Uncomment to run on Raspberry Pi
+    // flags.useGLPointCloud = false; // Uncomment to run on Raspberry Pi
 
     logger.info("Current renderer:" + sketchRenderer());
     logger.info("Current graphics:" + getGraphics());
@@ -157,12 +148,9 @@ public class Scale extends PApplet implements LXPlugin {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    DiscoPussyModel model = new DiscoPussyModel(new DiscoPussyConfig());
-    lx = new LXStudio(this, flags, model);
-
-//    layout = new ScaleLayout();
-//    lx = new LXStudio(this, flags, layout.getModel());
-//    layout.addOutputs(lx);
+    layout = new ScaleLayout();
+    lx = new LXStudio(this, flags, layout.getModel());
+    layout.addOutputs(lx);
     // lx.setModel(layout.getModel());
     // lx.setModel(new GridModel3D());
 
@@ -175,83 +163,16 @@ public class Scale extends PApplet implements LXPlugin {
   @Override
   public void initialize(LX lx) {
     registerAll(lx);
-
-    addChannelListener(lx);
-
-    for (DiscoPussyModel.Tentacle tentacle : DiscoPussyModel.getTentacles()) {
-      for (DiscoPussyModel.Dataline dataline : tentacle.getDatalines()) {
-        String ipAddress = dataline.getIpAddress();
-
-        if (!pixlites.containsKey(ipAddress)) {
-          LuckyPixlite pixlite = new LuckyPixlite(lx, ipAddress);
-          pixlites.put(ipAddress, pixlite);
-          lx.addOutput(pixlite);
-          pixlite.enabled.setValue(true);
-        }
-
-        LuckyPixlite pixlite = pixlites.get(ipAddress);
-        pixlite.addPixliteChannel(dataline.getChannel(), new PointsGrouping(dataline.getId(), dataline.points));
-      }
-    }
-
-    for (DiscoPussyModel.Dataline dataline : DiscoPussyModel.getBar().getDatalines()) {
-      String ipAddress = dataline.getIpAddress();
-
-      if (!pixlites.containsKey(ipAddress)) {
-        LuckyPixlite pixlite = new LuckyPixlite(lx, ipAddress);
-        pixlites.put(ipAddress, pixlite);
-        lx.addOutput(pixlite);
-        pixlite.enabled.setValue(true);
-      }
-
-      LuckyPixlite pixlite = pixlites.get(ipAddress);
-      PointsGrouping group = new PointsGrouping(dataline.getId(), dataline.points);
-      if (dataline.shouldReverse()) {
-        group.reversePoints();
-      }
-      pixlite.addPixliteChannel(dataline.getChannel(), group);
-    }
-
-    // print used pixlite channels
-    System.out.println();
-    System.out.println("-- Setup pixlites ----------------------------");
-    pixlites.forEach((ipAddress, pixlite) -> {
-      System.out.println(ipAddress + " - " + pixlite.children.size() + " datalines");
-      for (LXOutput channel : pixlite.children) {
-        System.out.println(" -> Channel " + ((LuckyPixlite.Channel) channel).getIndex());
-      }
-      System.out.println("----------------------------------------------");
-    });
-    System.out.println();
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
-//    ui.preview.addComponent(new ScaleVisualizer(lx));
-    ui.preview.addComponent(new DiscoPussyVisualizer(lx));
+    ui.preview.addComponent(new ScaleVisualizer(lx));
 
     new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
 
   public void draw() {
     // All is handled by LX Studio
-  }
-
-  /**
-   * Automatically adds a bar/tenacles mask effect to any new channel.
-   *
-   * @param lx the LX environment
-   */
-  private void addChannelListener(LX lx) {
-    lx.engine.mixer.addListener(new LXMixerEngine.Listener() {
-      @Override
-      public void channelAdded(LXMixerEngine mixerEngine, LXAbstractChannel channel) {
-        channel.addEffect(new DiscoPussyMask(lx));
-      }
-      @Override
-      public void channelRemoved(LXMixerEngine mixerEngine, LXAbstractChannel channel) {}
-      @Override
-      public void channelMoved(LXMixerEngine mixerEngine, LXAbstractChannel channel) {}
-    });
   }
 
 

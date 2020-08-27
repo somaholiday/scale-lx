@@ -3,17 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.studioannwn</groupId>
-    <artifactId>scale</artifactId>
+    <artifactId>annwn-lx</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Scale</name>
+    <name>annwn-lx</name>
     <url>http://studioannwn.com/</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>com.studioannwn.AnnwnLX</mainClass>
     </properties>
 
     <repositories>
@@ -37,7 +38,6 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
-
 
             <!-- To install a new dep into the local repo, uncomment this, modify paths as needed,
                 and run mvn clean once, then re-comment this out -->
@@ -79,7 +79,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.studioannwn.Scale</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -101,14 +101,14 @@
 
                 <executions>
                     <execution>
-                        <id>Scale</id>
+                        <id>annwn-lx</id>
                         <goals>
                             <goal>java</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.studioannwn.Scale</mainClass>
+                    <mainClass>${mainClass}</mainClass>
                     <arguments></arguments>
                     <stopUnresponsiveDaemonThreads>true</stopUnresponsiveDaemonThreads>
                     <systemProperties></systemProperties>
@@ -156,6 +156,7 @@
             <artifactId>guava</artifactId>
             <version>28.0-jre</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
