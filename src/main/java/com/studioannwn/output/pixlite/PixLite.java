@@ -63,7 +63,7 @@ public abstract class PixLite extends LXOutputGroup {
   /*
    * PixLiteOutput
    */
-  protected class PixLiteOutput extends ScaleOutput {
+  public class PixLiteOutput extends ScaleOutput {
     private final int outputIndex;
     private final int startUniverse;
     private final List<LXPoint> points;
@@ -128,6 +128,10 @@ public abstract class PixLite extends LXOutputGroup {
         }
       }
       System.out.println("\n");
+    }
+
+    public int getOutputIndex() {
+      return outputIndex;
     }
 
     public String toString() {
