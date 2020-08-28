@@ -7,6 +7,7 @@ import com.studioannwn.output.ScaleOutput;
 
 import heronarts.lx.LX;
 import heronarts.lx.output.LXOutput;
+import heronarts.lx.output.LXOutputGroup;
 import heronarts.lx.studio.LXStudio.UI;
 import heronarts.p3lx.ui.UI2dContainer;
 import heronarts.p3lx.ui.UITimerTask;
@@ -60,9 +61,11 @@ public class UIOutputControls extends UICollapsibleSection {
       items.add(new OutputItem((ScaleOutput)output));
     }
 
-    output.children.forEach(childOutput -> {
-      addOutputToList(childOutput, items);
-    });
+    if (output instanceof LXOutputGroup) {
+      ((LXOutputGroup) output).children.forEach(childOutput -> {
+        addOutputToList(childOutput, items);
+      });
+    }
   }
 }
 

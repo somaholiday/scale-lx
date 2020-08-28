@@ -5,7 +5,6 @@ import java.net.UnknownHostException;
 
 import heronarts.lx.LX;
 import heronarts.lx.output.LXOutputGroup;
-import heronarts.lx.output.LXDatagramOutput;
 import heronarts.lx.output.ArtNetDatagram;
 
 import com.studioannwn.util.PointsGrouping;
@@ -29,7 +28,7 @@ public class LuckyPixlite extends LXOutputGroup {
     return this;
   }
 
-  public class Channel extends LXDatagramOutput {
+  public class Channel extends LXOutputGroup {
     private final int MAX_NUM_POINTS_PER_UNIVERSE = 170;
     private final int index;
     private final int firstUniverseOnChannel;
@@ -57,9 +56,9 @@ public class LuckyPixlite extends LXOutputGroup {
           indices[i1] = pointsGrouping.getPoint(counter++).index;
         }
         try {
-          ArtNetDatagram datagram = new ArtNetDatagram(indices, universe - 1);
+          ArtNetDatagram datagram = new ArtNetDatagram(lx, indices, universe - 1);
           datagram.setAddress(InetAddress.getByName(ipAddress));
-          addDatagram(datagram);
+          addChild(datagram);
         } catch (UnknownHostException e) {
           e.printStackTrace();
         }

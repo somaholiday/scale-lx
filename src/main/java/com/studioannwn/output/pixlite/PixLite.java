@@ -105,7 +105,7 @@ public abstract class PixLite extends LXOutputGroup {
           printUniverseIndexBuffer(startUniverse + universeOffset, universeIndexBuffer);
         }
 
-        LXDatagram datagram = new ArtNetDatagram(universeIndexBuffer, (startUniverse - 1) + universeOffset++); // zero-indexed
+        LXDatagram datagram = new ArtNetDatagram(lx, universeIndexBuffer, (startUniverse - 1) + universeOffset++); // zero-indexed
         try {
           datagram.setAddress(InetAddress.getByName(ipAddress));
         } catch (Exception e) {
@@ -113,7 +113,7 @@ public abstract class PixLite extends LXOutputGroup {
           e.printStackTrace();
         }
 
-        addDatagram(datagram);
+        addChild(datagram);
       }
     }
 
