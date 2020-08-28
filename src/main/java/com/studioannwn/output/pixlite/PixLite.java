@@ -77,12 +77,15 @@ public abstract class PixLite extends LXOutputGroup {
       setupDatagrams();
     }
 
-    protected void beforeSend(int[] colors) {
+    @Override
+    protected void onSend(int[] colors, byte[] glut) {
       if (this.selected.isOn()) {
         for (LXPoint p : points) {
           colors[p.index] = LXColor.WHITE;
         }
       }
+
+      super.onSend(colors, glut);
     }
 
     private void setupDatagrams() {
