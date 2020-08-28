@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name = AnnwnLX
 Comment = AnnwnLX
-Exec = /home/pi/annwn-lx/scripts/rpi/forever.sh
+Exec = /home/pi/annwn-lx/scripts/rpi/forever-start.sh
 Type = Application

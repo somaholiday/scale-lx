@@ -1,0 +1,10 @@
+{
+  "uid": "LX",
+  "command": "bash",
+  "script": "./annwn-lx.sh",
+  "sourceDir": "/home/pi/annwn-lx/scripts/rpi",
+  "logFile": "/home/pi/logs/lx-forever.log",
+  "outFile": "/home/pi/logs/lx-out.log",
+  "errFile": "/home/pi/logs/lx-error.log",
+  "append": true
+}
