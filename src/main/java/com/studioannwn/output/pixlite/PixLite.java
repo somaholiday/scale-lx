@@ -72,7 +72,7 @@ public abstract class PixLite extends LXOutputGroup {
       super(lx);
 
       this.outputIndex = outputIndex;
-      this.startUniverse = (outputIndex - 1) * getNumUniversesPerOutput() + 1;
+      this.startUniverse = outputIndex * 10;
       this.points = points;
       setupDatagrams();
     }
