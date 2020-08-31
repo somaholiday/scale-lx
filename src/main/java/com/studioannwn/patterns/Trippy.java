@@ -2,10 +2,9 @@ package com.studioannwn.patterns;
 
 import heronarts.lx.LX;
 import heronarts.lx.LXCategory;
-import heronarts.lx.color.LXColor;
 import heronarts.lx.model.LXPoint;
 import heronarts.lx.parameter.CompoundParameter;
-import heronarts.lx.LXPattern;
+import heronarts.lx.pattern.LXPattern;
 
 import static com.studioannwn.util.NoiseUtils.*;
 
