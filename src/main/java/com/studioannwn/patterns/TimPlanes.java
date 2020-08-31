@@ -77,7 +77,7 @@ public class TimPlanes extends LXPattern {
     float hue = hueParameter.getValuef() * 360;
     float hueSpread = (hueSpreadParameter.getValuef() - 0.5f) * 360;
 
-    float saturation = 10f + 60.0f * ((float) pow(ramp, 0.25f));
+    float saturation = 100;
 
     float derez = derezParameter.getValuef();
 
