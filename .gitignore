@@ -7,6 +7,7 @@
 target/
 *.lck
 *.tmp
+.env
 
 node_modules/
 .vscode/
