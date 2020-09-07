@@ -2,4 +2,4 @@
 
 #source ./.env
 #echo ${PIXLITES[@]}
-curl "https://soma.space/.netlify/functions/pi-ping?hostname=$(hostname)"
+curl "https://ijiri.co/ping?hostname=$(hostname)"
