@@ -1,0 +1,10 @@
+{
+  "uid": "LX",
+  "command": "bash",
+  "script": "./annwn-lx.sh",
+  "sourceDir": "/Users/KeeganArthurOlton/Documents/GitHub/annwn-lx/scripts/mac",
+  "logFile": "/Users/KeeganArthurOlton/Documents/logs/lx-forever.log",
+  "outFile": "/Users/KeeganArthurOlton/Documents/logs/lx-out.log",
+  "errFile": "/Users/KeeganArthurOlton/Documents/logs/lx-error.log",
+  "append": true
+}
