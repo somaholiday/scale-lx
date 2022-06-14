@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
+import com.studioannwn.model.ladybug.LadybugModel;
 import com.studioannwn.output.ScaleLayout;
 
 import heronarts.lx.LX;
@@ -148,11 +149,8 @@ public class AnnwnLX extends PApplet implements LXPlugin {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    layout = new ScaleLayout();
-    lx = new LXStudio(this, flags, layout.getModel());
-    layout.addOutputs(lx);
-    // lx.setModel(layout.getModel());
-    // lx.setModel(new GridModel3D());
+    LadybugModel model = new LadybugModel();
+    lx = new LXStudio(this, flags, model);
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);
@@ -166,7 +164,8 @@ public class AnnwnLX extends PApplet implements LXPlugin {
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
-    ui.preview.addComponent(new ScaleVisualizer(lx));
+//    ui.preview.addComponent(new ScaleVisualizer(lx));
+//    ui.preview.addComponent(new DiscoPussyVisualizer(lx));
 
     new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
@@ -174,6 +173,4 @@ public class AnnwnLX extends PApplet implements LXPlugin {
   public void draw() {
     // All is handled by LX Studio
   }
-
-
 }
