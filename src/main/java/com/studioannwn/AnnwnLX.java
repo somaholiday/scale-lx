@@ -11,8 +11,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 import com.google.common.reflect.ClassPath;
-import com.studioannwn.model.ladybug.LadybugModel;
-import com.studioannwn.output.ScaleLayout;
 
 import com.studioannwn.output.ladybug.LadybugLayout;
 import heronarts.lx.LX;
@@ -75,8 +73,6 @@ public class AnnwnLX extends PApplet implements LXPlugin {
 
   // Reference to top-level LX instance
   private heronarts.lx.studio.LXStudio lx;
-
-  public ScaleLayout layout;
 
   public static PApplet pApplet;
   public static final int GLOBAL_FRAME_RATE = 40;
@@ -166,8 +162,7 @@ public class AnnwnLX extends PApplet implements LXPlugin {
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
-//    ui.preview.addComponent(new ScaleVisualizer(lx));
-//    ui.preview.addComponent(new DiscoPussyVisualizer(lx));
+    ui.preview.addComponent(new ScaleVisualizer(lx));
 
     new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
