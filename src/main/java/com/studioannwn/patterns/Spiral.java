@@ -16,9 +16,9 @@ import static com.studioannwn.util.MathUtils.*;
 
 @LXCategory(LXCategory.FORM)
 public class Spiral extends LXPattern {
-  CompoundParameter sizeParameter = new CompoundParameter("Size", 5, 1, 10).setDescription("Sets spiral width");
+  CompoundParameter sizeParameter = new CompoundParameter("Size", 5, 1, 100).setDescription("Sets spiral width");
   CompoundParameter spacingParameter = new CompoundParameter("Spacing", 0.5, 0.1, 1).setDescription("Sets spiral spacing");
-  CompoundParameter lengthParameter = new CompoundParameter("Length", 2, 1, 5).setDescription("Sets spiral length");
+  CompoundParameter lengthParameter = new CompoundParameter("Length", 2, 1, 50).setDescription("Sets spiral length");
   CompoundParameter speedParameter = new CompoundParameter("Speed", 10, -25, 25).setDescription("Sets rotation speed").setPolarity(LXParameter.Polarity.BIPOLAR);
   CompoundParameter thetaIncParameter = new CompoundParameter("Curve", .1, -.1, .1).setDescription("Alters the spiral curvature").setPolarity(LXParameter.Polarity.BIPOLAR);
 
