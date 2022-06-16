@@ -14,6 +14,7 @@ import com.google.common.reflect.ClassPath;
 import com.studioannwn.model.ladybug.LadybugModel;
 import com.studioannwn.output.ScaleLayout;
 
+import com.studioannwn.output.ladybug.LadybugLayout;
 import heronarts.lx.LX;
 import heronarts.lx.LXPlugin;
 import heronarts.lx.effect.LXEffect;
@@ -149,8 +150,9 @@ public class AnnwnLX extends PApplet implements LXPlugin {
     logger.info("Multithreaded hint: " + MULTITHREADED);
     logger.info("Multithreaded actually: " + (MULTITHREADED && !getGraphics().isGL()));
 
-    LadybugModel model = new LadybugModel();
-    lx = new LXStudio(this, flags, model);
+    LadybugLayout layout = new LadybugLayout();
+    lx = new LXStudio(this, flags, layout.getModel());
+    layout.addOutputs(lx);
 
     lx.ui.setResizable(RESIZABLE);
     lx.engine.output.enabled.setValue(ENABLE_ON_START);

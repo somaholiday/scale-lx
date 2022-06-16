@@ -18,7 +18,6 @@ public class LadybugModel extends LXModel {
   private static List<LXPoint> vectorsToPoints(List<LXVector> vectors) {
     List<LXPoint> points = new ArrayList<>(vectors.size());
 
-    // TODO: do mapping from logical to physical points here
     for (LXVector vector : vectors) {
       points.add(new LXPoint(vector));
     }
