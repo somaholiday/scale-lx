@@ -162,7 +162,7 @@ public class AnnwnLX extends PApplet implements LXPlugin {
   }
 
   public void onUIReady(LXStudio lx, LXStudio.UI ui) {
-    ui.preview.addComponent(new ScaleVisualizer(lx));
+//    ui.preview.addComponent(new ScaleVisualizer(lx));
 
     new UIOutputControls(lx, ui).setExpanded(true).addToContainer(ui.leftPane.global);
   }
