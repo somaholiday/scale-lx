@@ -3,7 +3,7 @@
 ANNWN_LX_DIR="/home/pi/annwn-lx"
 ANNWN_LX_LIBS="./lib/guava-28.0-jre.jar:./lib/commons-math3-3.6.1.jar"
 ANNWN_LX_JAR="./target/annwn-lx-1.0.0.jar"
-JAVA_BIN="/opt/jdk1.8.0_261/bin/java"
+JAVA_BIN="/opt/jdk1.8.0_333/bin/java"
 PROCESSING_DIR="/opt/processing-3.5.3"
 LX_VERSION="0.2.1-SNAPSHOT-2020-08-18"
 LX_JAR="./repo/heronarts/LXStudio/$LX_VERSION/LXStudio-$LX_VERSION.jar"
