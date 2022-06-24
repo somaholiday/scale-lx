@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -250,20 +251,51 @@ public class AnnwnLX extends PApplet implements LXPlugin {
     // --------------------------------
     // EVENT-BASED GPIO PIN MONITORING
     // --------------------------------
+    
+    String[] rightPinArray = new String[] {
+      "GPIO 1", // #18
+      "GPIO 4", // #23
+      "GPIO 5", // #24
+      "GPIO 6", // #25
+      "GPIO 26",// #12
+      "GPIO 27",// #16
+      "GPIO 28",// #20
+      "GPIO 29" // #21
+    };
+    
+    String[] leftPinArray = new String[] {
+      "GPIO 7", // #4
+      "GPIO 0", // #17
+      "GPIO 2", // #27
+      "GPIO 3", // #22
+      "GPIO 21",// #5
+      "GPIO 22",// #6 
+      "GPIO 23",// #13
+      "GPIO 24",// #19
+      "GPIO 25" // #26
+    };
+    
+    List<String> leftPins = new ArrayList<>(Arrays.asList(leftPinArray));
+    List<String> rightPins = new ArrayList<>(Arrays.asList(rightPinArray));
 
     // create and register gpio pin listeners for event pins
     gpio.addListener(new GpioPinListenerDigital() {
         @Override
         public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
             // display pin state on console
-            console.println(" --> GPIO PIN STATE CHANGE (EVENT): " + event.getPin() + " = " +
+            console.println(" --> GPIO PIN STATE CHANGE (EVENT): " + event.getPin().getName() + " = " +
             ConsoleColor.conditional(
               event.getState().isHigh(), // conditional expression
               ConsoleColor.GREEN,        // positive conditional color
               ConsoleColor.RED,          // negative conditional color
               event.getState()));        // text to display
             
-            if (event.getState().isHigh()) {  
+            if (event.getState().isHigh()) {
+              if (leftPins.contains(event.getPin().getName())) {
+                console.println("LEFT PIN");
+              } else if (rightPins.contains(event.getPin().getName())) {
+                console.println("RIGHT PIN");
+              }
               LXChannel channel = lx.engine.mixer.getDefaultChannel();
               console.println(channel.label.getString());
               channel.goRandomPattern();
