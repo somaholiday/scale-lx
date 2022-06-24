@@ -26,6 +26,7 @@ import com.pi4j.util.ConsoleColor;
 import com.studioannwn.output.ladybug.LadybugLayout;
 import heronarts.lx.LX;
 import heronarts.lx.LXPlugin;
+import heronarts.lx.mixer.LXChannel;
 import heronarts.lx.effect.LXEffect;
 import heronarts.lx.pattern.LXPattern;
 import heronarts.lx.studio.LXStudio;
@@ -256,11 +257,17 @@ public class AnnwnLX extends PApplet implements LXPlugin {
         public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
             // display pin state on console
             console.println(" --> GPIO PIN STATE CHANGE (EVENT): " + event.getPin() + " = " +
-                    ConsoleColor.conditional(
-                            event.getState().isHigh(), // conditional expression
-                            ConsoleColor.GREEN,        // positive conditional color
-                            ConsoleColor.RED,          // negative conditional color
-                            event.getState()));        // text to display
+            ConsoleColor.conditional(
+              event.getState().isHigh(), // conditional expression
+              ConsoleColor.GREEN,        // positive conditional color
+              ConsoleColor.RED,          // negative conditional color
+              event.getState()));        // text to display
+            
+            if (event.getState().isHigh()) {  
+              LXChannel channel = lx.engine.mixer.getDefaultChannel();
+              console.println(channel.label.getString());
+              channel.goRandomPattern();
+            }
         }
     }, provisionedPins.toArray(new GpioPinDigitalInput[0]));
     
