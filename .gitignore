@@ -16,4 +16,3 @@ node_modules/
 .project
 .settings/
 *.sw[op]
-*.lxp
