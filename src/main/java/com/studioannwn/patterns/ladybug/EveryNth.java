@@ -15,8 +15,7 @@ import static com.studioannwn.util.MathConstants.TAU;
 @LXCategory(LXCategory.FORM)
 public class EveryNth extends LXPattern {
 
-
-  DiscreteParameter nParameter = new DiscreteParameter("n", 3, 1, 50).setDescription("Light every nth pixel");
+  CompoundParameter nParameter = new CompoundParameter("n", 3, 1, 50).setDescription("Light every nth pixel");
   CompoundParameter hueParameter = new CompoundParameter("Hue", 0.5).setDescription("Sets base hue");
   CompoundParameter spreadParameter = new CompoundParameter("Spread", 0.5).setDescription("Sets spread of rainbow");
   CompoundParameter speedParameter = new CompoundParameter("Speed", 10, -30, 30).setDescription("Sets speed of rotation").setPolarity(LXParameter.Polarity.BIPOLAR);
@@ -35,7 +34,7 @@ public class EveryNth extends LXPattern {
   }
 
   public void run(double deltaMs) {
-    int n = nParameter.getValuei();
+    int n = (int)Math.floor(nParameter.getValuef());
     float hue = hueParameter.getValuef() * 360;
     float fade = fadeParameter.getValuef();
     float spread = spreadParameter.getValuef();
