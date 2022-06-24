@@ -29,7 +29,7 @@ public class AnnwnLX extends PApplet implements LXPlugin {
                                                       // Enable at your own risk!
                                                       // Could cause VM crashes.
 
-  public final static boolean DEBUG = false;
+  public final static boolean DEBUG = true;
 
   static {
     System.setProperty("java.util.logging.SimpleFormatter.format", "%3$s: %1$tc [%4$s] %5$s%6$s%n");
